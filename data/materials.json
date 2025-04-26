@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Керамзитобетонный блок",
+    "size": "390×190×188",
+    "type": "блок",
+    "regions": {
+      "north": true,
+      "south": false,
+      "east": true,
+      "west": true,
+      "center": true
+    },
+    "insulation_level": "высокая",
+    "moisture_resistance": "средняя",
+    "notes": "Хорошая теплоизоляция, подходит для холодных регионов"
+  },
+  {
+    "id": 2,
+    "name": "Газобетонный блок",
+    "size": "600×300×200",
+    "type": "блок",
+    "regions": {
+      "north": true,
+      "south": false,
+      "east": true,
+      "west": true,
+      "center": true
+    },
+    "insulation_level": "высокая",
+    "moisture_resistance": "низкая",
+    "notes": "Отличная теплоизоляция, но требует защиты от влаги"
+  },
+  {
+    "id": 3,
+    "name": "Пенобетонный блок",
+    "size": "600×200×400",
+    "type": "блок",
+    "regions": {
+      "north": true,
+      "south": false,
+      "east": true,
+      "west": false,
+      "center": true
+    },
+    "insulation_level": "высокая",
+    "moisture_resistance": "низкая",
+    "notes": "Лёгкий, тёплый, не любит влагу — в юге и западе требует защиту"
+  },
+  {
+    "id": 4,
+    "name": "Керамический крупноформатный блок",
+    "size": "510×250×219",
+    "type": "блок",
+    "regions": {
+      "north": false,
+      "south": true,
+      "east": false,
+      "west": true,
+      "center": true
+    },
+    "insulation_level": "средняя",
+    "moisture_resistance": "высокая",
+    "notes": "Хорошо держит тепло, но менее популярен на севере"
+  },
+  {
+    "id": 5,
+    "name": "Теплоблок",
+    "size": "400×400×200",
+    "type": "блок",
+    "regions": {
+      "north": true,
+      "south": true,
+      "east": true,
+      "west": true,
+      "center": true
+    },
+    "insulation_level": "высокая",
+    "moisture_resistance": "высокая",
+    "notes": "Универсальный, многослойная структура с утеплителем"
+  },
+  {
+    "id": 6,
+    "name": "Кирпич строительный",
+    "size": "250×120×65",
+    "type": "кирпич",
+    "regions": {
+      "north": false,
+      "south": true,
+      "east": false,
+      "west": true,
+      "center": true
+    },
+    "insulation_level": "низкая",
+    "moisture_resistance": "средняя",
+    "notes": "Прочный, но требует утепления на севере"
+  },
+  {
+    "id": 7,
+    "name": "Кирпич пустотелый утолщённый",
+    "size": "250×120×88",
+    "type": "кирпич",
+    "regions": {
+      "north": false,
+      "south": true,
+      "east": false,
+      "west": true,
+      "center": true
+    },
+    "insulation_level": "средняя",
+    "moisture_resistance": "средняя",
+    "notes": "Лёгкий, менее устойчив к морозам — использовать с утеплителем"
+  },
+  {
+    "id": 8,
+    "name": "Кирпич силикатный 3-пустотный",
+    "size": "250×120×138",
+    "type": "кирпич",
+    "regions": {
+      "north": false,
+      "south": true,
+      "east": false,
+      "west": true,
+      "center": false
+    },
+    "insulation_level": "низкая",
+    "moisture_resistance": "низкая",
+    "notes": "Не рекомендован в холодных и влажных климатах"
+  },
+  {
+    "id": 9,
+    "name": "Перегородочный блок",
+    "size": "390×120×190",
+    "type": "перегородочный",
+    "regions": {
+      "north": true,
+      "south": true,
+      "east": true,
+      "west": true,
+      "center": true
+    },
+    "insulation_level": "—",
+    "moisture_resistance": "—",
+    "notes": "Для внутренних перегородок — подходит везде"
+  },
+  {
+    "id": 10,
+    "name": "Перегородочный узкий блок",
+    "size": "390×90×190",
+    "type": "перегородочный",
+    "regions": {
+      "north": true,
+      "south": true,
+      "east": true,
+      "west": true,
+      "center": true
+    },
+    "insulation_level": "—",
+    "moisture_resistance": "—",
+    "notes": "Для внутренних перегородок — подходит везде"
+  }
+]

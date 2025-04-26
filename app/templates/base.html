@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BuildCalc{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/choices/choices.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
+    {% block styles %}{% endblock %}
+</head>
+<body>
+<header class="site-header">
+    <div class="main__container site-header__container">
+        <div class="site-header__logo">
+            <a href="{{ url_for('main.home') }}" class="site-header__logo-link">
+                <span class="site-header__logo-text">BuildCalc</span>
+            </a>
+        </div>
+
+        <div class="site-header__actions">
+            <nav class="site-header__nav">
+                <a href="{{ url_for("main.calc") }}" class="site-header__nav-item" aria-label="Калькулятор">
+                    <span class="material-icons site-header__nav-item-icon">calculate</span>
+                    <span class="site-header__nav-item-text">Калькулятор</span>
+                </a>
+                <a href="#" class="site-header__nav-item" aria-label="Регионы">
+                    <span class="material-icons site-header__nav-item-icon">place</span>
+                    <span class="site-header__nav-item-text">Регионы</span>
+                </a>
+                <a href="#" class="site-header__nav-item" aria-label="Мои проекты">
+                    <span class="material-icons site-header__nav-item-icon">engineering</span>
+                    <span class="site-header__nav-item-text">Мои проекты</span>
+                </a>
+                {% if False %}
+                    <a href="#" class="site-header__nav-item" aria-label="Личный кабинет">
+                        <span class="material-icons site-header__nav-item-icon">person</span>
+                        <span class="site-header__nav-item-text">Личный кабинет</span>
+                    </a>
+                {% else %}
+                    <a href="#" class="site-header__nav-item" aria-label="Войти">
+                        <span class="material-icons site-header__nav-item-icon">login</span>
+                        <span class="site-header__nav-item-text">Войти</span>
+                    </a>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="main">
+    <div class="main__container">
+        {% block content %}{% endblock %}
+    </div>
+</main>
+
+<footer class="site-footer site-footer__container">
+    <div class="main__container site-footer__container">
+        <div class="site-footer__sections">
+            <section class="footer__section">
+                <h3 class="footer__section-title">О нас</h3>
+                <ul class="footer__section-list">
+                    <li class="footer__section-list-item"><a href="#">О компании</a></li>
+                    <li class="footer__section-list-item"><a href="#">Как выполняются расчёты</a></li>
+                </ul>
+            </section>
+
+            <section class="footer__section">
+                <h3 class="footer__section-title">Навигация</h3>
+                <ul class="footer__section-list">
+                    <li class="footer__section-list-item"><a href="{{ url_for("main.home") }}">Главная</a></li>
+                    <li class="footer__section-list-item">
+                        <a href="{{ url_for("main.calc") }}">Калькулятор</a>
+                    </li>
+                    <li class="footer__section-list-item"><a href="#">Регионы</a></li>
+                    <li class="footer__section-list-item"><a href="#">Проекты</a></li>
+                </ul>
+            </section>
+
+            <section class="footer__section">
+                <h3 class="footer__section-title">Контакты</h3>
+                <ul class="footer__section-list">
+                    <li class="footer__section-list-item">
+                        <a href="#">support@buildcalc.ru</a>
+                    </li>
+                    <li class="footer__section-list-item">
+                        <a href="tel:+77777777777">+7 (777) 777-77-77</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="footer__section">
+                <h3 class="footer__section-title">Мы в соцсетях</h3>
+                <ul class="footer__section-list">
+                    <li class="footer__section-list-item">
+                        <a href="#" target="_blank" aria-label="ВКонтакте">
+                            ВКонтакте
+                        </a>
+                    </li>
+                    <li class="footer__section-list-item">
+                        <a href="#" target="_blank" aria-label="Telegram">
+                            Telegram
+                        </a>
+                    </li>
+                    <li class="footer__section-list-item">
+                        <a href="#" target="_blank" aria-label="Instagram">
+                            Instagram
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <section class="footer__bottom">
+            <p class="footer__copyright">© {{ current_year }} BuildCalc. Все права защищены.</p>
+            <p class="footer__legal">
+                <a href="#">Политика конфиденциальности</a> |
+                <a href="#">Условия использования</a>
+            </p>
+        </section>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='lib/choices/choices.min.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

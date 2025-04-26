@@ -1,0 +1,86 @@
+<div class="calc__foundation-options" data-type="strip" style="display: none;">
+    <p class="calc__description">Выберите тип ленточного фундамента для дальнейшей настройки.</p>
+    <div class="calc__radio-group">
+        <label for="strip-rectangular" class="calc__radio-label">
+            <input type="radio"
+                   id="strip-rectangular"
+                   name="strip-type"
+                   class="calc__radio"
+                   value="rectangular"
+                   required>
+            <i class="material-icons calc__icon">view_column</i>
+            <span class="calc__label-text">Прямоугольный</span>
+            <i class="material-icons calc__checkmark">check_circle</i>
+        </label>
+        <label for="strip-rectangular-reinforced" class="calc__radio-label">
+            <input type="radio"
+                   id="strip-rectangular-reinforced"
+                   name="strip-type"
+                   class="calc__radio"
+                   value="rectangular-reinforced"
+                   required>
+            <i class="material-icons calc__icon">view_column</i>
+            <span class="calc__label-text">Прямоугольный армированный</span>
+            <i class="material-icons calc__checkmark">check_circle</i>
+        </label>
+        <label for="strip-t-shaped" class="calc__radio-label">
+            <input type="radio"
+                   id="strip-t-shaped"
+                   name="strip-type"
+                   class="calc__radio"
+                   value="t-shaped"
+                   required>
+            <i class="material-icons calc__icon">view_column</i>
+            <span class="calc__label-text">Т-образный</span>
+            <i class="material-icons calc__checkmark">check_circle</i>
+        </label>
+        <label for="strip-reinforced-ribs" class="calc__radio-label">
+            <input type="radio"
+                   id="strip-reinforced-ribs"
+                   name="strip-type"
+                   class="calc__radio"
+                   value="reinforced-ribs"
+                   required>
+            <i class="material-icons calc__icon">view_column</i>
+            <span class="calc__label-text">Усиленный с ребрами жесткости</span>
+            <i class="material-icons calc__checkmark">check_circle</i>
+        </label>
+    </div>
+    <p class="calc__description">Укажите размеры ленточного фундамента для расчёта материалов.</p>
+    <div class="calc__input-group">
+        <label for="strip-width" class="calc__input-label">
+            <span class="calc__label-text">
+                <i class="material-icons calc__icon">straighten</i>
+                Ширина ленты (м):
+            </span>
+            <input type="number" id="strip-width" class="calc__input" min="0">
+        </label>
+        <label for="strip-length" class="calc__input-label">
+            <span class="calc__label-text">
+                <i class="material-icons calc__icon">straighten</i>
+                Длина ленты (м):
+            </span>
+            <input type="number" id="strip-length" class="calc__input" min="0">
+        </label>
+        <label for="strip-height" class="calc__input-label">
+            <span class="calc__label-text">
+                <i class="material-icons calc__icon">straighten</i>
+                Высота ленты (мм):</span>
+            <input type="number" id="strip-height" class="calc__input" name="strip-height" min="0">
+        </label>
+        <label for="strip-thickness" class="calc__input-label">
+            <span class="calc__label-text">
+                <i class="material-icons calc__icon">straighten</i>
+                Толщина ленты (мм):
+            </span>
+            <input type="number" id="strip-thickness" class="calc__input" min="0">
+        </label>
+        <label for="strip-middle-length" class="calc__input-label t-shaped-only" style="display: none;">
+            <span class="calc__label-text">
+                <i class="material-icons calc__icon">straighten</i>
+                Длина ленты в середине (м):
+            </span>
+            <input type="number" id="strip-middle-length" class="calc__input" min="0" step="0.1">
+        </label>
+    </div>
+</div>

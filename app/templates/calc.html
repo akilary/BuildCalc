@@ -1,0 +1,671 @@
+{% extends 'base.html' %}
+
+{% block title %}Калькулятор - BuildCalc{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/calc.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="calc">
+        <div class="main__container calc__container">
+            <div class="calc__form">
+                <h2 id="calc-title" class="calc__form-title">Расчет материалов</h2>
+                <form id="calc-form" novalidate>
+                    <div class="calc__progress">
+                        <ul class="calc__progress-list">
+                            <li class="calc__progress-item active" data-step="0" aria-current="step">Регион</li>
+                            <li class="calc__progress-item" data-step="1">Размеры здания</li>
+                            <li class="calc__progress-item" data-step="2">Материал стен</li>
+                            <li class="calc__progress-item" data-step="3">Окна и двери</li>
+                            <li class="calc__progress-item" data-step="4">Фундамент</li>
+                            <li class="calc__progress-item" data-step="5">Результат</li>
+                        </ul>
+                    </div>
+
+                    <!-- Шаг 1: Регион -->
+                    <div id="step-1" class="calc__step active">
+                        <fieldset class="calc__fieldset">
+                            <p class="calc__description">
+                                Выберите регион строительства для учёта климатических условий и норм.
+                            </p>
+                            <div class="calc__map-container">
+                                <div class="calc__map">
+                                    <svg viewBox="0 0 800 500" class="calc__map-svg">
+                                        <path class="calc__map-outline"
+                                              d="M100,200 L200,150 L300,100 L400,80 L500,100 L600,150 L700,200 L750,300 L700,400 L600,450 L500,470 L400,450 L300,400 L200,350 L150,300 Z">
+                                        </path>
+
+                                        <path id="region-north"
+                                              class="calc__map-region"
+                                              data-region="north"
+                                              d="M200,150 L300,100 L400,80 L500,100 L400,200 L300,200 Z">
+                                        </path>
+                                        <path id="region-west"
+                                              class="calc__map-region"
+                                              data-region="west"
+                                              d="M100,200 L200,150 L300,200 L200,350 L150,300 Z">
+                                        </path>
+                                        <path id="region-central"
+                                              class="calc__map-region"
+                                              data-region="central"
+                                              d="M300,200 L400,200 L500,200 L400,350 L300,350 Z">
+                                        </path>
+                                        <path id="region-east"
+                                              class="calc__map-region"
+                                              data-region="east"
+                                              d="M500,100 L600,150 L700,200 L600,300 L500,200 Z">
+                                        </path>
+                                        <path id="region-south"
+                                              class="calc__map-region"
+                                              data-region="south"
+                                              d="M200,350 L300,350 L400,350 L500,350 L600,300 L500,470 L400,450 L300,400 Z">
+                                        </path>
+
+                                        <text x="350" y="150" class="calc__map-text">Север</text>
+                                        <text x="180" y="250" class="calc__map-text">Запад</text>
+                                        <text x="380" y="280" class="calc__map-text">Центр</text>
+                                        <text x="600" y="200" class="calc__map-text">Восток</text>
+                                        <text x="400" y="400" class="calc__map-text">Юг</text>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="calc__radio-group calc__region-selection">
+                                <label for="region-north" class="calc__radio-label">
+                                    <input type="radio"
+                                           id="region-north-input"
+                                           name="region"
+                                           class="calc__radio"
+                                           value="north"
+                                           required>
+                                    <i class="material-icons calc__icon">north</i>
+                                    <span class="calc__label-text">Север</span>
+                                    <small class="calc__region-info">
+                                        Акмолинская, Костанайская, Северо-Казахстанская
+                                        области, г. Астана
+                                    </small>
+                                    <i class="material-icons calc__checkmark">check_circle</i>
+                                </label>
+                                <label for="region-west" class="calc__radio-label">
+                                    <input type="radio"
+                                           id="region-west-input"
+                                           name="region"
+                                           class="calc__radio"
+                                           value="west"
+                                           required>
+                                    <i class="material-icons calc__icon">west</i>
+                                    <span class="calc__label-text">Запад</span>
+                                    <small class="calc__region-info">
+                                        Актюбинская, Атырауская, Мангистауская,
+                                        Западно-Казахстанская области
+                                    </small>
+                                    <i class="material-icons calc__checkmark">check_circle</i>
+                                </label>
+                                <label for="region-south" class="calc__radio-label">
+                                    <input type="radio"
+                                           id="region-south-input"
+                                           name="region"
+                                           class="calc__radio"
+                                           value="south"
+                                           required>
+                                    <i class="material-icons calc__icon">south</i>
+                                    <span class="calc__label-text">Юг</span>
+                                    <small class="calc__region-info">
+                                        Алматинская, Жамбылская, Туркестанская,
+                                        Кызылординская области, г. Алматы, г. Шымкент
+                                    </small>
+                                    <i class="material-icons calc__checkmark">check_circle</i>
+                                </label>
+                                <label for="region-east" class="calc__radio-label">
+                                    <input type="radio"
+                                           id="region-east-input"
+                                           name="region"
+                                           class="calc__radio"
+                                           value="east"
+                                           required>
+                                    <i class="material-icons calc__icon">east</i>
+                                    <span class="calc__label-text">Восток</span>
+                                    <small class="calc__region-info">
+                                        Восточно-Казахстанская, Павлодарская, Абайская
+                                        области
+                                    </small>
+                                    <i class="material-icons calc__checkmark">check_circle</i>
+                                </label>
+                                <label for="region-central" class="calc__radio-label">
+                                    <input type="radio"
+                                           id="region-central-input"
+                                           name="region"
+                                           class="calc__radio"
+                                           value="central"
+                                           required>
+                                    <i class="material-icons calc__icon">adjust</i>
+                                    <span class="calc__label-text">Центр</span>
+                                    <small class="calc__region-info">Карагандинская, Улытауская области</small>
+                                    <i class="material-icons calc__checkmark">check_circle</i>
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Шаг 2: Размеры здания -->
+                    <div id="step-2" class="calc__step" aria-hidden="true">
+                        <fieldset class="calc__fieldset">
+                            <p class="calc__description">
+                                Укажите размеры здания для расчёта объёма материалов.
+                            </p>
+
+                            <div class="calc__building-container">
+                                <div class="calc__building-visualization">
+                                    <div class="calc__building-canvas-container">
+                                        <canvas id="building-canvas" width="400" height="300"></canvas>
+                                    </div>
+                                    <div class="calc__building-dimensions">
+                                        <div class="calc__dimension calc__dimension-length">
+                                            <span class="calc__dimension-value" id="length-value">10</span> м
+                                        </div>
+                                        <div class="calc__dimension calc__dimension-width">
+                                            <span class="calc__dimension-value" id="width-value">8</span> м
+                                        </div>
+                                        <div class="calc__dimension calc__dimension-height">
+                                            <span class="calc__dimension-value" id="height-value">3</span> м
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="calc__building-controls">
+                                    <div class="calc__input-group">
+                                        <label for="building-length" class="calc__input-label">
+                                            <span class="calc__label-text">
+                                                <i class="material-icons calc__icon">straighten</i>
+                                                Длина здания (м):
+                                            </span>
+                                            <div class="calc__input-with-controls">
+                                                <button type="button" class="calc__input-control calc__input-decrement"
+                                                        data-target="building-length">
+                                                    <i class="material-icons">remove</i>
+                                                </button>
+                                                <input type="number" id="building-length" class="calc__input" min="1"
+                                                       max="100" value="10" required>
+                                                <button type="button" class="calc__input-control calc__input-increment"
+                                                        data-target="building-length">
+                                                    <i class="material-icons">add</i>
+                                                </button>
+                                            </div>
+                                            <input type="range" id="building-length-range" class="calc__range" min="1"
+                                                   max="100" value="10">
+                                        </label>
+
+                                        <label for="building-width" class="calc__input-label">
+                                            <span class="calc__label-text">
+                                                <i class="material-icons calc__icon">straighten</i>
+                                                Ширина здания (м):
+                                            </span>
+                                            <div class="calc__input-with-controls">
+                                                <button type="button" class="calc__input-control calc__input-decrement"
+                                                        data-target="building-width">
+                                                    <i class="material-icons">remove</i>
+                                                </button>
+                                                <input type="number" id="building-width" class="calc__input" min="1"
+                                                       max="100" value="8" required>
+                                                <button type="button" class="calc__input-control calc__input-increment"
+                                                        data-target="building-width">
+                                                    <i class="material-icons">add</i>
+                                                </button>
+                                            </div>
+                                            <input type="range" id="building-width-range" class="calc__range" min="1"
+                                                   max="100" value="8">
+                                        </label>
+
+                                        <label for="wall-height" class="calc__input-label">
+                                            <span class="calc__label-text">
+                                                <i class="material-icons calc__icon">straighten</i>
+                                                Высота стен (м):
+                                            </span>
+                                            <div class="calc__input-with-controls">
+                                                <button type="button" class="calc__input-control calc__input-decrement"
+                                                        data-target="wall-height">
+                                                    <i class="material-icons">remove</i>
+                                                </button>
+                                                <input type="number" id="wall-height" class="calc__input" min="1"
+                                                       max="20" value="3" required>
+                                                <button type="button" class="calc__input-control calc__input-increment"
+                                                        data-target="wall-height">
+                                                    <i class="material-icons">add</i>
+                                                </button>
+                                            </div>
+                                            <input type="range" id="wall-height-range" class="calc__range" min="1"
+                                                   max="20" value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="calc__building-info">
+                                        <div class="calc__info-item">
+                                            <span class="calc__info-label">Площадь здания:</span>
+                                            <span class="calc__info-value" id="building-area"></span>
+                                        </div>
+                                        <div class="calc__info-item">
+                                            <span class="calc__info-label">Периметр здания:</span>
+                                            <span class="calc__info-value" id="building-perimeter"></span>
+                                        </div>
+                                        <div class="calc__info-item">
+                                            <span class="calc__info-label">Площадь стен:</span>
+                                            <span class="calc__info-value" id="walls-area"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Шаг 3: Материал и параметры стен -->
+                    <div id="step-3" class="calc__step" aria-hidden="true">
+                        <fieldset class="calc__fieldset">
+                            <p class="calc__description">
+                                Выберите материал стен для расчёта количества и стоимости.
+                            </p>
+
+                            <div class="calc__materials-container">
+                                <div class="calc__materials-visualization">
+                                    <div class="calc__material-preview">
+                                        <div class="calc__material-canvas-container">
+                                            <canvas id="material-canvas" width="400" height="300"></canvas>
+                                        </div>
+                                        <div class="calc__material-dimensions">
+                                            <div class="calc__dimension calc__dimension-length">
+                                                <span class="calc__dimension-value" id="material-length-value">390</span> мм
+                                            </div>
+                                            <div class="calc__dimension calc__dimension-width">
+                                                <span class="calc__dimension-value" id="material-width-value">190</span> мм
+                                            </div>
+                                            <div class="calc__dimension calc__dimension-height">
+                                                <span class="calc__dimension-value" id="material-height-value">188</span> мм
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="calc__material-properties">
+                                        <div class="calc__property-item">
+                                            <div class="calc__property-icon">
+                                                <i class="material-icons">ac_unit</i>
+                                            </div>
+                                            <div class="calc__property-info">
+                                                <div class="calc__property-name">Теплоизоляция</div>
+                                                <div class="calc__property-value" id="insulation-level">Средняя</div>
+                                                <div class="calc__property-bar">
+                                                    <div class="calc__property-progress" id="insulation-progress" style="width: 60%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="calc__property-item">
+                                            <div class="calc__property-icon">
+                                                <i class="material-icons">water_drop</i>
+                                            </div>
+                                            <div class="calc__property-info">
+                                                <div class="calc__property-name">Влагостойкость</div>
+                                                <div class="calc__property-value" id="moisture-resistance">Высокая</div>
+                                                <div class="calc__property-bar">
+                                                    <div class="calc__property-progress" id="moisture-progress" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="calc__property-item">
+                                            <div class="calc__property-icon">
+                                                <i class="material-icons">place</i>
+                                            </div>
+                                            <div class="calc__property-info">
+                                                <div class="calc__property-name">Подходит для региона</div>
+                                                <div class="calc__property-value" id="region-suitability">
+                                                    <span class="calc__suitability-badge">Да</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="calc__materials-selection">
+                                    <div class="calc__input-group">
+                                        <label for="material" class="calc__input-label">
+                                            <span class="calc__label-text">
+                                                <i class="material-icons calc__icon">category</i>
+                                                Материал:
+                                            </span>
+                                            <select id="material" required>
+                                                <option value="" disabled selected>Выберите материал...</option>
+                                                {% for material in materials %}
+                                                    <option value="{{ material.id }}"
+                                                            data-size="{{ material.size }}"
+                                                            data-type="{{ material.type }}"
+                                                            data-north="{{ material.suitable_north }}"
+                                                            data-south="{{ material.suitable_south }}"
+                                                            data-east="{{ material.suitable_east }}"
+                                                            data-west="{{ material.suitable_west }}"
+                                                            data-center="{{ material.suitable_center }}"
+                                                            data-insulation="{{ material.insulation_level }}"
+                                                            data-moisture="{{ material.moisture_resistance }}">
+                                                        {{ material.name }}
+                                                    </option>
+                                                {% endfor %}
+                                                <option value="custom">Свой материал</option>
+                                            </select>
+                                        </label>
+                                    </div>
+
+                                    <div id="custom-material-controls" class="calc__custom-material" style="display: none;">
+                                        <button type="button" id="add-custom-material" class="calc__button calc__button-secondary" data-modal="custom-material">
+                                            <i class="material-icons">add</i> Добавить свой материал
+                                        </button>
+                                    </div>
+
+                                    <div class="calc__material-details">
+                                        <div class="calc__input-group">
+                                            <label for="block-weight" class="calc__input-label">
+                                                <span class="calc__label-text">
+                                                    <i class="material-icons calc__icon">scale</i>
+                                                    Вес одного блока (кг):
+                                                </span>
+                                                <div class="calc__input-with-controls">
+                                                    <button type="button" class="calc__input-control calc__input-decrement" data-target="block-weight">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                    <input type="number" id="block-weight" class="calc__input" min="0" step="0.1" value="15" required>
+                                                    <button type="button" class="calc__input-control calc__input-increment" data-target="block-weight">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </div>
+                                            </label>
+
+                                            <label for="block-price" class="calc__input-label">
+                                                <span class="calc__label-text">
+                                                    <i class="material-icons calc__icon">sell</i>
+                                                    Цена одного блока (₸):
+                                                </span>
+                                                <div class="calc__input-with-controls">
+                                                    <button type="button" class="calc__input-control calc__input-decrement" data-target="block-price">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                    <input type="number" id="block-price" class="calc__input" min="0" value="500" required>
+                                                    <button type="button" class="calc__input-control calc__input-increment" data-target="block-price">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="calc__wall-thickness">
+                                        <p class="calc__description">
+                                            Выберите толщину стен в блоках для расчёта объёма кладки.
+                                        </p>
+                                        <div class="calc__radio-group">
+                                            <label for="wall-thickness-0.5" class="calc__radio-label">
+                                                <input type="radio"
+                                                       id="wall-thickness-0.5"
+                                                       name="wall-thickness"
+                                                       class="calc__radio"
+                                                       value="0.5"
+                                                       required>
+                                                <i class="material-icons calc__icon">widgets</i>
+                                                <span class="calc__label-text">0.5 блока</span>
+                                                <div class="calc__thickness-preview thickness-half"></div>
+                                                <i class="material-icons calc__checkmark">check_circle</i>
+                                            </label>
+                                            <label for="wall-thickness-1" class="calc__radio-label">
+                                                <input type="radio"
+                                                       id="wall-thickness-1"
+                                                       name="wall-thickness"
+                                                       class="calc__radio"
+                                                       value="1"
+                                                       checked
+                                                       required>
+                                                <i class="material-icons calc__icon">widgets</i>
+                                                <span class="calc__label-text">1 блок</span>
+                                                <div class="calc__thickness-preview thickness-one"></div>
+                                                <i class="material-icons calc__checkmark">check_circle</i>
+                                            </label>
+                                            <label for="wall-thickness-1.5" class="calc__radio-label">
+                                                <input type="radio"
+                                                       id="wall-thickness-1.5"
+                                                       name="wall-thickness"
+                                                       class="calc__radio"
+                                                       value="1.5"
+                                                       required>
+                                                <i class="material-icons calc__icon">widgets</i>
+                                                <span class="calc__label-text">1.5 блока</span>
+                                                <div class="calc__thickness-preview thickness-one-half"></div>
+                                                <i class="material-icons calc__checkmark">check_circle</i>
+                                            </label>
+                                            <label for="wall-thickness-2" class="calc__radio-label">
+                                                <input type="radio"
+                                                       id="wall-thickness-2"
+                                                       name="wall-thickness"
+                                                       class="calc__radio"
+                                                       value="2"
+                                                       required>
+                                                <i class="material-icons calc__icon">widgets</i>
+                                                <span class="calc__label-text">2 блока</span>
+                                                <div class="calc__thickness-preview thickness-two"></div>
+                                                <i class="material-icons calc__checkmark">check_circle</i>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="calc__material-calculation">
+                                        <div class="calc__info-item">
+                                            <span class="calc__info-label">Необходимое количество блоков:</span>
+                                            <span class="calc__info-value" id="blocks-count">0 шт.</span>
+                                        </div>
+                                        <div class="calc__info-item">
+                                            <span class="calc__info-label">Общий вес материалов:</span>
+                                            <span class="calc__info-value" id="total-weight">0 кг</span>
+                                        </div>
+                                        <div class="calc__info-item">
+                                            <span class="calc__info-label">Стоимость материалов:</span>
+                                            <span class="calc__info-value" id="total-price">0 ₸</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Шаг 4: Окна и двери -->
+                    <div id="step-4" class="calc__step" aria-hidden="true">
+                        <fieldset class="calc__fieldset">
+                            <p class="calc__description">
+                                Укажите количество и размеры дверей для учёта в расчёте стен.
+                            </p>
+                            <div class="calc__input-group">
+                                <label for="door-count-0" class="calc__input-label">
+                                    <span class="calc__label-text">
+                                        <i class="material-icons calc__icon">pin</i>
+                                        Количество дверей:
+                                    </span>
+                                    <input type="number" id="door-count-0" class="calc__input" min="0" required>
+                                </label>
+                                <label for="door-width-0" class="calc__input-label">
+                                    <span class="calc__label-text">
+                                        <i class="material-icons calc__icon">straighten</i>
+                                        Ширина двери (м):
+                                    </span>
+                                    <input type="number" id="door-width-0" class="calc__input" min="0" required>
+                                </label>
+                                <label for="door-height-0" class="calc__input-label">
+                                    <span class="calc__label-text">
+                                        <i class="material-icons calc__icon">straighten</i>
+                                        Высота двери (м):
+                                    </span>
+                                    <input type="number" id="door-height-0" class="calc__input" min="0" required>
+                                </label>
+                                <label for="door-price-0" class="calc__input-label">
+                                    <span class="calc__label-text">
+                                        <i class="material-icons calc__icon">sell</i>
+                                        Цена за дверь (₸):
+                                    </span>
+                                    <input type="number" id="door-price-0" class="calc__input" min="0" required>
+                                </label>
+                            </div>
+                            <button type="button" id="" class="" data-target="doors">
+                                Добавить доп. дверь
+                            </button>
+                        </fieldset>
+                        <fieldset class="calc__fieldset">
+                            <p class="calc__description">
+                                Укажите количество и размеры окон для учёта в расчёте стен.
+                            </p>
+                            <div class="calc__input-group">
+                                <label for="window-count-0" class="calc__input-label">
+                                    <span class="calc__label-text">
+                                        <i class="material-icons calc__icon">pin</i>
+                                        Количество окон:
+                                    </span>
+                                    <input type="number" id="window-count-0" class="calc__input" min="0" required>
+                                </label>
+                                <label for="window-width-0" class="calc__input-label">
+                                    <span class="calc__label-text">
+                                        <i class="material-icons calc__icon">straighten</i>
+                                        Ширина окна (м):
+                                    </span>
+                                    <input type="number" id="window-width-0" class="calc__input" min="0" required>
+                                </label>
+                                <label for="window-height-0" class="calc__input-label">
+                                    <span class="calc__label-text">
+                                        <i class="material-icons calc__icon">straighten</i>
+                                        Высота окна (м):
+                                    </span>
+                                    <input type="number" id="window-height-0" class="calc__input" min="0" required>
+                                </label>
+                                <label for="window-price-0" class="calc__input-label">
+                                    <span class="calc__label-text">
+                                        <i class="material-icons calc__icon">sell</i>
+                                        Цена за окно (₸):
+                                    </span>
+                                    <input type="number" id="window-price-0" class="calc__input" min="0" required>
+                                </label>
+                            </div>
+                            <button type="button" id="" class="" data-target="windows">
+                                Добавить доп. окно
+                            </button>
+                        </fieldset>
+
+                        <!-- Шаблоны для динамических полей -->
+                        <template id="door-template">
+                            <div class="calc__door-input">
+                                <label class="calc__label">
+                                    <span class="calc__label-text">Количество дверей:</span>
+                                    <input type="number" min="0" required>
+                                </label>
+                                <label class="calc__label">
+                                    <span class="calc__label-text">Ширина двери (м):</span>
+                                    <input type="number" min="0" step="0.1" required>
+                                </label>
+                                <label class="calc__label">
+                                    <span class="calc__label-text">Высота двери (м):</span>
+                                    <input type="number" min="0" step="0.1" required>
+                                </label>
+                                <label class="calc__label">
+                                    <span class="calc__label-text">Цена за дверь (₸):</span>
+                                    <input type="number" min="0" step="0.1" required placeholder="в тенге">
+                                </label>
+                            </div>
+                        </template>
+                        <template id="window-template">
+                            <div class="calc__window-input">
+                                <label class="calc__label">
+                                    <span class="calc__label-text">Количество окон:</span>
+                                    <input type="number" min="0" required>
+                                </label>
+                                <label class="calc__label">
+                                    <span class="calc__label-text">Ширина окна (м):</span>
+                                    <input type="number" min="0" step="0.1" required>
+                                </label>
+                                <label class="calc__label">
+                                    <span class="calc__label-text">Высота окна (м):</span>
+                                    <input type="number" min="0" step="0.1" required>
+                                </label>
+                                <label class="calc__label">
+                                    <span class="calc__label-text">Цена за окно (₸):</span>
+                                    <input type="number" min="0" step="0.1" required placeholder="в тенге">
+                                </label>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Шаг 5: Фундамент -->
+                    <div id="step-5" class="calc__step" aria-hidden="true">
+                        <fieldset class="calc__fieldset">
+                            <p class="calc__description">
+                                Выберите тип фундамента или укажите, что он не требуется.
+                            </p>
+                            <div class="calc__radio-group">
+                                <label for="foundation-none" class="calc__radio-label">
+                                    <input type="radio" id="foundation-none" name="foundation-type" class="calc__radio"
+                                           value="none" required>
+                                    <i class="material-icons calc__icon">block</i>
+                                    <span class="calc__label-text">Не указывать</span>
+                                    <i class="material-icons calc__checkmark">check_circle</i>
+                                </label>
+                                <label for="foundation-slab" class="calc__radio-label">
+                                    <input type="radio" id="foundation-slab" name="foundation-type" class="calc__radio"
+                                           value="slab" required>
+                                    <i class="material-icons calc__icon">layers</i>
+                                    <span class="calc__label-text">Плитный</span>
+                                    <i class="material-icons calc__checkmark">check_circle</i>
+                                </label>
+                                <label for="foundation-strip" class="calc__radio-label">
+                                    <input type="radio" id="foundation-strip" name="foundation-type" class="calc__radio"
+                                           value="strip" required>
+                                    <i class="material-icons calc__icon">layers</i>
+                                    <span class="calc__label-text">Ленточный</span>
+                                    <i class="material-icons calc__checkmark">check_circle</i>
+                                </label>
+                            </div>
+                            <canvas id="foundation-drawing" class="calc__canvas" aria-label="Схема фундамента"></canvas>
+                        </fieldset>
+                    </div>
+
+                    <!-- Шаг 6: Результат -->
+                    <div id="step-6" class="calc__step" aria-hidden="true">
+                        <p class="calc__description">
+                            {# TODO: Сделать отчет опираясь на ссылки ниже #}
+                            1. отобразить круговую диаграмму, показывающую распределение стоимости (стены, окна, двери)
+                            2. Отчет по затратам, пример: https://stroy-calc.ru/raschet-blokov,
+                            https://stroy-calc.ru/raschet-lentochnogo-fundamenta и
+                            3. Отчет по затратам, пример: https://stroy-calc.ru/raschet-fundamenta-plita
+                        </p>
+                        <fieldset class="calc__fieldset">
+                            <button type="button" id="" class="">
+                                Скачать диаграмму PDF
+                            </button>
+                            <button type="button" id="" class="">
+                                Скачать диаграмму PNG
+                            </button>
+                            <button type="button" id="" class="">
+                                Копировать диаграмму в буфер обмена
+                            </button>
+                            <button type="button" id="" class="">
+                                Скачать весь отчёт в PDF
+                            </button>
+                        </fieldset>
+                    </div>
+
+                    <!-- Кнопки управления -->
+                    <div class="calc__controls">
+                        <button type="button" id="prev-step" class="calc__button--prev">
+                            Назад
+                        </button>
+                        <button type="button" id="next-step" class="calc__button--next">
+                            Далее
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for("static", filename="js/calc.js") }}"></script>
+{% endblock %}

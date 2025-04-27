@@ -1,0 +1,129 @@
+<div class="calc__step" id="calc-step-4" aria-hidden="true">
+    <fieldset class="calc__fieldset">
+        <legend class="calc__description">
+            Укажите количество и размеры дверей для учёта в расчёте стен.
+        </legend>
+
+        <div class="calc__doors">
+            <div class="calc__door" data-index="0">
+                <div class="calc__input-group">
+                    <label for="calc-door-count-0" class="calc__input-label">
+                        <span class="calc__input-text">
+                            <i class="material-icons calc__input-icon">pin</i>
+                            Количество дверей:
+                        </span>
+                    </label>
+                    <input type="number"
+                           id="calc-door-count-0"
+                           class="calc__input-number"
+                           min="0"
+                           required>
+                    <label for="calc-door-width-0" class="calc__input-label">
+                    <span class="calc__input-text">
+                        <i class="material-icons calc__input-icon">straighten</i>
+                        Ширина двери (м):
+                    </span>
+                    </label>
+                    <input type="number"
+                           id="calc-door-width-0"
+                           class="calc__input-number"
+                           min="0"
+                           required>
+                    <label for="calc-door-height-0" class="calc__input-label">
+                    <span class="calc__input-text">
+                        <i class="material-icons calc__input-icon">straighten</i>
+                        Высота двери (м):
+                    </span>
+                    </label>
+                    <input type="number"
+                           id="calc-door-height-0"
+                           class="calc__input-number"
+                           min="0"
+                           required>
+                    <label for="calc-door-price-0" class="calc__input-label">
+                    <span class="calc__input-text">
+                        <i class="material-icons calc__input-icon">sell</i>
+                        Цена за дверь (₸):
+                    </span>
+                    </label>
+                    <input type="number"
+                           id="calc-door-price-0"
+                           class="calc__input-number"
+                           min="0"
+                           required>
+                </div>
+            </div>
+        </div>
+        <button type="button"
+                id="calc-add-door"
+                class="calc__button calc__button--add"
+                data-target="doors"
+                data-action="add">
+            Добавить доп. дверь
+        </button>
+    </fieldset>
+
+    <fieldset class="calc__fieldset">
+        <legend class="calc__description">
+            Укажите количество и размеры окон для учёта в расчёте стен.
+        </legend>
+
+        <div class="calc__windows">
+            <div class="calc__window" data-index="0">
+                <div class="calc__input-group">
+                    <label for="calc-window-count-0" class="calc__input-label">
+                    <span class="calc__input-text">
+                        <i class="material-icons calc__input-icon">pin</i>
+                        Количество окон:
+                    </span>
+                    </label>
+                    <input type="number"
+                           id="calc-window-count-0"
+                           class="calc__input-number"
+                           min="0"
+                           required>
+                    <label for="calc-window-width-0" class="calc__input-label">
+                    <span class="calc__input-text">
+                        <i class="material-icons calc__input-icon">straighten</i>
+                        Ширина окна (м):
+                    </span>
+                    </label>
+                    <input type="number"
+                           id="calc-window-width-0"
+                           class="calc__input-number"
+                           min="0"
+                           required>
+                    <label for="calc-window-height-0" class="calc__input-label">
+                    <span class="calc__input-text">
+                        <i class="material-icons calc__input-icon">straighten</i>
+                        Высота окна (м):
+                    </span>
+                    </label>
+                    <input type="number"
+                           id="calc-window-height-0"
+                           class="calc__input-number"
+                           min="0"
+                           required>
+                    <label for="calc-window-price-0" class="calc__input-label">
+                    <span class="calc__input-text">
+                        <i class="material-icons calc__input-icon">sell</i>
+                        Цена за окно (₸):
+                    </span>
+                    </label>
+                    <input type="number"
+                           id="calc-window-price-0"
+                           class="calc__input-number"
+                           min="0"
+                           required>
+                </div>
+            </div>
+        </div>
+        <button type="button" 
+                id="calc-add-window" 
+                class="calc__button calc__button--add" 
+                data-target="windows"
+                data-action="add">
+            Добавить доп. окно
+        </button>
+    </fieldset>
+</div>

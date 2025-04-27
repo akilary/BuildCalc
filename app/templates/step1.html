@@ -1,0 +1,101 @@
+<div id="calc-step-1" class="calc__step calc__step--active"  aria-hidden="true">
+    <fieldset class="calc__fieldset">
+        <legend class="calc__description">
+            Выберите регион строительства для учёта климатических условий и норм.
+        </legend>
+
+        <div class="calc__map-container">
+            <div class="calc__map">
+                <svg viewBox="0 0 800 500" class="calc__map-image">
+                    <path class="calc__map-outline"
+                          d="M100,200 L200,150 L300,100 L400,80 L500,100 L600,150 L700,200 L750,300 L700,400 L600,450 L500,470 L400,450 L300,400 L200,350 L150,300 Z"></path>
+                    <path id="region-north" class="calc__map-region" data-region="north"
+                          d="M200,150 L300,100 L400,80 L500,100 L400,200 L300,200 Z"></path>
+                    <path id="region-west" class="calc__map-region" data-region="west"
+                          d="M100,200 L200,150 L300,200 L200,350 L150,300 Z"></path>
+                    <path id="region-central" class="calc__map-region" data-region="central"
+                          d="M300,200 L400,200 L500,200 L400,350 L300,350 Z"></path>
+                    <path id="region-east" class="calc__map-region" data-region="east"
+                          d="M500,100 L600,150 L700,200 L600,300 L500,200 Z"></path>
+                    <path id="region-south" class="calc__map-region" data-region="south"
+                          d="M200,350 L300,350 L400,350 L500,350 L600,300 L500,470 L400,450 L300,400 Z"></path>
+                    <text x="350" y="150" class="calc__map-text">Север</text>
+                    <text x="180" y="250" class="calc__map-text">Запад</text>
+                    <text x="380" y="280" class="calc__map-text">Центр</text>
+                    <text x="600" y="200" class="calc__map-text">Восток</text>
+                    <text x="400" y="400" class="calc__map-text">Юг</text>
+                </svg>
+            </div>
+        </div>
+        <div class="calc__radio-group">
+            <label for="region-north-input" class="calc__radio-label">
+                <input type="radio"
+                       id="region-north-input"
+                       name="region"
+                       class="calc__radio-input"
+                       value="north"
+                       required>
+                <i class="material-icons calc__radio-icon">north</i>
+                <span class="calc__radio-text">Север</span>
+                <small class="calc__radio-info">
+                    Акмолинская, Костанайская, Северо-Казахстанская области, г. Астана
+                </small>
+                <i class="material-icons calc__checkmark">check_circle</i>
+            </label>
+            <label for="region-west-input" class="calc__radio-label">
+                <input type="radio"
+                       id="region-west-input"
+                       name="region"
+                       class="calc__radio-input"
+                       value="west"
+                       required>
+                <i class="material-icons calc__radio-icon">west</i>
+                <span class="calc__radio-text">Запад</span>
+                <small class="calc__radio-info">
+                    Актюбинская, Атырауская, Мангистауская, Западно-Казахстанская области
+                </small>
+                <i class="material-icons calc__checkmark">check_circle</i>
+            </label>
+            <label for="region-south-input" class="calc__radio-label">
+                <input type="radio"
+                       id="region-south-input"
+                       name="region"
+                       class="calc__radio-input"
+                       value="south"
+                       required>
+                <i class="material-icons calc__radio-icon">south</i>
+                <span class="calc__radio-text">Юг</span>
+                <small class="calc__radio-info">
+                    Алматинская, Жамбылская, Туркестанская, Кызылординская области, г. Алматы, г. Шымкент
+                </small>
+                <i class="material-icons calc__checkmark">check_circle</i>
+            </label>
+            <label for="region-east-input" class="calc__radio-label">
+                <input type="radio"
+                       id="region-east-input"
+                       name="region"
+                       class="calc__radio-input"
+                       value="east"
+                       required>
+                <i class="material-icons calc__radio-icon">east</i>
+                <span class="calc__radio-text">Восток</span>
+                <small class="calc__radio-info">
+                    Восточно-Казахстанская, Павлодарская, Абайская области
+                </small>
+                <i class="material-icons calc__checkmark">check_circle</i>
+            </label>
+            <label for="region-central-input" class="calc__radio-label">
+                <input type="radio"
+                       id="region-central-input"
+                       name="region"
+                       class="calc__radio-input"
+                       value="central"
+                       required>
+                <i class="material-icons calc__radio-icon">adjust</i>
+                <span class="calc__radio-text">Центр</span>
+                <small class="calc__radio-info">Карагандинская, Улытауская области</small>
+                <i class="material-icons calc__checkmark">check_circle</i>
+            </label>
+        </div>
+    </fieldset>
+</div>

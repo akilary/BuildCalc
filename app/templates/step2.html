@@ -1,0 +1,156 @@
+<div class="calc__step" id="calc-step-2" aria-hidden="true">
+    <fieldset class="calc__fieldset">
+        <legend class="calc__description">
+            Укажите размеры здания для расчёта объёма материалов.
+        </legend>
+
+        <div class="calc__building-container">
+            <div class="calc__visualization">
+                <div class="calc__canvas-container">
+                    <canvas id="building-canvas"
+                            width="400"
+                            height="300"
+                            aria-label="Визуализация здания">
+                    </canvas>
+                </div>
+                <div class="calc__dimensions">
+                    <div class="calc__dimension calc__dimension--length">
+                        <span class="calc__dimension-value" id="wall-length-value">?</span>м.
+                    </div>
+                    <div class="calc__dimension calc__dimension--width">
+                        <span class="calc__dimension-value" id="wall-width-value">?</span>м.
+                    </div>
+                    <div class="calc__dimension calc__dimension--height">
+                        <span class="calc__dimension-value" id="wall-height-value">?</span>м.
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc__controls">
+                <div class="calc__input-group">
+                    <label for="building-length" class="calc__input-label">
+                        <span class="calc__input-text">
+                            <i class="material-icons calc__input-icon">straighten</i>
+                            Длина здания (м.):
+                        </span>
+                    </label>
+                    <div class="calc__input-with-controls">
+                        <button type="button"
+                                class="calc__input-control calc__input-control--decrement"
+                                data-target="building-length"
+                                aria-label="Уменьшить длину">
+                            <i class="material-icons">remove</i>
+                        </button>
+                        <input type="number"
+                               id="building-length"
+                               class="calc__input-number"
+                               min="1"
+                               max="100"
+                               value="10"
+                               aria-label="Длина здания в метрах"
+                               required>
+                        <button type="button"
+                                class="calc__input-control calc__input-control--increment"
+                                data-target="building-length"
+                                aria-label="Увеличить длину">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </div>
+                    <input type="range"
+                           id="building-length-range"
+                           class="calc__range-input"
+                           min="1"
+                           max="100"
+                           value="10" aria-label="Ползунок для длины здания">
+
+                    <label for="building-width" class="calc__input-label">
+                        <span class="calc__input-text">
+                            <i class="material-icons calc__input-icon">straighten</i>
+                            Ширина здания (м.):
+                        </span>
+                    </label>
+                    <div class="calc__input-with-controls">
+                        <button type="button"
+                                class="calc__input-control calc__input-control--decrement"
+                                data-target="building-width"
+                                aria-label="Уменьшить ширину">
+                            <i class="material-icons">remove</i>
+                        </button>
+                        <input type="number"
+                               id="building-width"
+                               class="calc__input-number"
+                               min="1"
+                               max="100"
+                               value="8"
+                               aria-label="Ширина здания в метрах"
+                               required>
+                        <button type="button"
+                                class="calc__input-control calc__input-control--increment"
+                                data-target="building-width"
+                                aria-label="Увеличить ширину">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </div>
+                    <input type="range"
+                           id="building-width-range"
+                           class="calc__range-input"
+                           min="1"
+                           max="100"
+                           value="8"
+                           aria-label="Ползунок для ширины здания">
+
+                    <label for="wall-height" class="calc__input-label">
+                        <span class="calc__input-text">
+                            <i class="material-icons calc__input-icon">straighten</i>
+                            Высота стен (м.):
+                        </span>
+                    </label>
+                    <div class="calc__input-with-controls">
+                        <button type="button"
+                                class="calc__input-control calc__input-control--decrement"
+                                data-target="wall-height"
+                                aria-label="Уменьшить высоту">
+                            <i class="material-icons">remove</i>
+                        </button>
+                        <input type="number"
+                               id="wall-height"
+                               class="calc__input-number"
+                               min="1"
+                               max="20"
+                               value="3"
+                               aria-label="Высота стен в метрах"
+                               required>
+                        <button type="button"
+                                class="calc__input-control calc__input-control--increment"
+                                data-target="wall-height"
+                                aria-label="Увеличить высоту">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </div>
+                    <input type="range"
+                           id="wall-height-range"
+                           class="calc__range-input"
+                           min="1"
+                           max="20"
+                           value="3"
+                           aria-label="Ползунок для высоты стен">
+                </div>
+
+                <div class="calc__info">
+                    <div class="calc__info-item">
+                        <span class="calc__info-label">Площадь здания: </span>
+                        <span class="calc__info-value" id="building-area"></span>
+                    </div>
+                    <div class="calc__info-item">
+                        <span class="calc__info-label">Периметр здания: </span>
+                        <span class="calc__info-value" id="building-perimeter"></span>
+                    </div>
+                    <div class="calc__info-item">
+                        <span class="calc__info-label">Площадь стен: </span>
+                        <span class="calc__info-value" id="walls-area"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

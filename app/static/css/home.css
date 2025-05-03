@@ -228,11 +228,11 @@
         align-items: center;
         justify-content: space-between;
     }
-    
+
     .hero__content {
         flex: 1;
     }
-    
+
     .hero__stats {
         flex: 0 0 300px;
         flex-direction: column;

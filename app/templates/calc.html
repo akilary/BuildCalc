@@ -4,44 +4,56 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for("static", filename="css/calc.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/steps.css") }}">
 {% endblock %}
 
 {% block content %}
     <section class="calc">
         <div class="main__container calc__container">
-            <div class="calc__form">
-                <h2 id="calc-title" class="calc__title">Расчет материалов</h2>
-                <form id="calc-form" novalidate>
-                    <div class="calc__progress">
-                        <ul class="calc__progress-list">
-                            <li class="calc__progress-item calc__progress-item--active" data-step="0" aria-current="step">Регион</li>
-                            <li class="calc__progress-item" data-step="1">Размеры здания</li>
-                            <li class="calc__progress-item" data-step="2">Материал стен</li>
-                            <li class="calc__progress-item" data-step="3">Окна и двери</li>
-                            <li class="calc__progress-item" data-step="4">Фундамент</li>
-                            <li class="calc__progress-item" data-step="5">Результат</li>
-                        </ul>
-                    </div>
+            <h2 class="calc__title">Расчет материалов</h2>
+            <form class="calc__form" novalidate>
+                <div class="calc__progress">
+                    <ul class="calc__progress-list">
+                        <li class="calc__progress-item calc__progress-item--active"
+                            data-step="0" id="progress-step-0" aria-current="step" aria-hidden="false">
+                            Регион
+                        </li>
+                        <li class="calc__progress-item"
+                            data-step="1" id="progress-step-1" aria-hidden="true">Размеры здания
+                        </li>
+                        <li class="calc__progress-item"
+                            data-step="2" id="progress-step-2" aria-hidden="true">Материал стен
+                        </li>
+                        <li class="calc__progress-item"
+                            data-step="3" id="progress-step-3" aria-hidden="true">Окна и двери
+                        </li>
+                        <li class="calc__progress-item"
+                            data-step="4" id="progress-step-4" aria-hidden="true">Фундамент
+                        </li>
+                        <li class="calc__progress-item"
+                            data-step="5" id="progress-step-5" aria-hidden="true">Результат
+                        </li>
+                    </ul>
+                </div>
 
-                    {# Шаги вставляются динамически #}
-                    {% for step in range(1, 7) %}
-                            {% include "step" ~ step ~ ".html" %}
-                    {% endfor %}
+                {# Шаги вставляются динамически #}
+                {% for step in range(1, 7) %}
+                    {% include "step" ~ step ~ ".html" %}
+                {% endfor %}
 
-                    <div class="calc__controls">
-                        <button type="button" id="prev-step" class="calc__button calc__button--prev">
-                            Назад
-                        </button>
-                        <button type="button" id="next-step" class="calc__button calc__button--next">
-                            Далее
-                        </button>
-                    </div>
-                </form>
-            </div>
+                <div class="calc__controls">
+                    <button type="button" id="prev-step" class="calc__button calc__button--prev" aria-controls="calc-steps">
+                        Назад
+                    </button>
+                    <button type="button" id="next-step" class="calc__button calc__button--next" aria-controls="calc-steps">
+                        Далее
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ url_for("static", filename="js/calc.jss") }}"></script>
+    <script src="{{ url_for("static", filename="js/calc.js") }}"></script>
 {% endblock %}

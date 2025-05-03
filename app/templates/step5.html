@@ -1,374 +1,366 @@
-<div class="calc__step" id="calc-step-5" aria-hidden="true">
+<section class="calc__step" id="foundation-step" aria-hidden="true" tabindex="-1">
     <fieldset class="calc__fieldset">
-        <legend class="calc__description">
-            Выберите тип фундамента или укажите, что он не требуется.
+        <legend class="calc__legend">
+            <h3 class="calc__description">
+                Выберите тип фундамента или укажите, что он не требуется.
+            </h3>
         </legend>
 
         <div class="calc__foundation-container">
-            <div class="calc__foundation-controls">
-                <div class="calc__foundation-group">
-                    <label for="calc-foundation-none" class="calc__foundation-label">
+            <figure class="calc__visualization">
+                <div class="calc__canvas-container">
+                    <canvas id="calc-foundation-canvas"
+                            width="400"
+                            height="300"
+                            aria-label="Визуализация фундамента">
+                    </canvas>
+                </div>
+                <figcaption class="calc__visualization-caption">
+                    <div class="calc__foundation-attributes">
+                        <div class="calc__foundation-attributes-item">
+                            <span class="calc__foundation-attributes-label">Темп. диапазон:</span>
+                            <span class="calc__foundation-attributes-value" id="foundation-temp-range" aria-live="polite"></span>
+                        </div>
+                        <div class="calc__foundation-attributes-item">
+                            <span class="calc__foundation-attributes-label">Морозостойкость:</span>
+                            <span class="calc__foundation-attributes-value" id="foundation-frost-resistance" aria-live="polite"></span>
+                        </div>
+                        <div class="calc__foundation-attributes-item">
+                            <span class="calc__foundation-attributes-label">Объём бетона:</span>
+                            <span class="calc__foundation-attributes-value" id="foundation-concrete-volume" aria-live="polite"></span>
+                        </div>
+                    </div>
+                    <div class="calc__dimensions">
+                        <div class="calc__dimension calc__dimension--width">
+                            <span class="calc__dimension-value" id="calc-foundation-width" aria-live="polite">0</span>м.
+                        </div>
+                        <div class="calc__dimension calc__dimension--length">
+                            <span class="calc__dimension-value" id="calc-foundation-length" aria-live="polite">0</span>м.
+                        </div>
+                        <div class="calc__dimension calc__dimension--height">
+                            <span class="calc__dimension-value" id="calc-foundation-height" aria-live="polite">0</span>мм.
+                        </div>
+                    </div>
+                </figcaption>
+            </figure>
+
+            <div class="calc__foundation-selection">
+                <div class="calc__foundation-selection-group" role="radiogroup" aria-labelledby="foundation-type-label">
+                    <h4 id="foundation-type-label" class="visually-hidden">Выберите тип фундамента</h4>
+                    <label for="calc-foundation-none" class="calc__foundation-selection-label">
                         <input type="radio"
                                id="calc-foundation-none"
                                name="foundation-type"
-                               class="calc__foundation-input"
+                               class="calc__foundation-selection-input"
                                value="none"
-                               required>
-                        <i class="material-icons calc__foundation-icon">block</i>
-                        <span class="calc__foundation-text">Не указывать</span>
-                        <i class="material-icons calc__selection-checkmark">check_circle</i>
+                               checked
+                               required
+                               aria-required="true">
+                        <span class="material-icons calc__foundation-selection-icon" aria-hidden="true">block</span>
+                        <span class="calc__foundation-selection-text">Не указывать</span>
+                        <span class="material-icons calc__selection-checkmark" aria-hidden="true">check_circle</span>
                     </label>
-                    <label for="calc-foundation-slab" class="calc__foundation-label">
+                    <label for="calc-foundation-slab" class="calc__foundation-selection-label">
                         <input type="radio"
                                id="calc-foundation-slab"
                                name="foundation-type"
-                               class="calc__foundation-input"
+                               class="calc__foundation-selection-input"
                                value="slab"
-                               required>
-                        <i class="material-icons calc__foundation-icon">layers</i>
-                        <span class="calc__foundation-text">Плитный</span>
-                        <i class="material-icons calc__selection-checkmark">check_circle</i>
+                               required
+                               aria-required="true">
+                        <span class="material-icons calc__foundation-selection-icon" aria-hidden="true">layers</span>
+                        <span class="calc__foundation-selection-text">Плитный</span>
+                        <span class="material-icons calc__selection-checkmark" aria-hidden="true">check_circle</span>
                     </label>
-                    <label for="calc-foundation-strip" class="calc__foundation-label">
+                    <label for="calc-foundation-strip" class="calc__foundation-selection-label">
                         <input type="radio"
                                id="calc-foundation-strip"
                                name="foundation-type"
-                               class="calc__foundation-input"
+                               class="calc__foundation-selection-input"
                                value="strip"
-                               required>
-                        <i class="material-icons calc__foundation-icon">layers</i>
-                        <span class="calc__foundation-text">Ленточный</span>
-                        <i class="material-icons calc__selection-checkmark">check_circle</i>
+                               required
+                               aria-required="true">
+                        <span class="material-icons calc__foundation-selection-icon" aria-hidden="true">view_week</span>
+                        <span class="calc__foundation-selection-text">Ленточный</span>
+                        <span class="material-icons calc__selection-checkmark" aria-hidden="true">check_circle</span>
                     </label>
                 </div>
 
-                <div class="calc__foundation-type calc__foundation-type--slab" data-type="slab">
+                <div class="calc__foundation-selection-type calc__foundation-type--slab" data-type="slab">
                     <p class="calc__description">Укажите размеры плитного фундамента для расчёта материалов.</p>
-                    <div class="calc__slab-group">
-                        <label for="calc-slab-width" class="calc__slab-label">
+                    <div class="calc__foundation-selection-slab-group">
+                        <label for="calc-slab-width" class="calc__foundation-selection-slab-label">
                             <span class="calc__input-text">
-                                <i class="material-icons calc__slab-icon">straighten</i>
+                                <span class="material-icons calc__foundation-selection-slab-icon" aria-hidden="true">straighten</span>
                                 Ширина плиты (м.):
                             </span>
                         </label>
-                        <div class="calc__slab-controls">
+                        <div class="calc__foundation-selection-slab-controls">
                             <button type="button"
-                                    class="calc__slab-control calc__slab-control--decrement"
-                                    data-target="calc-slab-width">
-                                <i class="material-icons calc__slab-control-icon">remove</i>
+                                    class="calc__foundation-selection-slab-control
+                                        calc__foundation-selection-slab-control--decrement"
+                                    data-control-target="calc-slab-width"
+                                    aria-label="Уменьшить ширину плиты">
+                                <span class="material-icons calc__foundation-selection-slab-control-icon" aria-hidden="true">remove</span>
                             </button>
                             <input type="number"
                                    id="calc-slab-width"
-                                   class="calc__slab-number"
+                                   class="calc__foundation-selection-slab-number"
                                    min="0"
-                                   value="4">
+                                   value="4"
+                                   required
+                                   aria-required="true">
                             <button type="button"
-                                    class="calc__slab-control calc__slab-control--increment"
-                                    data-target="calc-slab-width">
-                                <i class="material-icons calc__slab-control-icon">add</i>
+                                    class="calc__foundation-selection-slab-control
+                                        calc__foundation-selection-slab-control--increment"
+                                    data-control-target="calc-slab-width"
+                                    aria-label="Увеличить ширину плиты">
+                                <span class="material-icons calc__foundation-selection-slab-control-icon" aria-hidden="true">add</span>
                             </button>
                         </div>
-                        <input type="range"
-                               id="calc-slab-width-range"
-                               class="calc__slab-range"
-                               min="1"
-                               max="20"
-                               value="4"
-                               aria-label="Ползунок для ширины плиточного фундамента">
 
-                        <label for="calc-slab-length" class="calc__slab-label">
-                            <span class="calc__input-text">
-                                <i class="material-icons calc__slab-icon">straighten</i>
-                                Длина плиты (м.):
-                            </span>
+                        <label for="calc-slab-length" class="calc__foundation-selection-slab-label">
+                                <span class="calc__input-text">
+                                    <span class="material-icons calc__foundation-selection-slab-icon" aria-hidden="true">straighten</span>
+                                    Длина плиты (м.):
+                                </span>
                         </label>
-                        <div class="calc__slab-controls">
+                        <div class="calc__foundation-selection-slab-controls">
                             <button type="button"
-                                    class="calc__slab-control calc__slab-control--decrement"
-                                    data-target="calc-slab-length">
-                                <i class="material-icons calc__slab-control-icon">remove</i>
+                                    class="calc__foundation-selection-slab-control
+                                        calc__foundation-selection-slab-control--decrement"
+                                    data-control-target="calc-slab-length"
+                                    aria-label="Уменьшить длину плиты">
+                                <span class="material-icons calc__foundation-selection-slab-control-icon" aria-hidden="true">remove</span>
                             </button>
                             <input type="number"
                                    id="calc-slab-length"
-                                   class="calc__slab-number"
+                                   class="calc__foundation-selection-slab-number"
                                    min="0"
-                                   value="6">
+                                   value="6"
+                                   required
+                                   aria-required="true">
                             <button type="button"
-                                    class="calc__slab-control calc__slab-control--increment"
-                                    data-target="calc-slab-length">
-                                <i class="material-icons calc__slab-control-icon">add</i>
+                                    class="calc__foundation-selection-slab-control
+                                        calc__foundation-selection-slab-control--increment"
+                                    data-control-target="calc-slab-length"
+                                    aria-label="Увеличить длину плиты">
+                                <span class="material-icons calc__foundation-selection-slab-control-icon" aria-hidden="true">add</span>
                             </button>
                         </div>
-                        <input type="range"
-                               id="calc-slab-length-range"
-                               class="calc__slab-range"
-                               min="1"
-                               max="20"
-                               value="6"
-                               aria-label="Ползунок для длины плиточного фундамента">
 
-                        <label for="calc-slab-height" class="calc__slab-label">
-                            <span class="calc__input-text">
-                                <i class="material-icons calc__slab-icon">straighten</i>
-                                Высота плиты (мм.):
-                            </span>
+                        <label for="calc-slab-height" class="calc__foundation-selection-slab-label">
+                                <span class="calc__input-text">
+                                    <span class="material-icons calc__foundation-selection-slab-icon" aria-hidden="true">straighten</span>
+                                    Высота плиты (мм.):
+                                </span>
                         </label>
-                        <div class="calc__slab-controls">
+                        <div class="calc__foundation-selection-slab-controls">
                             <button type="button"
-                                    class="calc__slab-control calc__slab-control--decrement"
-                                    data-target="calc-slab-height">
-                                <i class="material-icons calc__slab-control-icon">remove</i>
+                                    class="calc__foundation-selection-slab-control
+                                        calc__foundation-selection-slab-control--decrement"
+                                    data-control-target="calc-slab-height"
+                                    aria-label="Уменьшить высоту плиты">
+                                <span class="material-icons calc__foundation-selection-slab-control-icon" aria-hidden="true">remove</span>
                             </button>
                             <input type="number"
                                    id="calc-slab-height"
-                                   class="calc__slab-number"
+                                   class="calc__foundation-selection-slab-number"
                                    min="0"
-                                   value="300">
+                                   value="300"
+                                   required
+                                   aria-required="true">
                             <button type="button"
-                                    class="calc__slab-control calc__slab-control--increment"
-                                    data-target="calc-slab-height">
-                                <i class="material-icons calc__slab-control-icon">add</i>
+                                    class="calc__foundation-selection-slab-control
+                                        calc__foundation-selection-slab-control--increment"
+                                    data-control-target="calc-slab-height"
+                                    aria-label="Увеличить высоту плиты">
+                                <span class="material-icons calc__foundation-selection-slab-control-icon" aria-hidden="true">add</span>
                             </button>
                         </div>
-                        <input type="range"
-                               id="calc-slab-height-range"
-                               class="calc__slab-range"
-                               min="100"
-                               max="500"
-                               value="300"
-                               aria-label="Ползунок для высоты плиточного фундамента">
                     </div>
                 </div>
 
-                <div class="calc__foundation-type calc__foundation-type--strip" data-type="strip"
-                     style="display: none;">
+                <div class="calc__foundation-selection-type calc__foundation-type--strip" data-type="strip">
                     <p class="calc__description">Выберите тип ленточного фундамента для дальнейшей настройки.</p>
-                    <div class="calc__strip-group">
-                        <label for="calc-strip-rectangular" class="calc__strip-label">
+                    <div class="calc__foundation-strip-type-group" role="radiogroup"
+                         aria-labelledby="strip-type-label">
+                        <h4 id="strip-type-label" class="visually-hidden">Выберите тип ленточного фундамента</h4>
+                        <label for="calc-strip-rectangular" class="calc__foundation-strip-type-label">
                             <input type="radio"
                                    id="calc-strip-rectangular"
                                    name="strip-type"
-                                   class="calc__strip-input"
+                                   class="calc__foundation-selection-strip-input"
                                    value="rectangular"
-                                   required>
-                            <i class="material-icons calc__strip-icon">view_column</i>
-                            <span class="calc__strip-text">Прямоугольный</span>
-                            <i class="material-icons calc__selection-checkmark">check_circle</i>
+                                   required
+                                   aria-required="true">
+                            <span class="material-icons calc__foundation-strip-type-icon" aria-hidden="true">view_column</span>
+                            <span class="calc__foundation-selection-strip-text">Прямоугольный</span>
+                            <span class="material-icons calc__selection-checkmark" aria-hidden="true">check_circle</span>
                         </label>
-                        <label for="calc-strip-rectangular-reinforced" class="calc__strip-label">
+                        <label for="calc-strip-rectangular-reinforced" class="calc__foundation-strip-type-label">
                             <input type="radio"
                                    id="calc-strip-rectangular-reinforced"
                                    name="strip-type"
-                                   class="calc__strip-input"
+                                   class="calc__foundation-selection-strip-input"
                                    value="rectangular-reinforced"
-                                   required>
-                            <i class="material-icons calc__strip-icon">view_column</i>
-                            <span class="calc__strip-text">Прямоугольный армированный</span>
-                            <i class="material-icons calc__selection-checkmark">check_circle</i>
+                                   required
+                                   aria-required="true">
+                            <span class="material-icons calc__foundation-strip-type-icon" aria-hidden="true">view_column</span>
+                            <span class="calc__foundation-selection-strip-text">Прямоугольный армированный</span>
+                            <span class="material-icons calc__selection-checkmark" aria-hidden="true">check_circle</span>
                         </label>
-                        <label for="calc-strip-t-shaped" class="calc__strip-label">
+                        <label for="calc-strip-t-shaped" class="calc__foundation-strip-type-label">
                             <input type="radio"
                                    id="calc-strip-t-shaped"
                                    name="strip-type"
-                                   class="calc__strip-input"
+                                   class="calc__foundation-selection-strip-input"
                                    value="t-shaped"
-                                   required>
-                            <i class="material-icons calc__strip-icon">view_column</i>
-                            <span class="calc__strip-text">Т-образный</span>
-                            <i class="material-icons calc__selection-checkmark">check_circle</i>
+                                   checked
+                                   required
+                                   aria-required="true">
+                            <span class="material-icons calc__foundation-strip-type-icon" aria-hidden="true">view_column</span>
+                            <span class="calc__foundation-selection-strip-text">Т-образный</span>
+                            <span class="material-icons calc__selection-checkmark" aria-hidden="true">check_circle</span>
                         </label>
-                        <label for="calc-strip-reinforced-ribs" class="calc__strip-label">
+                        <label for="calc-strip-reinforced-ribs" class="calc__foundation-strip-type-label">
                             <input type="radio"
                                    id="calc-strip-reinforced-ribs"
                                    name="strip-type"
-                                   class="calc__strip-input"
+                                   class="calc__foundation-selection-strip-input"
                                    value="reinforced-ribs"
-                                   required>
-                            <i class="material-icons calc__strip-icon">view_column</i>
-                            <span class="calc__strip-text">Усиленный с ребрами жесткости</span>
-                            <i class="material-icons calc__selection-checkmark">check_circle</i>
+                                   required
+                                   aria-required="true">
+                            <span class="material-icons calc__foundation-strip-type-icon" aria-hidden="true">view_column</span>
+                            <span class="calc__foundation-selection-strip-text">Усиленный с ребрами жесткости</span>
+                            <span class="material-icons calc__selection-checkmark" aria-hidden="true">check_circle</span>
                         </label>
                     </div>
                     <p class="calc__description">Укажите размеры ленточного фундамента для расчёта материалов.</p>
-                    <div class="calc__strip-group">
-                        <label for="calc-strip-width" class="calc__strip-label">
+                    <div class="calc__foundation-selection-strip-group">
+                        <label for="calc-strip-width" class="calc__foundation-selection-strip-label">
                             <span class="calc__input-text">
-                                <i class="material-icons calc__strip-icon">straighten</i>
+                                <span class="material-icons calc__foundation-selection-strip-icon" aria-hidden="true">straighten</span>
                                 Ширина ленты (м.):
                             </span>
                         </label>
-                        <div class="calc__strip-controls">
+                        <div class="calc__foundation-selection-strip-controls">
                             <button type="button"
-                                    class="calc__strip-control calc__strip-control--decrement"
-                                    data-target="calc-strip-width">
-                                <i class="material-icons calc__strip-control-icon">remove</i>
+                                    class="calc__foundation-selection-strip-control
+                                        calc__foundation-selection-strip-control--decrement"
+                                    data-control-target="calc-strip-width"
+                                    aria-label="Уменьшить ширину ленты">
+                                <span class="material-icons calc__foundation-selection-strip-control-icon" aria-hidden="true">remove</span>
                             </button>
                             <input type="number"
                                    id="calc-strip-width"
-                                   class="calc__strip-number"
+                                   class="calc__foundation-selection-strip-number"
                                    min="0"
-                                   value="0.4">
+                                   value="0.4"
+                                   required
+                                   aria-required="true">
                             <button type="button"
-                                    class="calc__strip-control calc__strip-control--increment"
-                                    data-target="calc-strip-width">
-                                <i class="material-icons calc__strip-control-icon">add</i>
+                                    class="calc__foundation-selection-strip-control
+                                        calc__foundation-selection-strip-control--increment"
+                                    data-control-target="calc-strip-width"
+                                    aria-label="Увеличить ширину ленты">
+                                <span class="material-icons calc__foundation-selection-strip-control-icon" aria-hidden="true">add</span>
                             </button>
                         </div>
-                        <input type="range"
-                               id="calc-strip-width-range"
-                               class="calc__strip-range"
-                               min="0.2"
-                               max="1"
-                               step="0.1"
-                               value="0.4"
-                               aria-label="Ползунок для ширины ленточного фундамента">
 
-                        <label for="calc-strip-length" class="calc__strip-label">
+                        <label for="calc-strip-height" class="calc__foundation-selection-strip-label">
                             <span class="calc__input-text">
-                                <i class="material-icons calc__strip-icon">straighten</i>
-                                Длина ленты (м.):
+                                <span class="material-icons calc__foundation-selection-strip-icon" aria-hidden="true">straighten</span>
+                                Высота ленты (м.):
                             </span>
                         </label>
-                        <div class="calc__strip-controls">
+                        <div class="calc__foundation-selection-strip-controls">
                             <button type="button"
-                                    class="calc__strip-control calc__strip-control--decrement"
-                                    data-target="calc-strip-length">
-                                <i class="material-icons calc__strip-control-icon">remove</i>
-                            </button>
-                            <input type="number"
-                                   id="calc-strip-length"
-                                   class="calc__strip-number"
-                                   min="0"
-                                   value="10">
-                            <button type="button"
-                                    class="calc__strip-control calc__strip-control--increment"
-                                    data-target="calc-strip-length">
-                                <i class="material-icons calc__strip-control-icon">add</i>
-                            </button>
-                        </div>
-                        <input type="range"
-                               id="calc-strip-length-range"
-                               class="calc__strip-range"
-                               min="1"
-                               max="50"
-                               value="10"
-                               aria-label="Ползунок для длины ленточного фундамента">
-
-                        <label for="calc-strip-height" class="calc__strip-label">
-                            <span class="calc__input-text">
-                                <i class="material-icons calc__strip-icon">straighten</i>
-                                Высота ленты (мм.):
-                            </span>
-                        </label>
-                        <div class="calc__strip-controls">
-                            <button type="button"
-                                    class="calc__strip-control calc__strip-control--decrement"
-                                    data-target="calc-strip-height">
-                                <i class="material-icons calc__strip-control-icon">remove</i>
+                                    class="calc__foundation-selection-strip-control
+                                        calc__foundation-selection-strip-control--decrement"
+                                    data-control-target="calc-strip-height"
+                                    aria-label="Уменьшить высоту ленты">
+                                <span class="material-icons calc__foundation-selection-strip-control-icon" aria-hidden="true">remove</span>
                             </button>
                             <input type="number"
                                    id="calc-strip-height"
-                                   class="calc__strip-number"
-                                   name="strip-height"
+                                   class="calc__foundation-selection-strip-number"
                                    min="0"
-                                   value="400">
+                                   value="0.8"
+                                   required
+                                   aria-required="true">
                             <button type="button"
-                                    class="calc__strip-control calc__strip-control--increment"
-                                    data-target="calc-strip-height">
-                                <i class="material-icons calc__strip-control-icon">add</i>
+                                    class="calc__foundation-selection-strip-control
+                                        calc__foundation-selection-strip-control--increment"
+                                    data-control-target="calc-strip-height"
+                                    aria-label="Увеличить высоту ленты">
+                                <span class="material-icons calc__foundation-selection-strip-control-icon" aria-hidden="true">add</span>
                             </button>
                         </div>
-                        <input type="range"
-                               id="calc-strip-height-range"
-                               class="calc__strip-range"
-                               min="200"
-                               max="1000"
-                               value="400"
-                               aria-label="Ползунок для высоты ленточного фундамента">
 
-                        <label for="calc-strip-thickness" class="calc__strip-label">
+                        <label for="calc-strip-thickness" class="calc__foundation-selection-strip-label">
                             <span class="calc__input-text">
-                                <i class="material-icons calc__strip-icon">straighten</i>
-                                Толщина ленты (мм.):
+                                <span class="material-icons calc__foundation-selection-strip-icon" aria-hidden="true">straighten</span>
+                                Толщина бетона (мм.):
                             </span>
                         </label>
-                        <div class="calc__strip-controls">
+                        <div class="calc__foundation-selection-strip-controls">
                             <button type="button"
-                                    class="calc__strip-control calc__strip-control--decrement"
-                                    data-target="calc-strip-thickness">
-                                <i class="material-icons calc__strip-control-icon">remove</i>
+                                    class="calc__foundation-selection-strip-control
+                                        calc__foundation-selection-strip-control--decrement"
+                                    data-control-target="calc-strip-thickness"
+                                    aria-label="Уменьшить толщину бетона">
+                                <span class="material-icons calc__foundation-selection-strip-control-icon" aria-hidden="true">remove</span>
                             </button>
                             <input type="number"
                                    id="calc-strip-thickness"
-                                   class="calc__strip-number"
+                                   class="calc__foundation-selection-strip-number"
                                    min="0"
-                                   value="300">
+                                   value="200"
+                                   required
+                                   aria-required="true">
                             <button type="button"
-                                    class="calc__strip-control calc__strip-control--increment"
-                                    data-target="calc-strip-thickness">
-                                <i class="material-icons calc__strip-control-icon">add</i>
+                                    class="calc__foundation-selection-strip-control
+                                        calc__foundation-selection-strip-control--increment"
+                                    data-control-target="calc-strip-thickness"
+                                    aria-label="Увеличить толщину бетона">
+                                <span class="material-icons calc__foundation-selection-strip-control-icon" aria-hidden="true">add</span>
                             </button>
                         </div>
-                        <input type="range"
-                               id="calc-strip-thickness-range"
-                               class="calc__strip-range"
-                               min="100"
-                               max="500"
-                               value="300"
-                               aria-label="Ползунок для толщины ленточного фундамента">
-
-                        <label for="calc-strip-middle-length" class="calc__strip-label calc__strip-label--t-shaped-only"
-                               style="display: none;">
-                            <span class="calc__input-text">
-                                <i class="material-icons calc__strip-icon">straighten</i>
-                                Длина ленты в середине (м.):
-                            </span>
-                        </label>
-                        <div class="calc__strip-controls">
-                            <button type="button"
-                                    class="calc__strip-control calc__strip-control--decrement"
-                                    data-target="calc-strip-middle-length">
-                                <i class="material-icons calc__strip-control-icon">remove</i>
-                            </button>
-                            <input type="number"
-                                   id="calc-strip-middle-length"
-                                   class="calc__strip-number"
-                                   min="0"
-                                   step="0.1"
-                                   value="5">
-                            <button type="button"
-                                    class="calc__strip-control calc__strip-control--increment"
-                                    data-target="calc-strip-middle-length">
-                                <i class="material-icons calc__strip-control-icon">add</i>
-                            </button>
+                        <div class="calc__foundation-selection-strip-t-shaped-field" data-strip-type="t-shaped">
+                            <label for="calc-strip-middle-length" class="calc__foundation-selection-strip-label">
+                                <span class="calc__input-text">
+                                    <span class="material-icons calc__foundation-selection-strip-icon" aria-hidden="true">straighten</span>
+                                    Длина ленты в середине (м.):
+                                </span>
+                            </label>
+                            <div class="calc__foundation-selection-strip-controls">
+                                <button type="button"
+                                        class="calc__foundation-selection-strip-control
+                                            calc__foundation-selection-strip-control--decrement"
+                                        data-control-target="calc-strip-middle-length"
+                                        aria-label="Уменьшить длину ленты в середине">
+                                    <span class="material-icons calc__foundation-selection-strip-control-icon" aria-hidden="true">remove</span>
+                                </button>
+                                <input type="number"
+                                       id="calc-strip-middle-length"
+                                       class="calc__foundation-selection-strip-number"
+                                       min="0"
+                                       value="3"
+                                       required
+                                       aria-required="true">
+                                <button type="button"
+                                        class="calc__foundation-selection-strip-control
+                                            calc__foundation-selection-strip-control--increment"
+                                        data-control-target="calc-strip-middle-length"
+                                        aria-label="Увеличить длину ленты в середине">
+                                    <span class="material-icons calc__foundation-selection-strip-control-icon" aria-hidden="true">add</span>
+                                </button>
+                            </div>
                         </div>
-                        <input type="range"
-                               id="calc-strip-middle-length-range"
-                               class="calc__strip-range"
-                               min="1"
-                               max="20"
-                               value="5"
-                               aria-label="Ползунок для длины ленты в середине ленточного фундамента">
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="calc__visualization">
-            <div class="calc__canvas-container">
-                <canvas id="calc-foundation-canvas" width="400" height="300"></canvas>
-            </div>
-            <div class="calc__dimensions">
-                <div class="calc__dimension calc__dimension--width">
-                    <span class="calc__dimension-value" id="calc-foundation-width">0</span>м.
-                </div>
-                <div class="calc__dimension calc__dimension--length">
-                    <span class="calc__dimension-value" id="calc-foundation-length">0</span>м.
-                </div>
-                <div class="calc__dimension calc__dimension--height">
-                    <span class="calc__dimension-value" id="calc-foundation-height">0</span>мм.
                 </div>
             </div>
         </div>
     </fieldset>
-</div>
+</section>

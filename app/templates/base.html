@@ -8,42 +8,37 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
-        <link rel="stylesheet" href="{{ url_for('static', filename='lib/choices/choices.min.css') }}">
-
+    <link rel="stylesheet" href="{{ url_for("static", filename="lib/choices/choices.min.css") }}">
     <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
     {% block styles %}{% endblock %}
 </head>
 <body>
-<header class="site-header">
+<header class="site-header" role="banner">
     <div class="main__container site-header__container">
         <div class="site-header__logo">
-            <a href="{{ url_for('main.home') }}" class="site-header__logo-link">
+            <a href="{{ url_for("main.home") }}" class="site-header__logo-link" aria-label="BuildCalc - На главную">
                 <span class="site-header__logo-text">BuildCalc</span>
             </a>
         </div>
 
         <div class="site-header__actions">
-            <nav class="site-header__nav">
-                <a href="{{ url_for("main.calc") }}" class="site-header__nav-item" aria-label="Калькулятор">
-                    <span class="material-icons site-header__nav-item-icon">calculate</span>
+            <nav class="site-header__nav" aria-label="Основная навигация">
+                <a href="{{ url_for("main.calc") }}" class="site-header__nav-item">
+                    <span class="material-icons site-header__nav-item-icon" aria-hidden="true">calculate</span>
                     <span class="site-header__nav-item-text">Калькулятор</span>
                 </a>
-                <a href="#" class="site-header__nav-item" aria-label="Регионы">
-                    <span class="material-icons site-header__nav-item-icon">place</span>
-                    <span class="site-header__nav-item-text">Регионы</span>
-                </a>
-                <a href="#" class="site-header__nav-item" aria-label="Мои проекты">
-                    <span class="material-icons site-header__nav-item-icon">engineering</span>
+                <a href="#" class="site-header__nav-item">
+                    <span class="material-icons site-header__nav-item-icon" aria-hidden="true">engineering</span>
                     <span class="site-header__nav-item-text">Мои проекты</span>
                 </a>
                 {% if False %}
-                    <a href="#" class="site-header__nav-item" aria-label="Личный кабинет">
-                        <span class="material-icons site-header__nav-item-icon">person</span>
+                    <a href="#" class="site-header__nav-item">
+                        <span class="material-icons site-header__nav-item-icon" aria-hidden="true">person</span>
                         <span class="site-header__nav-item-text">Личный кабинет</span>
                     </a>
                 {% else %}
-                    <a href="#" class="site-header__nav-item" aria-label="Войти">
-                        <span class="material-icons site-header__nav-item-icon">login</span>
+                    <a href="#" class="site-header__nav-item">
+                        <span class="material-icons site-header__nav-item-icon" aria-hidden="true">login</span>
                         <span class="site-header__nav-item-text">Войти</span>
                     </a>
                 {% endif %}
@@ -52,79 +47,87 @@
     </div>
 </header>
 
-<main class="main">
+<main class="main" role="main" id="main-content">
     <div class="main__container">
         {% block content %}{% endblock %}
     </div>
 </main>
 
-<footer class="site-footer site-footer__container">
+<footer class="site-footer" role="contentinfo">
     <div class="main__container site-footer__container">
         <div class="site-footer__sections">
-            <section class="footer__section">
-                <h3 class="footer__section-title">О нас</h3>
-                <ul class="footer__section-list">
-                    <li class="footer__section-list-item"><a href="#">О компании</a></li>
-                    <li class="footer__section-list-item"><a href="#">Как выполняются расчёты</a></li>
-                </ul>
-            </section>
-
-            <section class="footer__section">
-                <h3 class="footer__section-title">Навигация</h3>
-                <ul class="footer__section-list">
-                    <li class="footer__section-list-item"><a href="{{ url_for("main.home") }}">Главная</a></li>
-                    <li class="footer__section-list-item">
-                        <a href="{{ url_for("main.calc") }}">Калькулятор</a>
+            <section class="site-footer__section">
+                <h3 class="site-footer__section-title">О нас</h3>
+                <ul class="site-footer__section-list">
+                    <li class="site-footer__section-list-item">
+                        <a href="#" class="site-footer__link">О компании</a>
                     </li>
-                    <li class="footer__section-list-item"><a href="#">Регионы</a></li>
-                    <li class="footer__section-list-item"><a href="#">Проекты</a></li>
-                </ul>
-            </section>
-
-            <section class="footer__section">
-                <h3 class="footer__section-title">Контакты</h3>
-                <ul class="footer__section-list">
-                    <li class="footer__section-list-item">
-                        <a href="#">support@buildcalc.ru</a>
-                    </li>
-                    <li class="footer__section-list-item">
-                        <a href="tel:+77777777777">+7 (777) 777-77-77</a>
+                    <li class="site-footer__section-list-item">
+                        <a href="#" class="site-footer__link">Как выполняются расчёты</a>
                     </li>
                 </ul>
             </section>
 
-            <section class="footer__section">
-                <h3 class="footer__section-title">Мы в соцсетях</h3>
-                <ul class="footer__section-list">
-                    <li class="footer__section-list-item">
-                        <a href="#" target="_blank" aria-label="ВКонтакте">
+            <section class="site-footer__section">
+                <h3 class="site-footer__section-title">Навигация</h3>
+                <ul class="site-footer__section-list">
+                    <li class="site-footer__section-list-item">
+                        <a href="{{ url_for("main.home") }}" class="site-footer__link">Главная</a>
+                    </li>
+                    <li class="site-footer__section-list-item">
+                        <a href="{{ url_for("main.calc") }}" class="site-footer__link">Калькулятор</a>
+                    </li>
+                    <li class="site-footer__section-list-item"><a href="#" class="site-footer__link">Проекты</a></li>
+                </ul>
+            </section>
+
+            <section class="site-footer__section">
+                <h3 class="site-footer__section-title">Контакты</h3>
+                <ul class="site-footer__section-list">
+                    <li class="site-footer__section-list-item">
+                        <a href="mailto:support@buildcalc.ru" class="site-footer__link">support@buildcalc.ru</a>
+                    </li>
+                    <li class="site-footer__section-list-item">
+                        <a href="tel:+77777777777" class="site-footer__link">+7 (777) 777-77-77</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="site-footer__section">
+                <h3 class="site-footer__section-title">Мы в соцсетях</h3>
+                <ul class="site-footer__section-list site-footer__section-list--social">
+                    <li class="site-footer__section-list-item">
+                        <a href="#" target="_blank" rel="noopener"
+                           class="site-footer__link site-footer__link--social" aria-label="Мы ВКонтакте">
                             ВКонтакте
                         </a>
                     </li>
-                    <li class="footer__section-list-item">
-                        <a href="#" target="_blank" aria-label="Telegram">
+                    <li class="site-footer__section-list-item">
+                        <a href="#" target="_blank" rel="noopener"
+                           class="site-footer__link site-footer__link--social" aria-label="Наш Telegram канал">
                             Telegram
                         </a>
                     </li>
-                    <li class="footer__section-list-item">
-                        <a href="#" target="_blank" aria-label="Instagram">
+                    <li class="site-footer__section-list-item">
+                        <a href="#" target="_blank" rel="noopener"
+                           class="site-footer__link site-footer__link--social" aria-label="Мы в Instagram">
                             Instagram
                         </a>
                     </li>
                 </ul>
             </section>
         </div>
-        <section class="footer__bottom">
-            <p class="footer__copyright">© {{ current_year }} BuildCalc. Все права защищены.</p>
-            <p class="footer__legal">
-                <a href="#">Политика конфиденциальности</a> |
-                <a href="#">Условия использования</a>
+        <div class="site-footer__bottom">
+            <p class="site-footer__copyright">© {{ current_year }} BuildCalc. Все права защищены.</p>
+            <p class="site-footer__legal">
+                <a href="#" class="site-footer__link site-footer__link--legal">Политика конфиденциальности</a> |
+                <a href="#" class="site-footer__link site-footer__link--legal">Условия использования</a>
             </p>
-        </section>
+        </div>
     </div>
 </footer>
 
-<script src="{{ url_for('static', filename='lib/choices/choices.min.js') }}"></script>
+<script src="{{ url_for("static", filename="lib/choices/choices.min.js") }}"></script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

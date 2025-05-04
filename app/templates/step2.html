@@ -45,95 +45,56 @@
             </figure>
 
             <div class="calc__building-selection">
-                <div class="calc__building-selection-group">
-                    <label class="calc__building-selection-label" for="building-length">
-                        <span class="calc__input-text">
-                            <span class="material-icons calc__building-selection-icon" aria-hidden="true">straighten</span>
-                            Длина здания (м.):
-                        </span>
-                    </label>
-                    <div class="calc__controls calc__controls--building">
-                        <button type="button"
-                                class="calc__control calc__control--decrement"
-                                data-control-target="building-length"
-                                aria-label="Уменьшить длину">
-                            <span class="material-icons calc__control-icon" aria-hidden="true">remove</span>
-                        </button>
-                        <input type="number"
-                               id="building-length"
-                               class="calc__building-selection-number"
-                               min="1"
-                               max="100"
-                               value="10"
-                               aria-label="Длина здания в метрах"
-                               required
-                               aria-required="true">
-                        <button type="button"
-                                class="calc__control calc__control--increment"
-                                data-control-target="building-length"
-                                aria-label="Увеличить длину">
-                            <span class="material-icons calc__control-icon" aria-hidden="true">add</span>
-                        </button>
+                <div class="calc__building-cards">
+                    <div class="calc__building-card">
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">height</span>
+                        <label for="wall-height" class="calc__building-selection-label">Высота стен:</label>
+                        <div class="calc__controls calc__controls--building">
+                            <input type="number"
+                                   id="wall-height"
+                                   class="calc__building-selection-number"
+                                   min="1"
+                                   max="20"
+                                   value="3"
+                                   aria-label="Высота стен в метрах"
+                                   required
+                                   aria-required="true">
+                            <span class="calc__unit">м.</span>
+                        </div>
                     </div>
 
-                    <label for="building-width" class="calc__building-selection-label">
-                        <span class="calc__input-text">
-                            <span class="material-icons calc__building-selection-icon" aria-hidden="true">straighten</span>
-                            Ширина здания (м.):
-                        </span>
-                    </label>
-                    <div class="calc__controls calc__controls--building">
-                        <button type="button"
-                                class="calc__control calc__control--decrement"
-                                data-control-target="building-width"
-                                aria-label="Уменьшить ширину">
-                            <span class="material-icons calc__control-icon" aria-hidden="true">remove</span>
-                        </button>
-                        <input type="number"
-                               id="building-width"
-                               class="calc__building-selection-number"
-                               min="1"
-                               max="100"
-                               value="8"
-                               aria-label="Ширина здания в метрах"
-                               required
-                               aria-required="true">
-                        <button type="button"
-                                class="calc__control calc__control--increment"
-                                data-control-target="building-width"
-                                aria-label="Увеличить ширину">
-                            <span class="material-icons calc__control-icon" aria-hidden="true">add</span>
-                        </button>
+                    <div class="calc__building-card">
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">swap_horiz</span>
+                        <label for="building-length" class="calc__building-selection-label">Длина здания:</label>
+                        <div class="calc__controls calc__controls--building">
+                            <input type="number"
+                                   id="building-length"
+                                   class="calc__building-selection-number"
+                                   min="1"
+                                   max="100"
+                                   value="10"
+                                   aria-label="Длина здания в метрах"
+                                   required
+                                   aria-required="true">
+                            <span class="calc__unit">м.</span>
+                        </div>
                     </div>
 
-                    <label for="wall-height" class="calc__building-selection-label">
-                        <span class="calc__input-text">
-                            <span class="material-icons calc__building-selection-icon" aria-hidden="true">straighten</span>
-                            Высота стен (м.):
-                        </span>
-                    </label>
-                    <div class="calc__controls calc__controls--building">
-                        <button type="button"
-                                class="calc__control calc__control--decrement"
-                                data-control-target="wall-height"
-                                aria-label="Уменьшить высоту">
-                            <span class="material-icons calc__control-icon" aria-hidden="true">remove</span>
-                        </button>
-                        <input type="number"
-                               id="wall-height"
-                               class="calc__building-selection-number"
-                               min="1"
-                               max="20"
-                               value="3"
-                               aria-label="Высота стен в метрах"
-                               required
-                               aria-required="true">
-                        <button type="button"
-                                class="calc__control calc__control--increment"
-                                data-control-target="wall-height"
-                                aria-label="Увеличить высоту">
-                            <span class="material-icons calc__control-icon" aria-hidden="true">add</span>
-                        </button>
+                    <div class="calc__building-card">
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">swap_vert</span>
+                        <label for="building-width" class="calc__building-selection-label">Ширина здания:</label>
+                        <div class="calc__controls calc__controls--building">
+                            <input type="number"
+                                   id="building-width"
+                                   class="calc__building-selection-number"
+                                   min="1"
+                                   max="100"
+                                   value="8"
+                                   aria-label="Ширина здания в метрах"
+                                   required
+                                   aria-required="true">
+                            <span class="calc__unit">м.</span>
+                        </div>
                     </div>
                 </div>
             </div>

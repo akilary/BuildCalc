@@ -210,11 +210,279 @@ const initMaterialSelector = () => {
     }
 };
 
+/** Инициализация управления дверями и окнами */
+const initOpeningsManager = () => {
+    let doorCounter = 1;
+    let windowCounter = 1;
+
+    const doorsListContainer = document.getElementById("doors-list");
+    const windowsListContainer = document.getElementById("windows-list");
+
+    const addDoorButton = document.getElementById("add-door");
+    const addWindowButton = document.getElementById("add-window");
+
+    // Функция для создания новой двери
+    const createDoor = () => {
+        doorCounter++;
+        const doorId = `door-${doorCounter}`;
+
+        const doorElement = document.createElement("div");
+        doorElement.className = "calc__opening-item";
+        doorElement.dataset.openingId = doorId;
+
+        doorElement.innerHTML = `
+            <div class="calc__opening-header">
+                <h5 class="calc__opening-name">Дверь ${doorCounter}</h5>
+                <button type="button"
+                        class="calc__button calc__button--remove"
+                        data-action="remove-opening"
+                        data-target="${doorId}"
+                        aria-label="Удалить дверь ${doorCounter}">
+                    <span class="material-icons calc__button-icon" aria-hidden="true">delete</span>
+                </button>
+            </div>
+            <div class="calc__opening-dimensions">
+                <div class="calc__opening-dimension">
+                    <label for="${doorId}-quantity" class="calc__opening-label">
+                        <span class="calc__input-text">
+                            <span class="material-icons calc__opening-icon"
+                                  aria-hidden="true">filter_1</span>
+                            Количество:
+                        </span>
+                    </label>
+                    <input type="number"
+                           id="${doorId}-quantity"
+                           class="calc__opening-input"
+                           min="1"
+                           max="10"
+                           step="1"
+                           value="1"
+                           required
+                           aria-required="true">
+                </div>
+                <div class="calc__opening-dimension">
+                    <label for="${doorId}-width" class="calc__opening-label">
+                        <span class="calc__input-text">
+                            <span class="material-icons calc__opening-icon"
+                                  aria-hidden="true">swap_horiz</span>
+                            Ширина (м):
+                        </span>
+                    </label>
+                    <input type="number"
+                           id="${doorId}-width"
+                           class="calc__opening-input"
+                           min="0.6"
+                           max="2.5"
+                           step="0.1"
+                           value="0.9"
+                           required
+                           aria-required="true">
+                </div>
+                <div class="calc__opening-dimension">
+                    <label for="${doorId}-height" class="calc__opening-label">
+                        <span class="calc__input-text">
+                            <span class="material-icons calc__opening-icon"
+                                  aria-hidden="true">height</span>
+                            Высота (м):
+                        </span>
+                    </label>
+                    <input type="number"
+                           id="${doorId}-height"
+                           class="calc__opening-input"
+                           min="1.5"
+                           max="2.5"
+                           step="0.1"
+                           value="2.0"
+                           required
+                           aria-required="true">
+                </div>
+            </div>
+        `;
+
+        doorsListContainer.appendChild(doorElement);
+
+        const removeButton = doorElement.querySelector('[data-action="remove-opening"]');
+        removeButton.addEventListener("click", (e) => {
+            const targetId = e.currentTarget.dataset.target;
+            removeOpening(targetId);
+        });
+
+        setTimeout(() => {
+            doorElement.style.opacity = "1";
+            doorElement.style.transform = "translateY(0)";
+        }, 10);
+
+        updateOpeningsCount("door");
+        return doorElement;
+    };
+
+    // Функция для создания нового окна
+    const createWindow = () => {
+        windowCounter++;
+        const windowId = `window-${windowCounter}`;
+
+        const windowElement = document.createElement("div");
+        windowElement.className = "calc__opening-item";
+        windowElement.dataset.openingId = windowId;
+
+        windowElement.innerHTML = `
+            <div class="calc__opening-header">
+                <h5 class="calc__opening-name">Окно ${windowCounter}</h5>
+                <button type="button"
+                        class="calc__button calc__button--remove"
+                        data-action="remove-opening"
+                        data-target="${windowId}"
+                        aria-label="Удалить окно ${windowCounter}">
+                    <span class="material-icons calc__button-icon" aria-hidden="true">delete</span>
+                </button>
+            </div>
+            <div class="calc__opening-dimensions">
+                <div class="calc__opening-dimension">
+                    <label for="${windowId}-quantity" class="calc__opening-label">
+                        <span class="calc__input-text">
+                            <span class="material-icons calc__opening-icon"
+                                  aria-hidden="true">filter_1</span>
+                            Количество:
+                        </span>
+                    </label>
+                    <input type="number"
+                           id="${windowId}-quantity"
+                           class="calc__opening-input"
+                           min="1"
+                           max="20"
+                           step="1"
+                           value="1"
+                           required
+                           aria-required="true">
+                </div>
+                <div class="calc__opening-dimension">
+                    <label for="${windowId}-width" class="calc__opening-label">
+                        <span class="calc__input-text">
+                            <span class="material-icons calc__opening-icon"
+                                  aria-hidden="true">swap_horiz</span>
+                            Ширина (м):
+                        </span>
+                    </label>
+                    <input type="number"
+                           id="${windowId}-width"
+                           class="calc__opening-input"
+                           min="0.3"
+                           max="3"
+                           step="0.1"
+                           value="1.2"
+                           required
+                           aria-required="true">
+                </div>
+                <div class="calc__opening-dimension">
+                    <label for="${windowId}-height" class="calc__opening-label">
+                        <span class="calc__input-text">
+                            <span class="material-icons calc__opening-icon"
+                                  aria-hidden="true">height</span>
+                            Высота (м):
+                        </span>
+                    </label>
+                    <input type="number"
+                           id="${windowId}-height"
+                           class="calc__opening-input"
+                           min="0.3"
+                           max="2.5"
+                           step="0.1"
+                           value="1.4"
+                           required
+                           aria-required="true">
+                </div>
+            </div>
+        `;
+
+        windowsListContainer.appendChild(windowElement);
+
+        const removeButton = windowElement.querySelector('[data-action="remove-opening"]');
+        removeButton.addEventListener("click", (e) => {
+            const targetId = e.currentTarget.dataset.target;
+            removeOpening(targetId);
+        });
+
+        setTimeout(() => {
+            windowElement.style.opacity = "1";
+            windowElement.style.transform = "translateY(0)";
+        }, 10);
+
+        updateOpeningsCount("window");
+
+        return windowElement;
+    };
+
+    const removeOpening = (openingId) => {
+        const openingElement = document.querySelector(`[data-opening-id="${openingId}"]`);
+
+        if (!openingElement) return;
+
+        const openingType = openingId.startsWith("door") ? "door" : "window";
+
+        const container = openingType === "door" ? doorsListContainer : windowsListContainer;
+        if (container.children.length <= 1) {
+            alert(`Должен быть хотя бы один элемент типа "${openingType === "door" ? "Дверь" : "Окно"}"!`);
+            return;
+        }
+
+        openingElement.style.opacity = "0";
+        openingElement.style.transform = "translateY(-10px)";
+
+        setTimeout(() => {
+            openingElement.remove();
+            updateOpeningsCount(openingType);
+        }, 300);
+    };
+
+    const updateOpeningsCount = (type) => {
+        const container = type === "door" ? doorsListContainer : windowsListContainer;
+        const count = container.children.length;
+
+        console.log(`Количество ${type === "door" ? "дверей" : "окон"}: ${count}`);
+    };
+
+    const initExistingOpenings = () => {
+        const removeButtons = document.querySelectorAll('[data-action="remove-opening"]');
+        removeButtons.forEach(button => {
+            button.addEventListener("click", (e) => {
+                const targetId = e.currentTarget.dataset.target;
+                removeOpening(targetId);
+            });
+        });
+
+        updateOpeningsCount("door");
+        updateOpeningsCount("window");
+
+        if (doorsListContainer.children.length > 0) {
+            const lastDoorId = doorsListContainer.lastElementChild.dataset.openingId;
+            const lastDoorNumber = parseInt(lastDoorId.split("-")[1]);
+            doorCounter = Math.max(doorCounter, lastDoorNumber);
+        }
+
+        if (windowsListContainer.children.length > 0) {
+            const lastWindowId = windowsListContainer.lastElementChild.dataset.openingId;
+            const lastWindowNumber = parseInt(lastWindowId.split("-")[1]);
+            windowCounter = Math.max(windowCounter, lastWindowNumber);
+        }
+    };
+
+    if (addDoorButton) {
+        addDoorButton.addEventListener("click", createDoor);
+    }
+
+    if (addWindowButton) {
+        addWindowButton.addEventListener("click", createWindow);
+    }
+
+    initExistingOpenings();
+};
+
 /** Основная инициализация */
 const init = () => {
     initCalcPageSwitcher();
     initRegionMap();
     initMaterialSelector();
+    initOpeningsManager();
 };
 
 document.addEventListener("DOMContentLoaded", init);

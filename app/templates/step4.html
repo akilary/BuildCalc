@@ -1,169 +1,121 @@
 <section class="calc__step" id="calc-step-4" aria-hidden="true" tabindex="-1">
     <fieldset class="calc__fieldset">
         <legend class="calc__legend">
-            <h3 class="calc__description">
-                Укажите количество и размеры дверей для учёта в расчёте стен.
-            </h3>
+            Укажите количество и размеры дверей и окон для учёта в расчёте стен.
         </legend>
 
-        <div class="calc__openings-selection">
-            <div class="calc__openings-group">
-                <h4 class="calc__openings-title">Двери</h4>
+        <div class="calc__openings-container">
+            <div class="calc__openings-group" data-type="door">
+                <h3 class="calc__openings-title">Двери</h3>
                 <div class="calc__openings-list" id="doors-list">
-                    <div class="calc__opening-item" data-opening-id="door-1">
+                    <div class="calc__opening-item" data-id="door-1">
                         <div class="calc__opening-header">
-                            <h5 class="calc__opening-name">Дверь 1</h5>
-                            <button type="button"
-                                    class="calc__button calc__button--remove"
-                                    data-action="remove-opening"
-                                    data-target="door-1"
-                                    aria-label="Удалить дверь 1">
+                            <h4 class="calc__opening-name">Дверь 1</h4>
+                            <button type="button" class="calc__button calc__button--remove"
+                                    data-action="remove-opening" aria-label="Удалить дверь 1">
                                 <span class="material-icons calc__button-icon" aria-hidden="true">delete</span>
                             </button>
                         </div>
                         <div class="calc__opening-dimensions">
                             <div class="calc__opening-dimension">
                                 <label for="door-1-quantity" class="calc__opening-label">
-                                        <span class="calc__input-text">
-                                            <span class="material-icons calc__opening-icon"
-                                                  aria-hidden="true">filter_1</span>
-                                            Количество:
+                                    <span class="calc__input-text">
+                                        <span class="material-icons calc__opening-icon" aria-hidden="true">
+                                            filter_1
                                         </span>
+                                        Количество:
+                                    </span>
                                 </label>
-                                <input type="number"
-                                       id="door-1-quantity"
-                                       class="calc__opening-input"
-                                       min="1"
-                                       max="10"
-                                       step="1"
-                                       value="1"
-                                       required
-                                       aria-required="true">
+                                <input type="number" id="door-1-quantity" class="calc__opening-input"
+                                       min="1" max="10" value="1" required>
                             </div>
                             <div class="calc__opening-dimension">
                                 <label for="door-1-width" class="calc__opening-label">
-                                        <span class="calc__input-text">
-                                            <span class="material-icons calc__opening-icon"
-                                                  aria-hidden="true">swap_horiz</span>
-                                            Ширина (м):
+                                    <span class="calc__input-text">
+                                        <span class="material-icons calc__opening-icon" aria-hidden="true">
+                                            swap_horiz
                                         </span>
+                                        Ширина (м):
+                                    </span>
                                 </label>
-                                <input type="number"
-                                       id="door-1-width"
-                                       class="calc__opening-input"
-                                       min="0.6"
-                                       max="2.5"
-                                       step="0.1"
-                                       value="0.9"
-                                       required
-                                       aria-required="true">
+                                <input type="number" id="door-1-width" class="calc__opening-input"
+                                       min="0.6" max="2.5" step="0.1" value="0.9" required>
                             </div>
                             <div class="calc__opening-dimension">
                                 <label for="door-1-height" class="calc__opening-label">
-                                        <span class="calc__input-text">
-                                            <span class="material-icons calc__opening-icon"
-                                                  aria-hidden="true">height</span>
-                                            Высота (м):
+                                    <span class="calc__input-text">
+                                        <span class="material-icons calc__opening-icon" aria-hidden="true">
+                                            height
                                         </span>
+                                        Высота (м):
+                                    </span>
                                 </label>
-                                <input type="number"
-                                       id="door-1-height"
-                                       class="calc__opening-input"
-                                       min="1.5"
-                                       max="2.5"
-                                       step="0.1"
-                                       value="2.0"
-                                       required
-                                       aria-required="true">
+                                <input type="number" id="door-1-height" class="calc__opening-input"
+                                       min="1.5" max="2.5" step="0.1" value="2.0" required>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button"
-                        id="add-door"
-                        class="calc__button calc__button--add"
-                        aria-label="Добавить дверь">
+
+                <button type="button" id="add-door" class="calc__button calc__button--add" aria-label="Добавить дверь">
                     <span class="material-icons calc__button-icon" aria-hidden="true">add</span>
                     Добавить дверь
                 </button>
             </div>
 
-            <div class="calc__openings-group">
-                <h4 class="calc__openings-title">Окна</h4>
-                <div class="calc__openings-list" id="windows-list">
-                    <div class="calc__opening-item" data-opening-id="window-1">
+            <div class="calc__openings-group" data-type="window">
+                <h3 class="calc__openings-title">Окна</h3>
+                <div class="calc__opening-list" id="windows-list">
+                    <div class="calc__opening-item" data-id="window-1">
                         <div class="calc__opening-header">
-                            <h5 class="calc__opening-name">Окно 1</h5>
-                            <button type="button"
-                                    class="calc__button calc__button--remove"
-                                    data-action="remove-opening"
-                                    data-target="window-1"
-                                    aria-label="Удалить окно 1">
+                            <h4 class="calc__opening-name">Окно 1</h4>
+                            <button type="button" class="calc__button calc__button--remove"
+                                    data-action="remove-opening" aria-label="Удалить окно 1">
                                 <span class="material-icons calc__button-icon" aria-hidden="true">delete</span>
                             </button>
                         </div>
                         <div class="calc__opening-dimensions">
                             <div class="calc__opening-dimension">
                                 <label for="window-1-quantity" class="calc__opening-label">
-                                        <span class="calc__input-text">
-                                            <span class="material-icons calc__opening-icon"
-                                                  aria-hidden="true">filter_1</span>
-                                            Количество:
+                                    <span class="calc__input-text">
+                                        <span class="material-icons calc__opening-icon" aria-hidden="true">
+                                            filter_1
                                         </span>
+                                        Количество:
+                                    </span>
                                 </label>
-                                <input type="number"
-                                       id="window-1-quantity"
-                                       class="calc__opening-input"
-                                       min="1"
-                                       max="20"
-                                       step="1"
-                                       value="1"
-                                       required
-                                       aria-required="true">
+                                <input type="number" id="window-1-quantity" class="calc__opening-input"
+                                       min="1" max="20" value="1" required>
                             </div>
                             <div class="calc__opening-dimension">
                                 <label for="window-1-width" class="calc__opening-label">
-                                        <span class="calc__input-text">
-                                            <span class="material-icons calc__opening-icon"
-                                                  aria-hidden="true">swap_horiz</span>
-                                            Ширина (м):
+                                    <span class="calc__input-text">
+                                        <span class="material-icons calc__opening-icon" aria-hidden="true">
+                                            swap_horiz
                                         </span>
+                                        Ширина (м):
+                                    </span>
                                 </label>
-                                <input type="number"
-                                       id="window-1-width"
-                                       class="calc__opening-input"
-                                       min="0.3"
-                                       max="3"
-                                       step="0.1"
-                                       value="1.2"
-                                       required
-                                       aria-required="true">
+                                <input type="number" id="window-1-width" class="calc__opening-input"
+                                       min="0.3" max="3" step="0.1" value="1.2" required>
                             </div>
                             <div class="calc__opening-dimension">
                                 <label for="window-1-height" class="calc__opening-label">
-                                        <span class="calc__input-text">
-                                            <span class="material-icons calc__opening-icon"
-                                                  aria-hidden="true">height</span>
-                                            Высота (м):
+                                    <span class="calc__input-text">
+                                        <span class="material-icons calc__opening-icon" aria-hidden="true">
+                                            height
                                         </span>
+                                        Высота (м):
+                                    </span>
                                 </label>
-                                <input type="number"
-                                       id="window-1-height"
-                                       class="calc__opening-input"
-                                       min="0.3"
-                                       max="2.5"
-                                       step="0.1"
-                                       value="1.4"
-                                       required
-                                       aria-required="true">
+                                <input type="number" id="window-1-height" class="calc__opening-input"
+                                       min="0.3" max="2.5" step="0.1" value="1.4" required>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button"
-                        id="add-window"
-                        class="calc__button calc__button--add"
-                        aria-label="Добавить окно">
+
+                <button type="button" id="add-window" class="calc__button calc__button--add" aria-label="Добавить окно">
                     <span class="material-icons calc__button-icon" aria-hidden="true">add</span>
                     Добавить окно
                 </button>

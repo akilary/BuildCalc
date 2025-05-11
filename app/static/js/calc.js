@@ -20,9 +20,11 @@ const initCalcPageSwitcher = () => {
             if (index === 0) {
                 step.classList.add("calc__step--active");
                 step.setAttribute("aria-hidden", "false");
+                step.removeAttribute("tabindex");
             } else {
                 step.classList.remove("calc__step--active");
                 step.setAttribute("aria-hidden", "true");
+                step.setAttribute("tabindex", "-1");
             }
         });
 
@@ -71,11 +73,13 @@ const initCalcPageSwitcher = () => {
     const goToStep = (stepIndex) => {
         steps[currentStep].classList.remove("calc__step--active");
         steps[currentStep].setAttribute("aria-hidden", "true");
+        steps[currentStep].setAttribute("tabindex", "-1");
 
         currentStep = stepIndex;
 
         steps[currentStep].classList.add("calc__step--active");
         steps[currentStep].setAttribute("aria-hidden", "false");
+        steps[currentStep].removeAttribute("tabindex");
 
         updateProgress();
         updateButtons();
@@ -221,7 +225,6 @@ const initOpeningsManager = () => {
     const addDoorButton = document.getElementById("add-door");
     const addWindowButton = document.getElementById("add-window");
 
-    // Функция для создания новой двери
     const createDoor = () => {
         doorCounter++;
         const doorId = `door-${doorCounter}`;
@@ -232,12 +235,8 @@ const initOpeningsManager = () => {
 
         doorElement.innerHTML = `
             <div class="calc__opening-header">
-                <h5 class="calc__opening-name">Дверь ${doorCounter}</h5>
-                <button type="button"
-                        class="calc__button calc__button--remove"
-                        data-action="remove-opening"
-                        data-target="${doorId}"
-                        aria-label="Удалить дверь ${doorCounter}">
+                <h4 class="calc__opening-name">Дверь ${doorCounter}</h4>
+                <button type="button" class="calc__button calc__button--remove" data-action="remove-opening" aria-label="Удалить дверь ${doorCounter}">
                     <span class="material-icons calc__button-icon" aria-hidden="true">delete</span>
                 </button>
             </div>
@@ -245,65 +244,38 @@ const initOpeningsManager = () => {
                 <div class="calc__opening-dimension">
                     <label for="${doorId}-quantity" class="calc__opening-label">
                         <span class="calc__input-text">
-                            <span class="material-icons calc__opening-icon"
-                                  aria-hidden="true">filter_1</span>
+                            <span class="material-icons calc__opening-icon" aria-hidden="true">filter_1</span>
                             Количество:
                         </span>
                     </label>
-                    <input type="number"
-                           id="${doorId}-quantity"
-                           class="calc__opening-input"
-                           min="1"
-                           max="10"
-                           step="1"
-                           value="1"
-                           required
-                           aria-required="true">
+                    <input type="number" id="${doorId}-quantity" class="calc__opening-input" min="1" max="10" value="1" required>
                 </div>
                 <div class="calc__opening-dimension">
                     <label for="${doorId}-width" class="calc__opening-label">
                         <span class="calc__input-text">
-                            <span class="material-icons calc__opening-icon"
-                                  aria-hidden="true">swap_horiz</span>
+                            <span class="material-icons calc__opening-icon" aria-hidden="true">swap_horiz</span>
                             Ширина (м):
                         </span>
                     </label>
-                    <input type="number"
-                           id="${doorId}-width"
-                           class="calc__opening-input"
-                           min="0.6"
-                           max="2.5"
-                           step="0.1"
-                           value="0.9"
-                           required
-                           aria-required="true">
+                    <input type="number" id="${doorId}-width" class="calc__opening-input" min="0.6" max="2.5" step="0.1" value="0.9" required>
                 </div>
                 <div class="calc__opening-dimension">
                     <label for="${doorId}-height" class="calc__opening-label">
                         <span class="calc__input-text">
-                            <span class="material-icons calc__opening-icon"
-                                  aria-hidden="true">height</span>
+                            <span class="material-icons calc__opening-icon" aria-hidden="true">height</span>
                             Высота (м):
                         </span>
                     </label>
-                    <input type="number"
-                           id="${doorId}-height"
-                           class="calc__opening-input"
-                           min="1.5"
-                           max="2.5"
-                           step="0.1"
-                           value="2.0"
-                           required
-                           aria-required="true">
+                    <input type="number" id="${doorId}-height" class="calc__opening-input" min="1.5" max="2.5" step="0.1" value="2.0" required>
                 </div>
             </div>
-        `;
+    `;
 
         doorsListContainer.appendChild(doorElement);
 
         const removeButton = doorElement.querySelector('[data-action="remove-opening"]');
         removeButton.addEventListener("click", (e) => {
-            const targetId = e.currentTarget.dataset.target;
+            const targetId = e.currentTarget.closest(".calc__opening-item").dataset.openingId;
             removeOpening(targetId);
         });
 
@@ -316,7 +288,6 @@ const initOpeningsManager = () => {
         return doorElement;
     };
 
-    // Функция для создания нового окна
     const createWindow = () => {
         windowCounter++;
         const windowId = `window-${windowCounter}`;
@@ -327,12 +298,8 @@ const initOpeningsManager = () => {
 
         windowElement.innerHTML = `
             <div class="calc__opening-header">
-                <h5 class="calc__opening-name">Окно ${windowCounter}</h5>
-                <button type="button"
-                        class="calc__button calc__button--remove"
-                        data-action="remove-opening"
-                        data-target="${windowId}"
-                        aria-label="Удалить окно ${windowCounter}">
+                <h4 class="calc__opening-name">Окно ${windowCounter}</h4>
+                <button type="button" class="calc__button calc__button--remove" data-action="remove-opening" aria-label="Удалить окно ${windowCounter}">
                     <span class="material-icons calc__button-icon" aria-hidden="true">delete</span>
                 </button>
             </div>
@@ -340,65 +307,38 @@ const initOpeningsManager = () => {
                 <div class="calc__opening-dimension">
                     <label for="${windowId}-quantity" class="calc__opening-label">
                         <span class="calc__input-text">
-                            <span class="material-icons calc__opening-icon"
-                                  aria-hidden="true">filter_1</span>
+                            <span class="material-icons calc__opening-icon" aria-hidden="true">filter_1</span>
                             Количество:
                         </span>
                     </label>
-                    <input type="number"
-                           id="${windowId}-quantity"
-                           class="calc__opening-input"
-                           min="1"
-                           max="20"
-                           step="1"
-                           value="1"
-                           required
-                           aria-required="true">
+                    <input type="number" id="${windowId}-quantity" class="calc__opening-input" min="1" max="20" value="1" required>
                 </div>
                 <div class="calc__opening-dimension">
                     <label for="${windowId}-width" class="calc__opening-label">
                         <span class="calc__input-text">
-                            <span class="material-icons calc__opening-icon"
-                                  aria-hidden="true">swap_horiz</span>
+                            <span class="material-icons calc__opening-icon" aria-hidden="true">swap_horiz</span>
                             Ширина (м):
                         </span>
                     </label>
-                    <input type="number"
-                           id="${windowId}-width"
-                           class="calc__opening-input"
-                           min="0.3"
-                           max="3"
-                           step="0.1"
-                           value="1.2"
-                           required
-                           aria-required="true">
+                    <input type="number" id="${windowId}-width" class="calc__opening-input" min="0.3" max="3" step="0.1" value="1.2" required>
                 </div>
                 <div class="calc__opening-dimension">
                     <label for="${windowId}-height" class="calc__opening-label">
                         <span class="calc__input-text">
-                            <span class="material-icons calc__opening-icon"
-                                  aria-hidden="true">height</span>
+                            <span class="material-icons calc__opening-icon" aria-hidden="true">height</span>
                             Высота (м):
                         </span>
                     </label>
-                    <input type="number"
-                           id="${windowId}-height"
-                           class="calc__opening-input"
-                           min="0.3"
-                           max="2.5"
-                           step="0.1"
-                           value="1.4"
-                           required
-                           aria-required="true">
+                    <input type="number" id="${windowId}-height" class="calc__opening-input" min="0.3" max="2.5" step="0.1" value="1.4" required>
                 </div>
             </div>
-        `;
+    `;
 
         windowsListContainer.appendChild(windowElement);
 
         const removeButton = windowElement.querySelector('[data-action="remove-opening"]');
         removeButton.addEventListener("click", (e) => {
-            const targetId = e.currentTarget.dataset.target;
+            const targetId = e.currentTarget.closest(".calc__opening-item").dataset.openingId;
             removeOpening(targetId);
         });
 
@@ -408,20 +348,18 @@ const initOpeningsManager = () => {
         }, 10);
 
         updateOpeningsCount("window");
-
         return windowElement;
     };
 
     const removeOpening = (openingId) => {
         const openingElement = document.querySelector(`[data-opening-id="${openingId}"]`);
-
         if (!openingElement) return;
 
-        const openingType = openingId.startsWith("door") ? "door" : "window";
+        const isDoor = openingId.startsWith("door");
+        const container = isDoor ? doorsListContainer : windowsListContainer;
 
-        const container = openingType === "door" ? doorsListContainer : windowsListContainer;
         if (container.children.length <= 1) {
-            alert(`Должен быть хотя бы один элемент типа "${openingType === "door" ? "Дверь" : "Окно"}"!`);
+            alert(`Должен быть хотя бы один элемент типа "${isDoor ? "Дверь" : "Окно"}"!`);
             return;
         }
 
@@ -430,14 +368,13 @@ const initOpeningsManager = () => {
 
         setTimeout(() => {
             openingElement.remove();
-            updateOpeningsCount(openingType);
+            updateOpeningsCount(isDoor ? "door" : "window");
         }, 300);
     };
 
     const updateOpeningsCount = (type) => {
         const container = type === "door" ? doorsListContainer : windowsListContainer;
         const count = container.children.length;
-
         console.log(`Количество ${type === "door" ? "дверей" : "окон"}: ${count}`);
     };
 
@@ -445,7 +382,7 @@ const initOpeningsManager = () => {
         const removeButtons = document.querySelectorAll('[data-action="remove-opening"]');
         removeButtons.forEach(button => {
             button.addEventListener("click", (e) => {
-                const targetId = e.currentTarget.dataset.target;
+                const targetId = e.currentTarget.closest(".calc__opening-item").dataset.openingId;
                 removeOpening(targetId);
             });
         });
@@ -477,6 +414,7 @@ const initOpeningsManager = () => {
     initExistingOpenings();
 };
 
+
 /** Инициализация выбора типа фундамента */
 const initFoundationSelector = () => {
     const foundationTypeInputs = document.querySelectorAll("input[name='foundation-type']");
@@ -485,10 +423,10 @@ const initFoundationSelector = () => {
     const concreteGroup = document.querySelector(".calc__concrete-group");
     const materialSelect = document.getElementById("concrete-select")
     new Choices(materialSelect, {
-            searchEnabled: false,
-            itemSelectText: "",
-            shouldSort: false,
-        });
+        searchEnabled: false,
+        itemSelectText: "",
+        shouldSort: false,
+    });
 
     const showFoundationSection = (foundationType) => {
         switch (foundationType) {
@@ -531,7 +469,7 @@ const initFoundationSelector = () => {
             const tShapedFields = document.querySelectorAll("[data-strip-type='t-shaped']");
             if (tShapedFields) {
                 tShapedFields.forEach(field => {
-                    if (input.value ==="t-shaped") {
+                    if (input.value === "t-shaped") {
                         field.style.display = "flex";
                     } else {
                         field.style.display = "none";

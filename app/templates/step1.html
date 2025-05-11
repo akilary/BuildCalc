@@ -1,15 +1,15 @@
-<section class="calc__step calc__step--active" id="calc-step-1" aria-hidden="false">
+<section class="calc__step calc__step--active" id="calc-step-1">
     <fieldset class="calc__fieldset">
         <legend class="calc__legend">
-            <h3 class="calc__description">
-                Выберите регион строительства для учёта климатических условий и норм.
-            </h3>
+            Выберите регион строительства для учёта климатических условий и норм.
         </legend>
 
-        <figure class="calc__map-container">
+        <div class="calc__map-container">
             <figure class="calc__map">
-                <svg viewBox="0 0 800 500" class="calc__map-svg" aria-labelledby="map-title" role="img">
+                <svg viewBox="0 0 800 500" class="calc__map-svg" aria-labelledby="map-title"
+                     role="img" tabindex="-1" aria-hidden="true">
                     <title id="map-title">Карта регионов</title>
+
                     <path class="calc__map-path calc__map-path--outline"
                           d="M100,200 L200,150 L300,100 L400,80 L500,100 L600,150 L700,200 L750,300 L700,400 L600,450 L500,470 L400,450 L300,400 L200,350 L150,300 Z"></path>
                     <path class="calc__map-path calc__map-path--region" data-region-id="north"
@@ -32,6 +32,7 @@
                           d="M200,350 L300,350 L400,350 L500,350 L600,300 L500,470 L400,450 L300,400 Z">
                         <title>Южный регион</title>
                     </path>
+
                     <text x="350" y="150" class="calc__map-text">Север</text>
                     <text x="180" y="250" class="calc__map-text">Запад</text>
                     <text x="380" y="280" class="calc__map-text">Центр</text>
@@ -40,82 +41,21 @@
                 </svg>
                 <figcaption class="calc__map-caption">Карта регионов строительства</figcaption>
             </figure>
-        </figure>
+        </div>
+
         <div class="calc__region-group" role="radiogroup" aria-labelledby="region-group-label">
-            <h4 id="region-group-label" class="visually-hidden">Выберите регион</h4>
-            <label class="calc__region-label" for="region-north">
-                <input type="radio"
-                       name="region"
-                       id="region-north"
-                       class="calc__region-input"
-                       value="north"
-                       required
-                       aria-required="true">
-                <i class="material-icons calc__region-icon">north</i>
-                <span class="calc__region-text">Север</span>
-                <small class="calc__region-info">
-                    Акмолинская, Костанайская, Северо-Казахстанская области, г. Астана
-                </small>
-                <i class="material-icons calc__selection-checkmark">check_circle</i>
-            </label>
-            <label class="calc__region-label" for="region-west">
-                <input type="radio"
-                       name="region"
-                       id="region-west"
-                       class="calc__region-input"
-                       value="west"
-                       required
-                       aria-required="true">
-                <i class="material-icons calc__region-icon">west</i>
-                <span class="calc__region-text">Запад</span>
-                <small class="calc__region-info">
-                    Актюбинская, Атырауская, Мангистауская, Западно-Казахстанская области
-                </small>
-                <i class="material-icons calc__selection-checkmark">check_circle</i>
-            </label>
-            <label class="calc__region-label" for="region-south">
-                <input type="radio"
-                       name="region"
-                       id="region-south"
-                       class="calc__region-input"
-                       value="south"
-                       required
-                       aria-required="true">
-                <i class="material-icons calc__region-icon">south</i>
-                <span class="calc__region-text">Юг</span>
-                <small class="calc__region-info">
-                    Алматинская, Жамбылская, Туркестанская, Кызылординская области, г. Алматы, г. Шымкент
-                </small>
-                <i class="material-icons calc__selection-checkmark">check_circle</i>
-            </label>
-            <label class="calc__region-label" for="region-east">
-                <input type="radio"
-                       name="region"
-                       id="region-east"
-                       class="calc__region-input"
-                       value="east"
-                       required
-                       aria-required="true">
-                <i class="material-icons calc__region-icon">east</i>
-                <span class="calc__region-text">Восток</span>
-                <small class="calc__region-info">
-                    Восточно-Казахстанская, Павлодарская, Абайская области
-                </small>
-                <i class="material-icons calc__selection-checkmark">check_circle</i>
-            </label>
-            <label class="calc__region-label" for="region-central">
-                <input type="radio"
-                       name="region"
-                       id="region-central"
-                       class="calc__region-input"
-                       value="central"
-                       required
-                       aria-required="true">
-                <i class="material-icons calc__region-icon">adjust</i>
-                <span class="calc__region-text">Центр</span>
-                <small class="calc__region-info">Карагандинская, Улытауская области</small>
-                <i class="material-icons calc__selection-checkmark">check_circle</i>
-            </label>
+            <h3 id="region-group-label" class="visually-hidden">Выберите регион</h3>
+
+            {% for region in regions %}
+                <label class="calc__region-label" for="region-{{ region.id }}">
+                    <input type="radio" name="region" id="region-{{ region.id }}"
+                           class="calc__region-input" value="{{ region.id }}" required>
+                    <i class="material-icons calc__region-icon">{{ region.icon }}</i>
+                    <span class="calc__region-text">{{ region.name }}</span>
+                    <small class="calc__region-info">{{ region.description }}</small>
+                    <i class="material-icons calc__selection-checkmark">check_circle</i>
+                </label>
+            {% endfor %}
         </div>
     </fieldset>
 </section>

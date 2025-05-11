@@ -8,38 +8,39 @@
 
 {% block content %}
     <section class="hero" id="hero-section">
-        <div class="main__container hero__container">
+        <div class="hero__container">
             <div class="hero__content">
                 <span class="hero__label">Умный выбор для вашего проекта</span>
                 <h1 class="hero__title">Строительные расчёты без ошибок</h1>
                 <p class="hero__description">
-                    Калькулятор, который подберёт материалы с учётом климата, региона и условий строительства в
-                    Казахстане.
+                    Калькулятор, который подберёт материалы с учётом климата, региона и условий строительства в Казахстане.
                 </p>
+
                 <div class="hero__actions">
-                    <a href="{{ url_for("main.calc") }}"
-                       class="hero__button hero__button--action" aria-label="Начать расчёт строительных материалов">
+                    <a href="{{ url_for("main.calc") }}" class="hero__button hero__button--action" 
+                       aria-label="Начать расчёт строительных материалов">
                         <span class="material-icons hero__button-icon" aria-hidden="true">calculate</span>
                         Начать расчёт
                     </a>
-                    <a href="#how-it-works" class="hero__button hero__button--info"
+                    <a href="#" class="hero__button hero__button--info" 
                        aria-label="Узнать как работает калькулятор">
                         <span class="material-icons hero__button-icon" aria-hidden="true">info</span>
                         Как это работает
                     </a>
                 </div>
             </div>
+
             <div class="hero__stats">
                 <div class="hero__stat">
-                    <span class="hero__stat-number" aria-label="Более 50 материалов в базе">50+</span>
+                    <span class="hero__stat-number">50+</span>
                     <span class="hero__stat-label">материалов в базе</span>
                 </div>
                 <div class="hero__stat">
-                    <span class="hero__stat-number" aria-label="100 процентов точность расчётов">100%</span>
+                    <span class="hero__stat-number">100%</span>
                     <span class="hero__stat-label">точность расчётов</span>
                 </div>
                 <div class="hero__stat">
-                    <span class="hero__stat-number" aria-label="5 минут на полный расчёт">5 мин</span>
+                    <span class="hero__stat-number">5 мин</span>
                     <span class="hero__stat-label">на полный расчёт</span>
                 </div>
             </div>
@@ -47,8 +48,9 @@
     </section>
 
     <section class="features" id="how-it-works">
-        <div class="main__container features__container">
+        <div class="features__container">
             <h2 class="features__heading">Наши возможности</h2>
+            
             <div class="features__grid">
                 <div class="features__item">
                     <span class="material-icons features__item-icon" aria-hidden="true">calculate</span>

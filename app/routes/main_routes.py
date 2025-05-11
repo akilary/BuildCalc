@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from ..utils import get_materials
+from ..utils import get_materials, get_regions_info
 main_bp = Blueprint("main", __name__, url_prefix="/")
 
 
@@ -12,4 +12,4 @@ def home():
 
 @main_bp.route("/calc")
 def calc():
-    return render_template("calc.html", materials=get_materials())
+    return render_template("calc.html", regions=get_regions_info(), materials=get_materials())

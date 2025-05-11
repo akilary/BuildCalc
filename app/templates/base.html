@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}BuildCalc{% endblock %}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+
     <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
     <link rel="stylesheet" href="{{ url_for("static", filename="lib/choices.min.css") }}">
     {% block styles %}{% endblock %}
 </head>
 <body>
-<header class="site-header" role="banner">
-    <div class="main__container site-header__container">
+<header class="site-header">
+    <div class="site-header__container">
         <div class="site-header__logo">
             <a href="{{ url_for("main.home") }}" class="site-header__logo-link" aria-label="BuildCalc - На главную">
                 <span class="site-header__logo-text">BuildCalc</span>
@@ -27,16 +29,18 @@
                     <span class="material-icons site-header__nav-item-icon" aria-hidden="true">calculate</span>
                     <span class="site-header__nav-item-text">Калькулятор</span>
                 </a>
+
                 <a href="#" class="site-header__nav-item">
                     <span class="material-icons site-header__nav-item-icon" aria-hidden="true">engineering</span>
                     <span class="site-header__nav-item-text">Мои проекты</span>
                 </a>
+
                 {% if False %}
                     <a href="#" class="site-header__nav-item">
                         <span class="material-icons site-header__nav-item-icon" aria-hidden="true">person</span>
                         <span class="site-header__nav-item-text">Личный кабинет</span>
                     </a>
-                {% else %}
+                    {% else %}
                     <a href="#" class="site-header__nav-item">
                         <span class="material-icons site-header__nav-item-icon" aria-hidden="true">login</span>
                         <span class="site-header__nav-item-text">Войти</span>
@@ -47,14 +51,14 @@
     </div>
 </header>
 
-<main class="main" role="main" id="main-content">
+<main class="main" id="main-content">
     <div class="main__container">
         {% block content %}{% endblock %}
     </div>
 </main>
 
-<footer class="site-footer" role="contentinfo">
-    <div class="main__container site-footer__container">
+<footer class="site-footer">
+    <div class="site-footer__container">
         <div class="site-footer__sections">
             <section class="site-footer__section">
                 <h3 class="site-footer__section-title">О нас</h3>
@@ -77,7 +81,9 @@
                     <li class="site-footer__section-list-item">
                         <a href="{{ url_for("main.calc") }}" class="site-footer__link">Калькулятор</a>
                     </li>
-                    <li class="site-footer__section-list-item"><a href="#" class="site-footer__link">Проекты</a></li>
+                    <li class="site-footer__section-list-item">
+                        <a href="#" class="site-footer__link">Проекты</a>
+                    </li>
                 </ul>
             </section>
 
@@ -97,26 +103,27 @@
                 <h3 class="site-footer__section-title">Мы в соцсетях</h3>
                 <ul class="site-footer__section-list site-footer__section-list--social">
                     <li class="site-footer__section-list-item">
-                        <a href="#" target="_blank" rel="noopener"
-                           class="site-footer__link site-footer__link--social" aria-label="Мы ВКонтакте">
+                        <a href="#" target="_blank" rel="noopener" class="site-footer__link site-footer__link--social"
+                           aria-label="Мы ВКонтакте">
                             ВКонтакте
                         </a>
                     </li>
                     <li class="site-footer__section-list-item">
-                        <a href="#" target="_blank" rel="noopener"
-                           class="site-footer__link site-footer__link--social" aria-label="Наш Telegram канал">
+                        <a href="#" target="_blank" rel="noopener" class="site-footer__link site-footer__link--social"
+                           aria-label="Наш Telegram канал">
                             Telegram
                         </a>
                     </li>
                     <li class="site-footer__section-list-item">
-                        <a href="#" target="_blank" rel="noopener"
-                           class="site-footer__link site-footer__link--social" aria-label="Мы в Instagram">
+                        <a href="#" target="_blank" rel="noopener" class="site-footer__link site-footer__link--social"
+                           aria-label="Мы в Instagram">
                             Instagram
                         </a>
                     </li>
                 </ul>
             </section>
         </div>
+
         <div class="site-footer__bottom">
             <p class="site-footer__copyright">© {{ current_year }} BuildCalc. Все права защищены.</p>
             <p class="site-footer__legal">

@@ -6,7 +6,7 @@
 
         <div class="calc__result-container">
             <div class="calc__chart-container">
-                <figure class="calc__visualization">
+                <figure class="calc__diagram">
                     <div class="calc__chart">
                         <canvas id="cost-distribution-chart"
                                 width="300"
@@ -14,22 +14,7 @@
                                 aria-label="Диаграмма распределения затрат">
                         </canvas>
                     </div>
-                    <figcaption class="calc__visualization-caption">
-                        <div class="calc__chart-legend">
-                            <div class="calc__chart-legend-color-item">
-                                <span class="calc__chart-legend-color calc__chart-legend-color--walls"></span>
-                                <span class="calc__legend-text">Стены: </span>
-                            </div>
-                            <div class="calc__chart-legend-color-item">
-                                <span class="calc__chart-legend-color calc__chart-legend-color--windows"></span>
-                                <span class="calc__legend-text">Окна: </span>
-                            </div>
-                            <div class="calc__chart-legend-color-item">
-                                <span class="calc__chart-legend-color calc__chart-legend-color--doors"></span>
-                                <span class="calc__legend-text">Двери: </span>
-                            </div>
-                        </div>
-                    </figcaption>
+                    <figcaption class="calc__diagram-caption">Диаграмма распределения затрат</figcaption>
                 </figure>
             </div>
             <div class="calc__summary">
@@ -62,7 +47,22 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="calc__chart-legend">
+                    <div class="calc__chart-legend-color-item">
+                        <span class="calc__chart-legend-color calc__chart-legend-color--walls"></span>
+                        <span class="calc__legend-text">Стены: </span>
+                    </div>
+                    <div class="calc__chart-legend-color-item">
+                        <span class="calc__chart-legend-color calc__chart-legend-color--windows"></span>
+                        <span class="calc__legend-text">Окна: </span>
+                    </div>
+                    <div class="calc__chart-legend-color-item">
+                        <span class="calc__chart-legend-color calc__chart-legend-color--doors"></span>
+                        <span class="calc__legend-text">Двери: </span>
+                    </div>
+                </div>
             </div>
+
         </div>
         <div class="calc__details">
             <div class="calc__detail-card">
@@ -88,8 +88,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="calc__detail-card calc__detail-card--foundation" id="result-foundation-slab" aria-hidden="true"
-                 style="display: none;">
+            <div class="calc__detail-card calc__detail-card--foundation" id="result-foundation-slab" aria-hidden="true">
                 <h3 class="calc__detail-title">Плитный фундамент</h3>
                 <table class="calc__detail-table">
                     <tbody>
@@ -116,8 +115,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="calc__detail-card calc__detail-card--foundation" id="result-foundation-strip" aria-hidden="true"
-                 style="display: none;">
+            <div class="calc__detail-card calc__detail-card--foundation" id="result-foundation-strip" aria-hidden="true">
                 <h3 class="calc__detail-title">Ленточный фундамент</h3>
                 <table class="calc__detail-table">
                     <tbody>

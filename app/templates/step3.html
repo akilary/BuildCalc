@@ -12,30 +12,33 @@
                 </div>
 
                 <figcaption class="calc__visualization-caption">
-                    <div class="calc__material-attributes">
+                    <div class="calc__material-attributes" aria-live="polite">
                         <div class="calc__material-attributes-item">
                             <span class="calc__material-attributes-label">Для региона:</span>
-                            <span class="calc__material-attributes-value" aria-live="polite"></span>
+                            <span class="calc__material-attributes-value"></span>
                         </div>
                         <div class="calc__material-attributes-item">
                             <span class="calc__material-attributes-label">Теплоизоляция:</span>
-                            <span class="calc__material-attributes-value" aria-live="polite"></span>
+                            <span class="calc__material-attributes-value"></span>
                         </div>
                         <div class="calc__material-attributes-item">
                             <span class="calc__material-attributes-label">Влагостойкость:</span>
-                            <span class="calc__material-attributes-value" aria-live="polite"></span>
+                            <span class="calc__material-attributes-value"></span>
                         </div>
                     </div>
 
-                    <div class="calc__dimensions">
+                    <div class="calc__dimensions" aria-live="polite">
                         <div class="calc__dimension calc__dimension--length">
-                            <span class="calc__dimension-value" id="calc-material-length" aria-live="polite">?</span>мм.
+                            <span class="calc__dimension-value" id="calc-material-length">?</span>
+                            мм.
                         </div>
                         <div class="calc__dimension calc__dimension--width">
-                            <span class="calc__dimension-value" id="calc-material-width" aria-live="polite">?</span>мм.
+                            <span class="calc__dimension-value" id="calc-material-width">?</span>
+                            мм.
                         </div>
                         <div class="calc__dimension calc__dimension--height">
-                            <span class="calc__dimension-value" id="calc-material-height" aria-live="polite">?</span>мм.
+                            <span class="calc__dimension-value" id="calc-material-height">?</span>
+                            мм.
                         </div>
                     </div>
                 </figcaption>
@@ -92,10 +95,10 @@
                 <div class="calc__wall-thickness">
                     <h3 class="calc__description">Толщина стен в блоках:</h3>
 
-                    <div class="calc__thickness-group" role="radiogroup" aria-labelledby="thickness-group-label">
+                    <div class="calc__thickness-group" role="radiogroup">
                         <label class="calc__thickness-label" for="wall-thickness-0.5">
                             <input type="radio" id="wall-thickness-0.5" name="wall-thickness"
-                                   class="calc__thickness-input" value="0.5" required>
+                                   class="calc__thickness-input" value="0.5" checked>
                             <span class="material-icons calc__thickness-icon" aria-hidden="true">widgets</span>
                             <span class="calc__thickness-text">0.5 блока</span>
                             <span class="material-icons calc__selection-checkmark" aria-hidden="true">
@@ -105,7 +108,7 @@
 
                         <label class="calc__thickness-label" for="wall-thickness-1">
                             <input type="radio" id="wall-thickness-1" name="wall-thickness"
-                                   class="calc__thickness-input" value="1" checked>
+                                   class="calc__thickness-input" value="1" required>
                             <span class="material-icons calc__thickness-icon" aria-hidden="true">widgets</span>
                             <span class="calc__thickness-text">1 блок</span>
                             <span class="material-icons calc__selection-checkmark" aria-hidden="true">

@@ -1,16 +1,14 @@
-<section class="calc__step" id="calc-step-6" aria-hidden="true" tabindex="-1">
+<section class="calc__step" id="calc-step" aria-hidden="true" tabindex="-1">
     <fieldset class="calc__fieldset">
         <legend class="calc__legend">
-            <h3 class="calc__description">Итоговый расчёт строительства</h3>
+            Итоговый расчёт строительства
         </legend>
 
         <div class="calc__result-container">
             <div class="calc__chart-container">
                 <figure class="calc__diagram">
                     <div class="calc__chart">
-                        <canvas id="cost-distribution-chart"
-                                width="300"
-                                height="300"
+                        <canvas id="calc-chart" width="300" height="300"
                                 aria-label="Диаграмма распределения затрат">
                         </canvas>
                     </div>
@@ -21,44 +19,44 @@
                 <h3 class="calc__summary-title">Основные параметры</h3>
                 <table class="calc__summary-table">
                     <tbody>
-                    <tr>
-                        <th scope="row">Общая стоимость:</th>
-                        <td id="result-total-cost" aria-live="polite">0 ₸</td>
+                    <tr class="calc__summary-row">
+                        <th scope="row" class="calc__summary-label">Общая стоимость:</th>
+                        <td id="calc-total" class="calc__summary-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Площадь здания:</th>
-                        <td id="result-building-area" aria-live="polite">0 м²</td>
+                    <tr class="calc__summary-row">
+                        <th scope="row" class="calc__summary-label">Площадь здания:</th>
+                        <td id="calc-area" class="calc__summary-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Периметр здания:</th>
-                        <td id="result-building-perimeter" aria-live="polite">0 м</td>
+                    <tr class="calc__summary-row">
+                        <th scope="row" class="calc__summary-label">Периметр здания:</th>
+                        <td id="calc-perimeter" class="calc__summary-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Площадь стен:</th>
-                        <td id="result-walls-area" aria-live="polite">0 м²</td>
+                    <tr class="calc__summary-row">
+                        <th scope="row" class="calc__summary-label">Площадь стен:</th>
+                        <td id="calc-walls" class="calc__summary-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Объем кладки:</th>
-                        <td id="result-masonry-volume" aria-live="polite">0 м³</td>
+                    <tr class="calc__summary-row">
+                        <th scope="row" class="calc__summary-label">Объем кладки:</th>
+                        <td id="calc-masonry" class="calc__summary-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Тип материала:</th>
-                        <td id="result-material-type" aria-live="polite">Не выбрано</td>
+                    <tr class="calc__summary-row">
+                        <th scope="row" class="calc__summary-label">Тип материала:</th>
+                        <td id="calc-material" class="calc__summary-value"></td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="calc__chart-legend">
                     <div class="calc__chart-legend-color-item">
                         <span class="calc__chart-legend-color calc__chart-legend-color--walls"></span>
-                        <span class="calc__legend-text">Стены: </span>
+                        <span class="calc__legend-text">Стены:</span>
                     </div>
                     <div class="calc__chart-legend-color-item">
                         <span class="calc__chart-legend-color calc__chart-legend-color--windows"></span>
-                        <span class="calc__legend-text">Окна: </span>
+                        <span class="calc__legend-text">Окна:</span>
                     </div>
                     <div class="calc__chart-legend-color-item">
                         <span class="calc__chart-legend-color calc__chart-legend-color--doors"></span>
-                        <span class="calc__legend-text">Двери: </span>
+                        <span class="calc__legend-text">Двери:</span>
                     </div>
                 </div>
             </div>
@@ -69,92 +67,100 @@
                 <h3 class="calc__detail-title">Материалы стен</h3>
                 <table class="calc__detail-table">
                     <tbody>
-                    <tr>
-                        <th scope="row">Количество блоков:</th>
-                        <td id="result-blocks-count" aria-live="polite">0 шт.</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Количество блоков:</th>
+                        <td id="calc-blocks" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Общий вес:</th>
-                        <td id="result-materials-weight" aria-live="polite">0 кг</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Общий вес:</th>
+                        <td id="calc-weight" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Стоимость:</th>
-                        <td id="result-materials-total-cost" aria-live="polite">0 ₸</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Стоимость:</th>
+                        <td id="calc-cost" class="calc__detail-value" ></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Количество блоков в кубе:</th>
-                        <td id="result-blocks-per-cube" aria-live="polite">0 шт.</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Количество блоков в кубе:</th>
+                        <td id="calc-blocks-cube" class="calc__detail-value"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="calc__detail-card calc__detail-card--foundation" id="result-foundation-slab" aria-hidden="true">
+            <div class="calc__detail-card calc__detail-card--foundation" id="calc-slab" aria-hidden="true">
                 <h3 class="calc__detail-title">Плитный фундамент</h3>
                 <table class="calc__detail-table">
                     <tbody>
-                    <tr>
-                        <th scope="row">Периметр плиты:</th>
-                        <td id="result-slab-perimeter" aria-live="polite">0 м</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Периметр плиты:</th>
+                        <td id="calc-slab-perimeter" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Объем бетона:</th>
-                        <td id="result-slab-volume" aria-live="polite">0 м³</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Объем бетона:</th>
+                        <td id="calc-slab-volume" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Вес бетона:</th>
-                        <td id="result-slab-weight" aria-live="polite">0 кг</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Вес бетона:</th>
+                        <td id="calc-slab-weight" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Температурный диапазон:</th>
-                        <td id="result-slab-temp-range" aria-live="polite">-</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Температурный диапазон:</th>
+                        <td id="calc-slab-temp" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Морозостойкость:</th>
-                        <td id="result-slab-frost-resistance" aria-live="polite">-</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Морозостойкость:</th>
+                        <td id="calc-slab-frost" class="calc__detail-value"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="calc__detail-card calc__detail-card--foundation" id="result-foundation-strip" aria-hidden="true">
+            <div class="calc__detail-card calc__detail-card--foundation" id="calc-strip" aria-hidden="true">
                 <h3 class="calc__detail-title">Ленточный фундамент</h3>
                 <table class="calc__detail-table">
                     <tbody>
-                    <tr>
-                        <th scope="row">Длина ленты:</th>
-                        <td id="result-strip-length" aria-live="polite">0 м</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Длина ленты:</th>
+                        <td id="calc-strip-length" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Объем бетона:</th>
-                        <td id="result-strip-volume" aria-live="polite">0 м³</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Объем бетона:</th>
+                        <td id="calc-strip-volume" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Вес бетона:</th>
-                        <td id="result-strip-weight" aria-live="polite">0 кг</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Вес бетона:</th>
+                        <td id="calc-strip-weight" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Температурный диапазон:</th>
-                        <td id="result-strip-temp-range" aria-live="polite">-</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Температурный диапазон:</th>
+                        <td id="calc-strip-temp" class="calc__detail-value"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Морозостойкость:</th>
-                        <td id="result-strip-frost-resistance" aria-live="polite">-</td>
+                    <tr class="calc__detail-row">
+                        <th scope="row" class="calc__detail-label">Морозостойкость:</th>
+                        <td id="calc-strip-frost" class="calc__detail-value"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="calc__actions">
-            <button type="button" class="calc__button calc__button--pdf" id="export-chart-pdf"
+            <button type="button" class="calc__button calc__button--save" id="calc-save"
+                    aria-label="Сохранить в мои проекты">
+                <i class="material-icons calc__button-icon" aria-hidden="true">save</i>
+                Сохранить в мои проекты
+            </button>
+            <button type="button" class="calc__button calc__button--pdf" id="calc-pdf"
                     aria-label="Скачать диаграмму в формате PDF">
-                <i class="material-icons calc__button-icon" aria-hidden="true">picture_as_pdf</i> PDF
+                <i class="material-icons calc__button-icon" aria-hidden="true">picture_as_pdf</i>
+                PDF
             </button>
-            <button type="button" class="calc__button calc__button--png" id="export-chart-png"
+            <button type="button" class="calc__button calc__button--png" id="calc-png"
                     aria-label="Скачать диаграмму в формате PNG">
-                <i class="material-icons calc__button-icon" aria-hidden="true">image</i> PNG
+                <i class="material-icons calc__button-icon" aria-hidden="true">image</i>
+                PNG
             </button>
-            <button type="button" class="calc__button calc__button--report" id="export-report-pdf"
+            <button type="button" class="calc__button calc__button--report" id="calc-report"
                     aria-label="Скачать полный отчёт в формате PDF">
-                <i class="material-icons calc__button-icon" aria-hidden="true">description</i> Отчёт
+                <i class="material-icons calc__button-icon" aria-hidden="true">description</i>
+                Отчёт
             </button>
         </div>
     </fieldset>

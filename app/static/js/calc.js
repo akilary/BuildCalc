@@ -1,3 +1,4 @@
+/** Инициализирует страницу-калькулятор, создавая навигацию по шагам */
 const initCalcPageSwitcher = () => {
     const form = document.querySelector(".calc__form");
     const progressItems = document.querySelectorAll(".calc__progress-item");
@@ -71,6 +72,10 @@ const initCalcPageSwitcher = () => {
 
     /** Переход к определенному шагу */
     const goToStep = (stepIndex) => {
+        const focusedElement = document.activeElement;
+        if (steps[currentStep].contains(focusedElement)) {
+            focusedElement.blur();
+        }
         steps[currentStep].classList.remove("calc__step--active");
         steps[currentStep].setAttribute("aria-hidden", "true");
         steps[currentStep].setAttribute("tabindex", "-1");
@@ -279,11 +284,6 @@ const initOpeningsManager = () => {
             removeOpening(targetId);
         });
 
-        setTimeout(() => {
-            doorElement.style.opacity = "1";
-            doorElement.style.transform = "translateY(0)";
-        }, 10);
-
         updateOpeningsCount("door");
         return doorElement;
     };
@@ -342,11 +342,6 @@ const initOpeningsManager = () => {
             removeOpening(targetId);
         });
 
-        setTimeout(() => {
-            windowElement.style.opacity = "1";
-            windowElement.style.transform = "translateY(0)";
-        }, 10);
-
         updateOpeningsCount("window");
         return windowElement;
     };
@@ -389,18 +384,6 @@ const initOpeningsManager = () => {
 
         updateOpeningsCount("door");
         updateOpeningsCount("window");
-
-        if (doorsListContainer.children.length > 0) {
-            const lastDoorId = doorsListContainer.lastElementChild.dataset.openingId;
-            const lastDoorNumber = parseInt(lastDoorId.split("-")[1]);
-            doorCounter = Math.max(doorCounter, lastDoorNumber);
-        }
-
-        if (windowsListContainer.children.length > 0) {
-            const lastWindowId = windowsListContainer.lastElementChild.dataset.openingId;
-            const lastWindowNumber = parseInt(lastWindowId.split("-")[1]);
-            windowCounter = Math.max(windowCounter, lastWindowNumber);
-        }
     };
 
     if (addDoorButton) {

@@ -43,9 +43,7 @@
             </figure>
         </div>
 
-        <div class="calc__region-group" role="radiogroup" aria-labelledby="region-group-label">
-            <h3 id="region-group-label" class="visually-hidden">Выберите регион</h3>
-
+        <div class="calc__region-group" role="radiogroup">
             {% for region in regions %}
                 <label class="calc__region-label" for="region-{{ region.id }}">
                     <input type="radio" name="region" id="region-{{ region.id }}"

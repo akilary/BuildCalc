@@ -7,67 +7,74 @@
 {% endblock %}
 
 {% block content %}
-    <section class="hero" id="hero-section">
-        <div class="hero__container">
-            <div class="hero__content">
-                <span class="hero__label">Умный выбор для вашего проекта</span>
-                <h1 class="hero__title">Строительные расчёты без ошибок</h1>
-                <p class="hero__description">
-                    Калькулятор, который подберёт материалы с учётом климата, региона и условий строительства в Казахстане.
-                </p>
+    <section class="home">
+        <div class="home__container">
+            <section class="hero" id="hero-section">
+                <div class="hero__container">
+                    <div class="hero__content">
+                        <span class="hero__label">Умный выбор для вашего проекта</span>
+                        <h1 class="hero__title">Строительные расчёты без ошибок</h1>
+                        <p class="hero__description">
+                            Калькулятор, который подберёт материалы с учётом климата, региона и условий строительства в
+                            Казахстане.
+                        </p>
 
-                <div class="hero__actions">
-                    <a href="{{ url_for("main.calc") }}" class="hero__button hero__button--action" 
-                       aria-label="Начать расчёт строительных материалов">
-                        <span class="material-icons hero__button-icon" aria-hidden="true">calculate</span>
-                        Начать расчёт
-                    </a>
-                    <a href="#" class="hero__button hero__button--info" 
-                       aria-label="Узнать как работает калькулятор">
-                        <span class="material-icons hero__button-icon" aria-hidden="true">info</span>
-                        Как это работает
-                    </a>
-                </div>
-            </div>
+                        <div class="hero__actions">
+                            <a href="{{ url_for("main.calc") }}" class="hero__button hero__button--action"
+                               aria-label="Начать расчёт строительных материалов">
+                                <span class="material-icons hero__button-icon" aria-hidden="true">calculate</span>
+                                Начать расчёт
+                            </a>
+                            <a href="#" class="hero__button hero__button--info"
+                               aria-label="Узнать как работает калькулятор">
+                                <span class="material-icons hero__button-icon" aria-hidden="true">info</span>
+                                Как это работает
+                            </a>
+                        </div>
+                    </div>
 
-            <div class="hero__stats">
-                <div class="hero__stat">
-                    <span class="hero__stat-number">50+</span>
-                    <span class="hero__stat-label">материалов в базе</span>
+                    <div class="hero__stats">
+                        <div class="hero__stat">
+                            <span class="hero__stat-number">50+</span>
+                            <span class="hero__stat-label">материалов в базе</span>
+                        </div>
+                        <div class="hero__stat">
+                            <span class="hero__stat-number">100%</span>
+                            <span class="hero__stat-label">точность расчётов</span>
+                        </div>
+                        <div class="hero__stat">
+                            <span class="hero__stat-number">5 мин</span>
+                            <span class="hero__stat-label">на полный расчёт</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="hero__stat">
-                    <span class="hero__stat-number">100%</span>
-                    <span class="hero__stat-label">точность расчётов</span>
-                </div>
-                <div class="hero__stat">
-                    <span class="hero__stat-number">5 мин</span>
-                    <span class="hero__stat-label">на полный расчёт</span>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section class="features" id="how-it-works">
-        <div class="features__container">
-            <h2 class="features__heading">Наши возможности</h2>
-            
-            <div class="features__grid">
-                <div class="features__item">
-                    <span class="material-icons features__item-icon" aria-hidden="true">calculate</span>
-                    <h3 class="features__item-title">Калькулятор</h3>
-                    <p class="features__item-description">Рассчитайте материалы с учётом размеров и стоимости.</p>
+            <section class="features" id="hero-features">
+                <div class="features__container">
+                    <h2 class="features__heading">Наши возможности</h2>
+
+                    <div class="features__grid">
+                        <div class="features__item">
+                            <span class="material-icons features__item-icon" aria-hidden="true">calculate</span>
+                            <h3 class="features__item-title">Калькулятор</h3>
+                            <p class="features__item-description">
+                                Рассчитайте материалы с учётом размеров и стоимости.
+                            </p>
+                        </div>
+                        <div class="features__item">
+                            <span class="material-icons features__item-icon" aria-hidden="true">place</span>
+                            <h3 class="features__item-title">Регионы</h3>
+                            <p class="features__item-description">Получите рекомендации для вашего климата.</p>
+                        </div>
+                        <div class="features__item">
+                            <span class="material-icons features__item-icon" aria-hidden="true">engineering</span>
+                            <h3 class="features__item-title">Проекты</h3>
+                            <p class="features__item-description">Сохраняйте и управляйте своими расчётами.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="features__item">
-                    <span class="material-icons features__item-icon" aria-hidden="true">place</span>
-                    <h3 class="features__item-title">Регионы</h3>
-                    <p class="features__item-description">Получите рекомендации для вашего климата.</p>
-                </div>
-                <div class="features__item">
-                    <span class="material-icons features__item-icon" aria-hidden="true">engineering</span>
-                    <h3 class="features__item-title">Проекты</h3>
-                    <p class="features__item-description">Сохраняйте и управляйте своими расчётами.</p>
-                </div>
-            </div>
+            </section>
         </div>
     </section>
 {% endblock %}

@@ -1,0 +1,255 @@
+.calc__openings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.calc__openings-group {
+    flex: 1;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    display: flex;
+    flex-direction: column;
+}
+
+.calc__openings-title {
+    color: var(--color-green-primary);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--color-light-accent);
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.calc__openings-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background-color: var(--color-green-primary);
+    border-radius: var(--border-radius-pill);
+}
+
+.calc__openings-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+.calc__opening-item {
+    background: linear-gradient(to right, #ffffff, #f5f5f5);
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-md);
+    transition: all var(--transition-base);
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    display: none;
+}
+
+.calc__opening-item:first-child {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calc__opening-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--color-light-accent);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.calc__opening-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.calc__opening-item:hover::before {
+    opacity: 1;
+}
+
+.calc__opening-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.calc__opening-name {
+    font-size: var(--font-size-md);
+    color: var(--color-dark-primary);
+    font-weight: 600;
+    position: relative;
+}
+
+.calc__opening-dimensions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.calc__opening-dimension {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.calc__opening-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-dark-secondary);
+    font-weight: 500;
+}
+
+.calc__input-text {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.calc__opening-icon {
+    font-size: var(--font-size-md);
+    color: var(--color-green-primary);
+}
+
+.calc__opening-input {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--color-grey-neutral);
+    border-radius: var(--border-radius-xs);
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-base);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.calc__opening-input:focus {
+    border-color: var(--color-accent-soft);
+    box-shadow: 0 0 0 2px rgba(239, 129, 107, 0.2);
+    outline: none;
+}
+
+.calc__openings-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.calc__openings-pagination-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-green-primary);
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calc__openings-pagination-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background-color: #184448;
+}
+
+.calc__openings-pagination-button:disabled {
+    background-color: var(--color-grey-neutral);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.calc__openings-pagination-icon {
+    font-size: 24px;
+}
+
+.calc__openings-pagination-info {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-dark-primary);
+    min-width: 40px;
+    text-align: center;
+}
+
+.calc__openings-pagination-current {
+    color: var(--color-green-primary);
+}
+
+.calc__openings-pagination-separator {
+    margin: 0 var(--spacing-xs);
+    color: var(--color-grey-neutral);
+}
+
+.calc__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.calc__button--add {
+    background: linear-gradient(to right, var(--color-green-primary), #184448);
+    color: white;
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    box-shadow: 0 2px 8px rgba(30, 85, 92, 0.3);
+    margin-top: auto;
+}
+
+.calc__button--add:hover,
+.calc__button--add:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 85, 92, 0.4);
+}
+
+.calc__button--remove {
+    background-color: transparent;
+    color: var(--color-accent-main);
+    padding: var(--spacing-xs);
+}
+
+.calc__button--remove:hover,
+.calc__button--remove:focus {
+    background-color: rgba(241, 81, 82, 0.1);
+    transform: scale(1.1);
+}
+
+.calc__button-icon {
+    font-size: var(--font-size-md);
+}

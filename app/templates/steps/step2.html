@@ -1,0 +1,91 @@
+<section class="calc__step" id="calc-step-2" aria-hidden="true" tabindex="-1">
+    <fieldset class="calc__fieldset">
+        <legend class="calc__legend">
+            Укажите размеры здания для расчёта объёма материалов.
+        </legend>
+
+        <div class="calc__building-container">
+            <figure class="calc__building-visualization">
+                <div class="calc__building-visualization-canvas">
+                    <canvas id="calc-building-canvas" width="400" height="300"
+                            aria-label="Визуализация здания"></canvas>
+                </div>
+
+                <figcaption class="calc__building-visualization-caption">
+                    <div class="calc__building-metrics" aria-live="polite">
+                        <div class="calc__building-metrics-item">
+                            <span class="calc__building-metrics-label">Площадь стен:</span>
+                            <span class="calc__building-metrics-value"></span>
+                        </div>
+                        <div class="calc__building-metrics-item">
+                            <span class="calc__building-metrics-label">Площадь здания:</span>
+                            <span class="calc__building-metrics-value"></span>
+                        </div>
+                        <div class="calc__building-metrics-item">
+                            <span class="calc__building-metrics-label">Периметр здания:</span>
+                            <span class="calc__building-metrics-value"></span>
+                        </div>
+                    </div>
+
+                    <div class="calc__building-dimensions" aria-live="polite">
+                        <div class="calc__building-dimension calc__building-dimension--height">
+                            <span class="calc__building-dimension-value" id="calc-wall-height"></span>м.
+                        </div>
+                        <div class="calc__building-dimension calc__building-dimension--length">
+                            <span class="calc__building-dimension-value" id="calc-wall-length"></span>м.
+                        </div>
+                        <div class="calc__building-dimension calc__building-dimension--width">
+                            <span class="calc__building-dimension-value" id="calc-wall-width"></span>м.
+                        </div>
+                    </div>
+                </figcaption>
+            </figure>
+
+            <div class="calc__building-selection">
+                <div class="calc__building-cards">
+                    <div class="calc__building-card">
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">height</span>
+                        <label for="calc-wall-height" class="calc__building-selection-label">Высота стен</label>
+                        <div class="calc__building-slider-container">
+                            <input type="range" class="calc__building-slider" id="calc-wall-height-slider" 
+                                   min="1" max="20" value="3" aria-label="Ползунок для высоты стен">
+                        </div>
+                        <div class="calc__controls calc__controls--building">
+                            <input type="number" id="calc-wall-height" class="calc__building-selection-input"
+                                   min="1" max="20" value="3" aria-label="Высота стен в метрах" required>
+                            <span class="calc__unit">м.</span>
+                        </div>
+                    </div>
+
+                    <div class="calc__building-card">
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">swap_horiz</span>
+                        <label for="calc-building-length" class="calc__building-selection-label">Длина здания</label>
+                        <div class="calc__building-slider-container">
+                            <input type="range" class="calc__building-slider" id="calc-building-length-slider" 
+                                   min="1" max="100" value="10" aria-label="Ползунок для длины здания">
+                        </div>
+                        <div class="calc__controls calc__controls--building">
+                            <input type="number" id="calc-building-length" class="calc__building-selection-input"
+                                   min="1" max="100" value="10" aria-label="Длина здания в метрах" required>
+                            <span class="calc__unit">м.</span>
+                        </div>
+                    </div>
+
+                    <div class="calc__building-card">
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">swap_vert</span>
+                        <label for="calc-building-width" class="calc__building-selection-label">Ширина здания</label>
+                        <div class="calc__building-slider-container">
+                            <input type="range" class="calc__building-slider" id="calc-building-width-slider" 
+                                   min="1" max="100" value="8" aria-label="Ползунок для ширины здания">
+                        </div>
+                        <div class="calc__controls calc__controls--building">
+                            <input type="number" id="calc-building-width" class="calc__building-selection-input"
+                                   min="1" max="100" value="8" aria-label="Ширина здания в метрах" required>
+                            <span class="calc__unit">м.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</section>

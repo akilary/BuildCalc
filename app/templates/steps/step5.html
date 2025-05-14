@@ -5,13 +5,13 @@
         </legend>
 
         <div class="calc__foundation-container">
-            <figure class="calc__visualization">
-                <div class="calc__canvas-container">
+            <figure class="calc__foundation-visualization">
+                <div class="calc__foundation-visualization-canvas">
                     <canvas id="calc-foundation-canvas" width="400" height="300"
                             aria-label="Визуализация фундамента">
                     </canvas>
                 </div>
-                <figcaption class="calc__visualization-caption">
+                <figcaption class="calc__foundation-visualization-caption">
                     <div class="calc__foundation-attributes">
                         <div class="calc__foundation-attributes-item" aria-live="polite">
                             <span class="calc__foundation-attributes-label">Темп. диапазон:</span>
@@ -26,17 +26,17 @@
                             <span class="calc__foundation-attributes-value" id="foundation-concrete-volume"></span>
                         </div>
                     </div>
-                    <div class="calc__dimensions" aria-live="polite">
-                        <div class="calc__dimension calc__dimension--width">
-                            <span class="calc__dimension-value" id="calc-foundation-width">0</span>
+                    <div class="calc__foundation-dimensions" aria-live="polite">
+                        <div class="calc__foundation-dimension calc__foundation-dimension--width">
+                            <span class="calc__foundation-dimension-value" id="calc-foundation-width">0</span>
                             м.
                         </div>
-                        <div class="calc__dimension calc__dimension--length">
-                            <span class="calc__dimension-value" id="calc-foundation-length">0</span>
+                        <div class="calc__foundation-dimension calc__foundation-dimension--length">
+                            <span class="calc__foundation-dimension-value" id="calc-foundation-length">0</span>
                             м.
                         </div>
-                        <div class="calc__dimension calc__dimension--height">
-                            <span class="calc__dimension-value" id="calc-foundation-height">0</span>
+                        <div class="calc__foundation-dimension calc__foundation-dimension--height">
+                            <span class="calc__foundation-dimension-value" id="calc-foundation-height">0</span>
                             мм.
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                         <div class="calc__foundation-card" data-strip-type="t-shaped">
                             <span class="material-icons calc__foundation-card-icon" aria-hidden="true">swap_vert</span>
                             <label for="calc-strip-middle-length" class="calc__foundation-card-label">
-                                Длина ленты в середине:
+                                Центр. лента:
                             </label>
                             <div class="calc__controls calc__foundation-card-control">
                                 <input type="number" id="calc-strip-middle-length" class="calc__foundation-card-input"

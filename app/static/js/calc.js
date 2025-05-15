@@ -187,31 +187,31 @@ const initRegionMap = () => {
 };
 
 /** Инициализация выбора материала стен */
-const initMaterialSelector = () => {
-    const materialSelect = document.getElementById("material-select");
-    const customMaterialControls = document.getElementById("custom-material-controls");
-
-    if (materialSelect) {
-        materialSelect.addEventListener("change", () => {
-            if (customMaterialControls) {
-                if (materialSelect.value === "custom") {
-                    customMaterialControls.classList.add("calc__custom-material--active");
-                    customMaterialControls.setAttribute("aria-hidden", "false");
-                } else {
-                    customMaterialControls.classList.remove("calc__custom-material--active");
-                    customMaterialControls.setAttribute("aria-hidden", "true");
-                }
-            }
-        });
-    }
-
-    const addCustomMaterialButton = document.getElementById("add-custom-material");
-    if (addCustomMaterialButton) {
-        addCustomMaterialButton.addEventListener("click", () => {
-            console.log("Открытие модального окна для добавления своего материала");
-        });
-    }
-};
+// const initMaterialSelector = () => {
+//     const materialSelect = document.getElementById("material-select");
+//     const customMaterialControls = document.getElementById("custom-material-controls");
+//
+//     if (materialSelect) {
+//         materialSelect.addEventListener("change", () => {
+//             if (customMaterialControls) {
+//                 if (materialSelect.value === "custom") {
+//                     customMaterialControls.classList.add("calc__custom-material--active");
+//                     customMaterialControls.setAttribute("aria-hidden", "false");
+//                 } else {
+//                     customMaterialControls.classList.remove("calc__custom-material--active");
+//                     customMaterialControls.setAttribute("aria-hidden", "true");
+//                 }
+//             }
+//         });
+//     }
+//
+//     const addCustomMaterialButton = document.getElementById("add-custom-material");
+//     if (addCustomMaterialButton) {
+//         addCustomMaterialButton.addEventListener("click", () => {
+//             console.log("Открытие модального окна для добавления своего материала");
+//         });
+//     }
+// };
 
 /** Инициализация управления дверями и окнами */
 const initOpeningsManager = () => {
@@ -551,93 +551,93 @@ const initOpeningsManager = () => {
 };
 
 /** Инициализация выбора типа фундамента */
-const initFoundationSelector = () => {
-    const foundationTypeInputs = document.querySelectorAll("input[name='foundation-type']");
-    const foundationSlabSection = document.querySelector(".calc__foundation-type--slab");
-    const foundationStripSection = document.querySelector(".calc__foundation-type--strip");
-    const concreteGroup = document.querySelector(".calc__concrete-group");
-    const materialSelect = document.getElementById("concrete-select")
-
-    const showFoundationSection = (foundationType) => {
-        switch (foundationType) {
-            case "slab":
-                foundationSlabSection.classList.add("calc__foundation-type--slab-active");
-                foundationStripSection.classList.remove("calc__foundation-type--strip-active");
-                concreteGroup.classList.add("calc__concrete-group--active");
-                break;
-            case "strip":
-                foundationStripSection.classList.add("calc__foundation-type--strip-active");
-                foundationSlabSection.classList.remove("calc__foundation-type--slab-active");
-                concreteGroup.classList.add("calc__concrete-group--active");
-                break;
-            default:
-                foundationSlabSection.classList.remove("calc__foundation-type--slab-active");
-                foundationStripSection.classList.remove("calc__foundation-type--strip-active");
-                concreteGroup.classList.remove("calc__concrete-group--active");
-                break;
-        }
-    };
-
-    foundationTypeInputs.forEach(input => {
-        input.addEventListener("change", () => {
-            if (input.checked) {
-                showFoundationSection(input.value);
-            }
-        });
-    });
-
-    const checkedFoundationType = document.querySelector("input[name='foundation-type']:checked");
-    if (checkedFoundationType) {
-        showFoundationSection(checkedFoundationType.value);
-    }
-
-    const stripTypeInputs = document.querySelectorAll("input[name='strip-type']");
-    stripTypeInputs.forEach(input => {
-        input.addEventListener("change", () => {
-            console.log(`Выбран тип ленточного фундамента: ${input.value}`);
-
-            const tShapedFields = document.querySelectorAll("[data-strip-type='t-shaped']");
-            if (tShapedFields) {
-                tShapedFields.forEach(field => {
-                    if (input.value === "t-shaped") {
-                        field.style.display = "flex";
-                    } else {
-                        field.style.display = "none";
-                    }
-                });
-            }
-        });
-    });
-
-    const checkedStripType = document.querySelector("input[name='strip-type']:checked");
-    if (checkedStripType) {
-        const tShapedFields = document.querySelectorAll("[data-strip-type='t-shaped']");
-        if (tShapedFields) {
-            tShapedFields.forEach(field => {
-                if (checkedStripType.value === "t-shaped") {
-                    field.style.display = "flex";
-                } else {
-                    field.style.display = "none";
-                }
-            });
-        }
-    } else {
-        const tShapedFields = document.querySelectorAll('[data-strip-type="t-shaped"]');
-        if (tShapedFields) {
-            tShapedFields.forEach(field => {
-                field.style.display = 'none';
-            });
-        }
-    }
-};
+// const initFoundationSelector = () => {
+//     const foundationTypeInputs = document.querySelectorAll("input[name='foundation-type']");
+//     const foundationSlabSection = document.querySelector(".calc__foundation-type--slab");
+//     const foundationStripSection = document.querySelector(".calc__foundation-type--strip");
+//     const concreteGroup = document.querySelector(".calc__concrete-group");
+//     const materialSelect = document.getElementById("concrete-select")
+//
+//     const showFoundationSection = (foundationType) => {
+//         switch (foundationType) {
+//             case "slab":
+//                 foundationSlabSection.classList.add("calc__foundation-type--slab-active");
+//                 foundationStripSection.classList.remove("calc__foundation-type--strip-active");
+//                 concreteGroup.classList.add("calc__concrete-group--active");
+//                 break;
+//             case "strip":
+//                 foundationStripSection.classList.add("calc__foundation-type--strip-active");
+//                 foundationSlabSection.classList.remove("calc__foundation-type--slab-active");
+//                 concreteGroup.classList.add("calc__concrete-group--active");
+//                 break;
+//             default:
+//                 foundationSlabSection.classList.remove("calc__foundation-type--slab-active");
+//                 foundationStripSection.classList.remove("calc__foundation-type--strip-active");
+//                 concreteGroup.classList.remove("calc__concrete-group--active");
+//                 break;
+//         }
+//     };
+//
+//     foundationTypeInputs.forEach(input => {
+//         input.addEventListener("change", () => {
+//             if (input.checked) {
+//                 showFoundationSection(input.value);
+//             }
+//         });
+//     });
+//
+//     const checkedFoundationType = document.querySelector("input[name='foundation-type']:checked");
+//     if (checkedFoundationType) {
+//         showFoundationSection(checkedFoundationType.value);
+//     }
+//
+//     const stripTypeInputs = document.querySelectorAll("input[name='strip-type']");
+//     stripTypeInputs.forEach(input => {
+//         input.addEventListener("change", () => {
+//             console.log(`Выбран тип ленточного фундамента: ${input.value}`);
+//
+//             const tShapedFields = document.querySelectorAll("[data-strip-type='t-shaped']");
+//             if (tShapedFields) {
+//                 tShapedFields.forEach(field => {
+//                     if (input.value === "t-shaped") {
+//                         field.style.display = "flex";
+//                     } else {
+//                         field.style.display = "none";
+//                     }
+//                 });
+//             }
+//         });
+//     });
+//
+//     const checkedStripType = document.querySelector("input[name='strip-type']:checked");
+//     if (checkedStripType) {
+//         const tShapedFields = document.querySelectorAll("[data-strip-type='t-shaped']");
+//         if (tShapedFields) {
+//             tShapedFields.forEach(field => {
+//                 if (checkedStripType.value === "t-shaped") {
+//                     field.style.display = "flex";
+//                 } else {
+//                     field.style.display = "none";
+//                 }
+//             });
+//         }
+//     } else {
+//         const tShapedFields = document.querySelectorAll('[data-strip-type="t-shaped"]');
+//         if (tShapedFields) {
+//             tShapedFields.forEach(field => {
+//                 field.style.display = 'none';
+//             });
+//         }
+//     }
+// };
 
 /** Основная инициализация функциональности калькулятора */
 const init = () => {
     initCalcPageSwitcher();
     initRegionMap();
-    initMaterialSelector();
+    // initMaterialSelector();
     initOpeningsManager();
-    initFoundationSelector();
+    // initFoundationSelector();
 };
 
 document.addEventListener("DOMContentLoaded", init);

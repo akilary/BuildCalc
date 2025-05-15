@@ -40,7 +40,7 @@
                         <span class="site-header__nav-item-text">Личный кабинет</span>
                     </a>
                     {% else %}
-                    <a href="#" class="site-header__nav-item">
+                    <a href="{{ url_for("auth.login") }}" class="site-header__nav-item">
                         <span class="material-icons site-header__nav-item-icon" aria-hidden="true">login</span>
                         <span class="site-header__nav-item-text">Войти</span>
                     </a>

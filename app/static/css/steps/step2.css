@@ -22,6 +22,12 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+#calc-building-canvas {
+    width: 100%;
+    height: 100%;
+    display: block; /* убирает лишние отступы у canvas */
+}
+
 .calc__building-visualization-caption {
     display: grid;
     grid-template-columns: 2fr 1fr;

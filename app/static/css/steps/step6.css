@@ -257,19 +257,3 @@
 .calc__button-icon {
     font-size: var(--font-size-md);
 }
-
-/* Медиа-запросы для адаптивности */
-@media (max-width: 768px) {
-    .calc__result-container {
-        flex-direction: column;
-    }
-    
-    .calc__details {
-        grid-template-columns: 1fr;
-    }
-    
-    .calc__actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-}

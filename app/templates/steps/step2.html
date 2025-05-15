@@ -7,8 +7,7 @@
         <div class="calc__building-container">
             <figure class="calc__building-visualization">
                 <div class="calc__building-visualization-canvas">
-                    <canvas id="calc-building-canvas" width="400" height="300"
-                            aria-label="Визуализация здания"></canvas>
+                    <canvas id="calc-building-canvas" aria-label="Визуализация здания"></canvas>
                 </div>
 
                 <figcaption class="calc__building-visualization-caption">
@@ -45,13 +44,13 @@
                 <div class="calc__building-cards">
                     <div class="calc__building-card">
                         <span class="material-icons calc__building-selection-icon" aria-hidden="true">height</span>
-                        <label for="calc-wall-height" class="calc__building-selection-label">Высота стен</label>
+                        <label for="calc-building-height" class="calc__building-selection-label">Высота стен</label>
                         <div class="calc__building-slider-container">
-                            <input type="range" class="calc__building-slider" id="calc-wall-height-slider" 
+                            <input type="range" class="calc__building-slider" id="calc-building-height-slider"
                                    min="1" max="20" value="3" aria-label="Ползунок для высоты стен">
                         </div>
                         <div class="calc__controls calc__controls--building">
-                            <input type="number" id="calc-wall-height" class="calc__building-selection-input"
+                            <input type="number" id="calc-building-height" class="calc__building-selection-input"
                                    min="1" max="20" value="3" aria-label="Высота стен в метрах" required>
                             <span class="calc__unit">м.</span>
                         </div>

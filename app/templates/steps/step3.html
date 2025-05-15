@@ -7,8 +7,7 @@
         <div class="calc__material-container">
             <figure class="calc__material-visualization">
                 <div class="calc__material-visualization-canvas">
-                    <canvas id="calc-material-canvas" width="400" height="300"
-                            aria-label="Визуализация материала"></canvas>
+                    <canvas id="calc-material-canvas" aria-label="Визуализация материала"></canvas>
                 </div>
 
                 <figcaption class="calc__material-visualization-caption">
@@ -28,16 +27,16 @@
                     </div>
 
                     <div class="calc__material-dimensions" aria-live="polite">
+                        <div class="calc__material-dimension calc__material-dimension--height">
+                            <span class="calc__material-dimension-value" id="calc-material-height"></span>
+                            мм.
+                        </div>
                         <div class="calc__material-dimension calc__material-dimension--length">
                             <span class="calc__material-dimension-value" id="calc-material-length"></span>
                             мм.
                         </div>
                         <div class="calc__material-dimension calc__material-dimension--width">
                             <span class="calc__material-dimension-value" id="calc-material-width"></span>
-                            мм.
-                        </div>
-                        <div class="calc__material-dimension calc__material-dimension--height">
-                            <span class="calc__material-dimension-value" id="calc-material-height"></span>
                             мм.
                         </div>
                     </div>
@@ -51,6 +50,7 @@
                         {% for material in materials %}
                             <option value="{{ material.id }}"
                                     data-size="{{ material.size }}"
+                                    data-suitable-region="{{ material.region }}"
                                     data-insulation="{{ material.insulation_level }}"
                                     data-moisture="{{ material.moisture_resistance }}">
                                 {{ material.name }}

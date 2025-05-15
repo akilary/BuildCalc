@@ -42,7 +42,7 @@
                     </ul>
                 </div>
 
-                {# Шаги вставляются динамически #}
+                {# Шаги 1-5 вставляются в форму #}
                 {% for step in range(1, 7) %}
                     {% include "steps/step" ~ step ~ ".html" %}
                 {% endfor %}
@@ -62,4 +62,7 @@
 
 {% block scripts %}
     <script src="{{ url_for("static", filename="js/calc.js") }}"></script>
+    <script type="module" src="{{ url_for("static", filename="js/steps/step2.js") }}"></script>
+    <script type="module" src="{{ url_for("static", filename="js/steps/step3.js") }}"></script>
+    <script type="module" src="{{ url_for("static", filename="js/steps/step5.js") }}"></script>
 {% endblock %}

@@ -1,5 +1,5 @@
 /** Инициализация визуализации материала на третьем шаге */
-function initMaterialVisualization() {
+export function initMaterialVisualization() {
     const canvas = document.getElementById("calc-material-canvas");
     const ctx = canvas.getContext("2d");
 
@@ -333,7 +333,7 @@ function initMaterialVisualization() {
 }
 
 /** Инициализация выбора материала стен */
-function initMaterialSelector() {
+export function initMaterialSelector() {
     const materialSelect = document.getElementById("material-select");
     const customMaterialControls = document.getElementById("custom-material-controls");
 
@@ -358,10 +358,3 @@ function initMaterialSelector() {
         });
     }
 }
-
-function init() {
-    initMaterialSelector();
-    initMaterialVisualization();
-}
-
-document.addEventListener("DOMContentLoaded", init);

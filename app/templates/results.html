@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Результаты - BuildCalc{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="") }}">
+{% endblock %}
+
+{% block content %}
+    <section class="results">
+        <div class="results__container">
+            <div class="results__chart-container">
+                <figure class="results__graph">
+                    <div class="results__chart">
+                        <canvas id="results-chart" aria-label="График распределения затрат">
+                        </canvas>
+                    </div>
+                    <figcaption class="results__graph-caption">График распределения затрат</figcaption>
+                </figure>
+            </div>
+            <div class="results__summary">
+                <h3 class="results__summary-title">Основные параметры</h3>
+                <table class="results__summary-table">
+                    <tbody>
+                    <tr class="results__summary-row">
+                        <th scope="row" class="results__summary-label">Общая стоимость:</th>
+                        <td id="results-total" class="results__summary-value"></td>
+                    </tr>
+                    <tr class="results__summary-row">
+                        <th scope="row" class="results__summary-label">Площадь здания:</th>
+                        <td id="results-area" class="results__summary-value"></td>
+                    </tr>
+                    <tr class="results__summary-row">
+                        <th scope="row" class="results__summary-label">Периметр здания:</th>
+                        <td id="results-perimeter" class="results__summary-value"></td>
+                    </tr>
+                    <tr class="results__summary-row">
+                        <th scope="row" class="results__summary-label">Площадь стен:</th>
+                        <td id="results-walls" class="results__summary-value"></td>
+                    </tr>
+                    <tr class="results__summary-row">
+                        <th scope="row" class="results__summary-label">Объем кладки:</th>
+                        <td id="results-masonry" class="results__summary-value"></td>
+                    </tr>
+                    <tr class="results__summary-row">
+                        <th scope="row" class="results__summary-label">Тип материала:</th>
+                        <td id="results-material" class="results__summary-value"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="results__chart-legend">
+                    <div class="results__legend-item">
+                        <span class="results__legend-color results__legend-color--walls"></span>
+                        <span class="results__legend-text">Стены:</span>
+                    </div>
+                    <div class="results__legend-item">
+                        <span class="results__legend-color results__legend-color--windows"></span>
+                        <span class="results__legend-text">Окна:</span>
+                    </div>
+                    <div class="results__legend-item">
+                        <span class="results__legend-color results__legend-color--doors"></span>
+                        <span class="results__legend-text">Двери:</span>
+                    </div>
+                </div>
+            </div>
+            <div class="results__detail">
+                <h3 class="results__detail-title">Материалы стен</h3>
+                <table class="results__detail-table">
+                    <tbody>
+                    <tr class="results__detail-row">
+                        <th scope="row" class="results__detail-label">Количество блоков:</th>
+                        <td id="results-blocks" class="results__detail-value"></td>
+                    </tr>
+                    <tr class="results__detail-row">
+                        <th scope="row" class="results__detail-label">Общий вес:</th>
+                        <td id="results-weight" class="results__detail-value"></td>
+                    </tr>
+                    <tr class="results__detail-row">
+                        <th scope="row" class="results__detail-label">Стоимость:</th>
+                        <td id="results-cost" class="results__detail-value"></td>
+                    </tr>
+                    <tr class="results__detail-row">
+                        <th scope="row" class="results__detail-label">Количество блоков в кубе:</th>
+                        <td id="results-blocks-cube" class="results__detail-value"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

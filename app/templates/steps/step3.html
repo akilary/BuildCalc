@@ -45,19 +45,26 @@
 
             <div class="calc__material-selection">
                 <div class="calc__material-selection-group">
-                    <select id="material-select" class="calc__select" aria-label="Выбор материала" required>
-                        <option value="" disabled selected>Выберите материал...</option>
-                        {% for material in materials %}
-                            <option value="{{ material.id }}"
-                                    data-size="{{ material.size }}"
-                                    data-suitable-region="{{ material.region }}"
-                                    data-insulation="{{ material.insulation_level }}"
-                                    data-moisture="{{ material.moisture_resistance }}">
-                                {{ material.name }}
+                    <select name="material" id="material-select" class="calc__select"
+                            aria-label="Выбор материала" required>
+                        <option value="" disabled {% if not form.material.data %}selected{% endif %}>
+                            Выберите материал...
+                        </option>
+                        {% for m in materials %}
+                            <option value="{{ m.id }}"
+                                    data-size="{{ m.size }}"
+                                    data-suitable-region="{{ m.region }}"
+                                    data-insulation="{{ m.insulation_level }}"
+                                    data-moisture="{{ m.moisture_resistance }}"
+                                    {% if form.material.data == m.id|string %}selected{% endif %}>
+                                {{ m.name }}
                             </option>
                         {% endfor %}
-                        <option value="custom">Свой материал</option>
+                        <option value="custom" {% if form.material.data == "custom" %}selected{% endif %}>
+                            Свой материал
+                        </option>
                     </select>
+
 
                     <div id="custom-material-controls" class="calc__custom-material" aria-hidden="true" tabindex="-1">
                         <button type="button" id="calc-add-custom-material" class="calc__button calc__button--add"
@@ -74,20 +81,32 @@
                             <span class="material-icons calc__material-details-icon" aria-hidden="true">scale</span>
                             <label for="block-weight" class="calc__material-selection-label">Вес одного блока:</label>
                             <div class="calc__controls calc__controls--material">
-                                <input type="number" id="block-weight" class="calc__material-card-input" min="0"
-                                       step="0.1" value="15" required>
+                                {{ form.block_weight }}
                                 <span class="calc__unit">кг.</span>
                             </div>
+                            {% if form.block_weight.errors %}
+                                <div class="calc__error-message">
+                                    {% for error in form.block_weight.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <div class="calc__material-card">
                             <span class="material-icons calc__material-details-icon" aria-hidden="true">sell</span>
                             <label for="block-price" class="calc__material-selection-label">Цена одного блока:</label>
                             <div class="calc__controls calc__controls--material">
-                                <input type="number" id="block-price" class="calc__material-card-input" min="0"
-                                       value="500" required>
+                                {{ form.block_price }}
                                 <span class="calc__unit">₸</span>
                             </div>
+                            {% if form.block_price.errors %}
+                                <div class="calc__error-message">
+                                    {% for error in form.block_price.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -96,46 +115,25 @@
                     <h3 class="calc__description">Толщина стен в блоках:</h3>
 
                     <div class="calc__thickness-group" role="radiogroup">
-                        <label class="calc__thickness-label" for="wall-thickness-0.5">
-                            <input type="radio" id="wall-thickness-0.5" name="wall-thickness"
-                                   class="calc__thickness-input" value="0.5" checked>
-                            <span class="material-icons calc__thickness-icon" aria-hidden="true">widgets</span>
-                            <span class="calc__thickness-text">0.5 блока</span>
-                            <span class="material-icons calc__selection-checkmark" aria-hidden="true">
-                                check_circle
-                            </span>
-                        </label>
-
-                        <label class="calc__thickness-label" for="wall-thickness-1">
-                            <input type="radio" id="wall-thickness-1" name="wall-thickness"
-                                   class="calc__thickness-input" value="1" required>
-                            <span class="material-icons calc__thickness-icon" aria-hidden="true">widgets</span>
-                            <span class="calc__thickness-text">1 блок</span>
-                            <span class="material-icons calc__selection-checkmark" aria-hidden="true">
-                                check_circle
-                            </span>
-                        </label>
-
-                        <label class="calc__thickness-label" for="wall-thickness-1.5">
-                            <input type="radio" id="wall-thickness-1.5" name="wall-thickness"
-                                   class="calc__thickness-input" value="1.5" required>
-                            <span class="material-icons calc__thickness-icon" aria-hidden="true">widgets</span>
-                            <span class="calc__thickness-text">1.5 блока</span>
-                            <span class="material-icons calc__selection-checkmark" aria-hidden="true">
-                                check_circle
-                            </span>
-                        </label>
-
-                        <label class="calc__thickness-label" for="wall-thickness-2">
-                            <input type="radio" id="wall-thickness-2" name="wall-thickness"
-                                   class="calc__thickness-input" value="2" required>
-                            <span class="material-icons calc__thickness-icon" aria-hidden="true">widgets</span>
-                            <span class="calc__thickness-text">2 блока</span>
-                            <span class="material-icons calc__selection-checkmark" aria-hidden="true">
-                                check_circle
-                            </span>
-                        </label>
+                        {% for subfield in form.wall_thickness %}
+                            <label class="calc__thickness-label" for="{{ subfield.id }}">
+                                {{ subfield }}
+                                <span class="material-icons calc__thickness-icon" aria-hidden="true">widgets</span>
+                                <span class="calc__thickness-text">{{ subfield.label.text }} блока</span>
+                                <span class="material-icons calc__selection-checkmark" aria-hidden="true">
+                                    check_circle
+                                </span>
+                            </label>
+                        {% endfor %}
                     </div>
+
+                    {% if form.wall_thickness.errors %}
+                        <div class="calc__error-message">
+                            {% for error in form.wall_thickness.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

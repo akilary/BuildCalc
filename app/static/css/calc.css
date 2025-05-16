@@ -145,7 +145,7 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: var(--color-green-primary);
 }
 
-.calc__stepsssss {
+.calc__step {
     display: none;
 }
 

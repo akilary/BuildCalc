@@ -44,16 +44,26 @@
         </div>
 
         <div class="calc__region-group" role="radiogroup">
-            {% for region in regions %}
-                <label class="calc__region-label" for="region-{{ region.id }}">
-                    <input type="radio" name="region" id="region-{{ region.id }}"
-                           class="calc__region-input" value="{{ region.id }}" required>
-                    <i class="material-icons calc__region-icon">{{ region.icon }}</i>
-                    <span class="calc__region-text">{{ region.name }}</span>
-                    <small class="calc__region-info">{{ region.description }}</small>
-                    <i class="material-icons calc__selection-checkmark">check_circle</i>
-                </label>
+            {% for subfield in form.region %}
+                {% set region = region_map.get(subfield.data) %}
+                {% if region %}
+                    <label class="calc__region-label" for="{{ subfield.id }}">
+                        {{ subfield }}
+                        <i class="material-icons calc__region-icon">{{ region.icon }}</i>
+                        <span class="calc__region-text">{{ region.name }}</span>
+                        <small class="calc__region-info">{{ region.description }}</small>
+                        <i class="material-icons calc__selection-checkmark">check_circle</i>
+                    </label>
+                {% endif %}
             {% endfor %}
         </div>
+
+        {% if form.region.errors %}
+            <div class="calc__error-message">
+                {% for error in form.region.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
     </fieldset>
 </section>

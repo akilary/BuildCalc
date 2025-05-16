@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, flash, session
 
-from ..utils import get_materials, get_regions_info
+from ..utils import fetch_all_materials, load_regions_data, get_calc_steps, parse_form_data
+from ..forms import CalcForm
+
 main_bp = Blueprint("main", __name__, url_prefix="/")
 
 
@@ -10,6 +12,39 @@ def home():
     return render_template("home.html")
 
 
-@main_bp.route("/calc")
+@main_bp.route("/calc", methods=["POST", "GET"])
 def calc():
-    return render_template("calc.html", regions=get_regions_info(), materials=get_materials())
+    regions = load_regions_data()
+    materials = fetch_all_materials()
+
+    form = CalcForm()
+    form.region.choices = [(r["id"], r["name"]) for r in regions]
+    form.material.choices = [(str(m.id), m.name) for m in materials] + [("custom", "Свой материал")]
+
+    if form.validate_on_submit():
+        try:
+            session["form_data"] = parse_form_data(form)
+            return redirect(url_for("main.results"))
+        except ValueError as e:
+            flash(str(e), "danger")
+        except RuntimeError as e:
+            flash(str(e), "danger")
+
+    return render_template(
+        "calc.html",
+        form=form,
+        steps=get_calc_steps(),
+        region_map={r["id"]: r for r in regions},
+        materials=materials
+    )
+
+
+@main_bp.route("/results", methods=["GET", "POST"])
+def results():
+    form_data = session.get('form_data', {})
+    print(form_data)
+
+    if not form_data:
+        return redirect(url_for('main.calc'))
+
+    return render_template("results.html")

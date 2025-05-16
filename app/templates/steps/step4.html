@@ -149,5 +149,19 @@
                 </button>
             </div>
         </div>
+
+        {{ form.doors_data }}
+        {{ form.windows_data }}
+        
+        {% if form.doors_data.errors or form.windows_data.errors %}
+            <div class="calc__error-message">
+                {% for error in form.doors_data.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+                {% for error in form.windows_data.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
     </fieldset>
 </section>

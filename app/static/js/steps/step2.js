@@ -1,5 +1,5 @@
 /** Инициализация визуализации здания на втором шаге */
-function initBuildingVisualization() {
+export function initBuildingVisualization() {
     const canvas = document.getElementById("calc-building-canvas");
     const ctx = canvas.getContext("2d");
 
@@ -317,5 +317,3 @@ function initBuildingVisualization() {
     resizeCanvas();
     updateMetrics();
 }
-
-document.addEventListener("DOMContentLoaded", initBuildingVisualization);

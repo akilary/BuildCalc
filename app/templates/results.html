@@ -79,7 +79,7 @@
                             <ul class="results__openings-list">
                                 {% for w in form_data.windows %}
                                     <li class="results__opening-item">
-                                        <span class="results__opening-name">{{ w.id }}</span>:
+                                        <span class="results__opening-name">Окно - {{ loop.index }}</span>:
                                         <span class="results__opening-details">
                                             {{ w.quantity }} шт, {{ w.width }}x{{ w.height }} м
                                         </span>
@@ -198,9 +198,3 @@
 {% block scripts %}
 
 {% endblock %}
-
-{#
-TODO:
-добавить: подходит ли к региону;
-удалить/изменить: на шаге с выбором материала(step3) заменить "Для региона" на что то другое
-#}

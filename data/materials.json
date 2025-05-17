@@ -4,6 +4,7 @@
     "name": "Керамзитобетонный блок",
     "size": "390×190×188",
     "type": "блок",
+    "blocks_per_pallet": 48,
     "regions": {
       "north": true,
       "south": false,
@@ -20,6 +21,7 @@
     "name": "Газобетонный блок",
     "size": "600×300×200",
     "type": "блок",
+    "blocks_per_pallet": 32,
     "regions": {
       "north": true,
       "south": false,
@@ -36,6 +38,7 @@
     "name": "Пенобетонный блок",
     "size": "600×200×400",
     "type": "блок",
+    "blocks_per_pallet": 24,
     "regions": {
       "north": true,
       "south": false,
@@ -52,6 +55,7 @@
     "name": "Керамический крупноформатный блок",
     "size": "510×250×219",
     "type": "блок",
+    "blocks_per_pallet": 40,
     "regions": {
       "north": false,
       "south": true,
@@ -68,6 +72,7 @@
     "name": "Теплоблок",
     "size": "400×400×200",
     "type": "блок",
+    "blocks_per_pallet": 30,
     "regions": {
       "north": true,
       "south": true,
@@ -84,6 +89,7 @@
     "name": "Кирпич строительный",
     "size": "250×120×65",
     "type": "кирпич",
+    "blocks_per_pallet": 480,
     "regions": {
       "north": false,
       "south": true,
@@ -100,6 +106,7 @@
     "name": "Кирпич пустотелый утолщённый",
     "size": "250×120×88",
     "type": "кирпич",
+    "blocks_per_pallet": 352,
     "regions": {
       "north": false,
       "south": true,
@@ -116,6 +123,7 @@
     "name": "Кирпич силикатный 3-пустотный",
     "size": "250×120×138",
     "type": "кирпич",
+    "blocks_per_pallet": 280,
     "regions": {
       "north": false,
       "south": true,
@@ -132,6 +140,7 @@
     "name": "Перегородочный блок",
     "size": "390×120×190",
     "type": "перегородочный",
+    "blocks_per_pallet": 72,
     "regions": {
       "north": true,
       "south": true,
@@ -148,6 +157,7 @@
     "name": "Перегородочный узкий блок",
     "size": "390×90×190",
     "type": "перегородочный",
+    "blocks_per_pallet": 96,
     "regions": {
       "north": true,
       "south": true,

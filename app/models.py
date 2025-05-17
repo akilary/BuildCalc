@@ -28,6 +28,7 @@ class Material(db.Model):
     suitable_center = db.Column(db.Boolean, default=False)
     insulation_level = db.Column(db.String(20), nullable=True)
     moisture_resistance = db.Column(db.String(20), nullable=True)
+    blocks_per_pallet = db.Column(db.Integer)
     notes = db.Column(db.Text, nullable=True)
 
     def get_suitable_regions(self):

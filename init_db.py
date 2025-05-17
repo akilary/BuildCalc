@@ -25,6 +25,7 @@ with app.app_context():
                 suitable_center=material["regions"]["center"],
                 insulation_level=material["insulation_level"],
                 moisture_resistance=material["moisture_resistance"],
+                blocks_per_pallet=material["blocks_per_pallet"],
                 notes=material["notes"],
             )
         )

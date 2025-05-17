@@ -13,7 +13,7 @@
                 <figcaption class="calc__material-visualization-caption">
                     <div class="calc__material-attributes" aria-live="polite">
                         <div class="calc__material-attributes-item">
-                            <span class="calc__material-attributes-label">Для региона:</span>
+                            <span class="calc__material-attributes-label">Для регионов:</span>
                             <span class="calc__material-attributes-value"></span>
                         </div>
                         <div class="calc__material-attributes-item">
@@ -53,7 +53,7 @@
                         {% for m in materials %}
                             <option value="{{ m.id }}"
                                     data-size="{{ m.size }}"
-                                    data-suitable-region="{{ m.region }}"
+                                    data-suitable-regions="{{ m.get_suitable_regions() }}"
                                     data-insulation="{{ m.insulation_level }}"
                                     data-moisture="{{ m.moisture_resistance }}"
                                     {% if form.material.data == m.id|string %}selected{% endif %}>

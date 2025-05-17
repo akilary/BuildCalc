@@ -31,7 +31,7 @@ export function initMaterialVisualization() {
     };
 
     let materialProperties = {
-        region: "",
+        regions: "",
         insulation: "",
         moisture: ""
     };
@@ -51,11 +51,35 @@ export function initMaterialVisualization() {
         };
     }
 
+    /** Форматирование списка регионов */
+    function formatRegions(regionsStr) {
+        if (!regionsStr) return "Не указано";
+
+        // Обрабатываем случай, когда строка приходит в формате Python списка: "['Север', 'Восток', 'Центр']"
+        let regions = [];
+        
+        if (typeof regionsStr === 'string') {
+            // Удаляем квадратные скобки и одинарные кавычки
+            const cleanStr = regionsStr.replace(/[\[\]']/g, '');
+            regions = cleanStr.split(', ');
+        } else {
+            regions = regionsStr;
+        }
+        
+        if (regions.length === 0) return "Не указано";
+        if (regions.length === 1) return regions[0];
+        if (regions.length === 2) return `${regions[0]} и ${regions[1]}`;
+
+        const lastRegion = regions[regions.length - 1];
+        const otherRegions = regions.slice(0, regions.length - 1);
+        return `${otherRegions.join(', ')} и ${lastRegion}`;
+    }
+
     /** Обновление отображения атрибутов материала */
     function updateAttributes() {
-        attributeValues[0].textContent = materialProperties.region;
-        attributeValues[1].textContent = materialProperties.insulation;
-        attributeValues[2].textContent = materialProperties.moisture;
+        attributeValues[0].textContent = formatRegions(materialProperties.regions);
+        attributeValues[1].textContent = materialProperties.insulation || "Не указано";
+        attributeValues[2].textContent = materialProperties.moisture || "Не указано";
 
         materialLengthDisplay.textContent = String(materialDimensions.length);
         materialWidthDisplay.textContent = String(materialDimensions.width);
@@ -285,7 +309,7 @@ export function initMaterialVisualization() {
         materialDimensions = parseDimensions(selectedOption.dataset.size);
 
         materialProperties = {
-            region: selectedOption.dataset.suitableRegion || "",
+            regions: selectedOption.dataset.suitableRegions || "",
             insulation: selectedOption.dataset.insulation || "",
             moisture: selectedOption.dataset.moisture || ""
         };

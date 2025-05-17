@@ -3,89 +3,194 @@
 {% block title %}Результаты - BuildCalc{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for("static", filename="") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/results.css") }}">
 {% endblock %}
 
 {% block content %}
     <section class="results">
         <div class="results__container">
-            <div class="results__chart-container">
-                <figure class="results__graph">
-                    <div class="results__chart">
-                        <canvas id="results-chart" aria-label="График распределения затрат">
-                        </canvas>
+            <h2 class="results__title">Результаты расчета</h2>
+
+            {% if res and form_data %}
+                <div class="results__chart-container">
+                    <figure class="results__graph">
+                        <div class="results__chart">
+                            <canvas id="results-chart" aria-label="График распределения затрат">
+                            </canvas>
+                        </div>
+                        <figcaption class="results__graph-caption">График распределения затрат</figcaption>
+                    </figure>
+                </div>
+                <div class="results__summary">
+                    <h3 class="results__summary-title">Основные параметры</h3>
+                    <table class="results__summary-table">
+                        <tbody>
+                        <tr class="results__summary-row">
+                            <th scope="row" class="results__summary-label">Регион:</th>
+                            <td class="results__summary-value">{{ form_data.region }}</td>
+                        </tr>
+                        <tr class="results__summary-row">
+                            <th scope="row" class="results__summary-label">Размеры здания:</th>
+                            <td class="results__summary-value">
+                                {{ form_data.building_length }} x {{ form_data.building_width }} x
+                                {{ form_data.building_height }} м
+                            </td>
+                        </tr>
+                        <tr class="results__summary-row">
+                            <th scope="row" class="results__summary-label">Площадь здания:</th>
+                            <td class="results__summary-value">{{ res.building.area }} м²</td>
+                        </tr>
+                        <tr class="results__summary-row">
+                            <th scope="row" class="results__summary-label">Периметр здания:</th>
+                            <td class="results__summary-value">{{ res.building.perimeter }} м</td>
+                        </tr>
+                        <tr class="results__summary-row">
+                            <th scope="row" class="results__summary-label">Площадь стен:</th>
+                            <td class="results__summary-value">{{ res.walls.total_area }} м²</td>
+                        </tr>
+                        <tr class="results__summary-row">
+                            <th scope="row" class="results__summary-label">Тип материала:</th>
+                            <td class="results__summary-value">{{ form_data.material }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="results__summary-title">Двери и окна</h3>
+                    <div class="results__openings">
+                        <div class="results__openings-group">
+                            <h4 class="results__openings-title">Двери ({{ form_data.doors | length }})</h4>
+                            <ul class="results__openings-list">
+                                {% for d in form_data.doors %}
+                                    <li class="results__opening-item">
+                                        <span class="results__opening-name">Дверь - {{ loop.index }}</span>:
+                                        <span class="results__opening-details">
+                                            {{ d.quantity }} шт, {{ d.width }}x{{ d.height }} м
+                                        </span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <p class="results__openings-summary">
+                                Общая площадь дверей: {{ res.openings.doors_area }} м²
+                            </p>
+                        </div>
+
+                        <div class="results__openings-group">
+                            <h4 class="results__openings-title">Окна ({{ form_data.windows | length }})</h4>
+                            <ul class="results__openings-list">
+                                {% for w in form_data.windows %}
+                                    <li class="results__opening-item">
+                                        <span class="results__opening-name">{{ w.id }}</span>:
+                                        <span class="results__opening-details">
+                                            {{ w.quantity }} шт, {{ w.width }}x{{ w.height }} м
+                                        </span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <p class="results__openings-summary">
+                                Общая площадь окон: {{ res.openings.windows_area }} м²
+                            </p>
+                        </div>
                     </div>
-                    <figcaption class="results__graph-caption">График распределения затрат</figcaption>
-                </figure>
-            </div>
-            <div class="results__summary">
-                <h3 class="results__summary-title">Основные параметры</h3>
-                <table class="results__summary-table">
-                    <tbody>
-                    <tr class="results__summary-row">
-                        <th scope="row" class="results__summary-label">Общая стоимость:</th>
-                        <td id="results-total" class="results__summary-value"></td>
-                    </tr>
-                    <tr class="results__summary-row">
-                        <th scope="row" class="results__summary-label">Площадь здания:</th>
-                        <td id="results-area" class="results__summary-value"></td>
-                    </tr>
-                    <tr class="results__summary-row">
-                        <th scope="row" class="results__summary-label">Периметр здания:</th>
-                        <td id="results-perimeter" class="results__summary-value"></td>
-                    </tr>
-                    <tr class="results__summary-row">
-                        <th scope="row" class="results__summary-label">Площадь стен:</th>
-                        <td id="results-walls" class="results__summary-value"></td>
-                    </tr>
-                    <tr class="results__summary-row">
-                        <th scope="row" class="results__summary-label">Объем кладки:</th>
-                        <td id="results-masonry" class="results__summary-value"></td>
-                    </tr>
-                    <tr class="results__summary-row">
-                        <th scope="row" class="results__summary-label">Тип материала:</th>
-                        <td id="results-material" class="results__summary-value"></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="results__chart-legend">
-                    <div class="results__legend-item">
-                        <span class="results__legend-color results__legend-color--walls"></span>
-                        <span class="results__legend-text">Стены:</span>
-                    </div>
-                    <div class="results__legend-item">
-                        <span class="results__legend-color results__legend-color--windows"></span>
-                        <span class="results__legend-text">Окна:</span>
-                    </div>
-                    <div class="results__legend-item">
-                        <span class="results__legend-color results__legend-color--doors"></span>
-                        <span class="results__legend-text">Двери:</span>
+
+                    <div class="results__chart-legend">
+                        <div class="results__legend-item">
+                            <span class="results__legend-color results__legend-color--walls"></span>
+                            <span class="results__legend-text">Стены</span>
+                        </div>
+                        <div class="results__legend-item">
+                            <span class="results__legend-color results__legend-color--windows"></span>
+                            <span class="results__legend-text">Окна</span>
+                        </div>
+                        <div class="results__legend-item">
+                            <span class="results__legend-color results__legend-color--doors"></span>
+                            <span class="results__legend-text">Двери</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="results__detail">
-                <h3 class="results__detail-title">Материалы стен</h3>
-                <table class="results__detail-table">
-                    <tbody>
-                    <tr class="results__detail-row">
-                        <th scope="row" class="results__detail-label">Количество блоков:</th>
-                        <td id="results-blocks" class="results__detail-value"></td>
-                    </tr>
-                    <tr class="results__detail-row">
-                        <th scope="row" class="results__detail-label">Общий вес:</th>
-                        <td id="results-weight" class="results__detail-value"></td>
-                    </tr>
-                    <tr class="results__detail-row">
-                        <th scope="row" class="results__detail-label">Стоимость:</th>
-                        <td id="results-cost" class="results__detail-value"></td>
-                    </tr>
-                    <tr class="results__detail-row">
-                        <th scope="row" class="results__detail-label">Количество блоков в кубе:</th>
-                        <td id="results-blocks-cube" class="results__detail-value"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div class="results__detail">
+                    <h3 class="results__detail-title">Материалы стен</h3>
+                    <table class="results__detail-table">
+                        <tbody>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Площадь проемов:</th>
+                            <td class="results__detail-value">{{ res.openings.openings_area }} м²</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Чистая площадь стен:</th>
+                            <td class="results__detail-value">{{ res.walls.net_area }} м²</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Объем кладки:</th>
+                            <td class="results__detail-value">{{ res.walls.volume }} м³</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Количество блоков:</th>
+                            <td class="results__detail-value">{{ res.material.blocks_count }} шт.</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Количество поддонов:</th>
+                            <td class="results__detail-value">{{ res.material.pallets_count }} шт.</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Вес кладки:</th>
+                            <td class="results__detail-value">{{ (res.material.weight ) }} т</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Стоимость материалов:</th>
+                            <td class="results__detail-value">{{ res.cost.materials }} ₸</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Стоимость за квадратный метр:</th>
+                            <td class="results__detail-value">{{ res.cost.per_square_meter }} ₸/м²</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="results__detail">
+                    <h3 class="results__detail-title">Характеристики материала</h3>
+                    <table class="results__detail-table">
+                        <tbody>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Описание материала:</th>
+                            <td class="results__detail-value">{{ res.material_info.notes }}</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Теплоизоляция:</th>
+                            <td class="results__detail-value">{{ res.material_info.insulation_level }}</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Влагостойкость:</th>
+                            <td class="results__detail-value">{{ res.material_info.moisture_resistance }}</td>
+                        </tr>
+                        <tr class="results__detail-row">
+                            <th scope="row" class="results__detail-label">Совместимость с регионом:</th>
+                            <td class="results__detail-value">{{ res.material_info.region_compatibility }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="results__actions">
+                    <a href="{{ url_for("main.calc") }}" class="results__button results__button--back">
+                        <span class="material-icons results__button-icon">arrow_back</span>
+                        Вернуться к расчету
+                    </a>
+                    <button type="button" class="results__button results__button--print" onclick="window.print()">
+                        <span class="material-icons results__button-icon">print</span>
+                        Распечатать результаты
+                    </button>
+                    <a href="#" class="results__button results__button--save">
+                        <span class="material-icons results__button-icon"></span>
+                        Сохранить в "Мои проекты"
+                    </a>
+                </div>
+            {% else %}
+                <div class="results__error">
+                    <p>Данные для расчета не найдены. Пожалуйста, вернитесь на <a href="{{ url_for('main.calc') }}">страницу
+                        калькулятора</a> и заполните форму.</p>
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}
@@ -93,3 +198,9 @@
 {% block scripts %}
 
 {% endblock %}
+
+{#
+TODO:
+добавить: подходит ли к региону;
+удалить/изменить: на шаге с выбором материала(step3) заменить "Для региона" на что то другое
+#}

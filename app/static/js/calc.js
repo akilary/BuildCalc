@@ -138,19 +138,20 @@ function initFormSubmission() {
     const form = document.querySelector(".calc__form");
 
     form.addEventListener("submit", function(e) {
-        // Собираем данные о дверях
         const doors = [];
         document.querySelectorAll('#doors-list .calc__opening-item').forEach(doorItem => {
             const doorId = doorItem.dataset.id;
             const quantity = document.getElementById(`${doorId}-quantity`).value;
             const width = document.getElementById(`${doorId}-width`).value;
             const height = document.getElementById(`${doorId}-height`).value;
+            const unit_price = document.getElementById(`${doorId}-unit-price`).value;
 
             doors.push({
                 id: doorId,
-                quantity: parseInt(quantity) || 1,
-                width: parseFloat(width) || 0.9,
-                height: parseFloat(height) || 2.0
+                quantity: parseInt(quantity) || 0,
+                width: parseFloat(width) || 0,
+                height: parseFloat(height) || 0,
+                unit_price: parseFloat(unit_price) || 0
             });
         });
 
@@ -161,16 +162,17 @@ function initFormSubmission() {
             const quantity = document.getElementById(`${windowId}-quantity`).value;
             const width = document.getElementById(`${windowId}-width`).value;
             const height = document.getElementById(`${windowId}-height`).value;
+            const unit_price = document.getElementById(`${windowId}-unit-price`).value;
 
             windows.push({
                 id: windowId,
                 quantity: parseInt(quantity) || 1,
-                width: parseFloat(width) || 1.2,
-                height: parseFloat(height) || 1.4
+                width: parseFloat(width) || 0,
+                height: parseFloat(height) || 0,
+                unit_price: parseFloat(unit_price) || 0
             });
         });
 
-        // Заполняем скрытые поля
         const doorsDataField = document.getElementById('doors-data');
         const windowsDataField = document.getElementById('windows-data');
 
@@ -184,34 +186,12 @@ function initFormSubmission() {
             console.error('Скрытые поля для дверей и окон не найдены!');
         }
 
-        // Собираем все данные формы
         const formData = new FormData(form);
         const formDataObj = {};
 
-        // Преобразуем FormData в объект для удобства
         for (let [key, value] of formData.entries()) {
             formDataObj[key] = value;
         }
-
-        console.log('Все данные формы:', formDataObj);
-
-        // Отправляем форму на сервер
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Ошибка при отправке формы');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Ответ сервера:', data);
-        });
     });
 }
 

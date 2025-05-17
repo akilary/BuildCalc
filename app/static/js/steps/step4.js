@@ -68,6 +68,15 @@ export function initOpeningsManager() {
                     </label>
                     <input type="number" id="${doorId}-height" class="calc__opening-input" min="1.5" max="2.5" step="0.1" value="2.0" required>
                 </div>
+                <div class="calc__opening-dimension">
+                    <label for="${doorId}-unit-price" class="calc__opening-label">
+                        <span class="calc__input-text">
+                            <span class="material-icons calc__opening-icon" aria-hidden="true">sell</span>
+                            Цена за ед. (₸):
+                        </span>
+                    </label>
+                    <input type="number" id="${doorId}-unit-price" class="calc__opening-input" min="0.3" max="2.5" step="0.1" value="15000" required>
+                </div>
             </div>
     `;
 
@@ -130,6 +139,15 @@ export function initOpeningsManager() {
                         </span>
                     </label>
                     <input type="number" id="${windowId}-height" class="calc__opening-input" min="0.3" max="2.5" step="0.1" value="1.4" required>
+                </div>
+                <div class="calc__opening-dimension">
+                    <label for="${windowId}-unit-price" class="calc__opening-label">
+                        <span class="calc__input-text">
+                            <span class="material-icons calc__opening-icon" aria-hidden="true">sell</span>
+                            Цена за ед. (₸):
+                        </span>
+                    </label>
+                    <input type="number" id="${windowId}-unit-price" class="calc__opening-input" min="0.3" max="2.5" step="0.1" value="10000" required>
                 </div>
             </div>
     `;
@@ -267,11 +285,9 @@ export function initOpeningsManager() {
         updateOpeningsCount("door");
         updateOpeningsCount("window");
 
-        // Инициализация пагинации
         updateDoorPagination();
         updateWindowPagination();
 
-        // Показываем первые элементы
         showDoorByIndex(0);
         showWindowByIndex(0);
     }

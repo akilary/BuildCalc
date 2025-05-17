@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session
 
-from ..utils import fetch_all_materials, load_regions_data, get_calc_steps, parse_form_data
+from ..utils import fetch_all_materials, load_regions_data, get_calc_steps, parse_form_data, calculate_results
 from ..forms import CalcForm
 
 main_bp = Blueprint("main", __name__, url_prefix="/")
@@ -39,7 +39,7 @@ def calc():
     )
 
 
-@main_bp.route("/results", methods=["GET", "POST"])
+@main_bp.route("/results", methods=["GET"])
 def results():
     form_data = session.get('form_data', {})
     print(form_data)
@@ -47,4 +47,13 @@ def results():
     if not form_data:
         return redirect(url_for('main.calc'))
 
-    return render_template("results.html")
+    return render_template("results.html", form_data=form_data, res=calculate_results(form_data))
+
+
+f_data = {'block_price': 500.0, 'block_weight': 15.0, 'building_height': 3, 'building_length': 10, 'building_width': 8,
+     'doors': [{'height': 2, 'id': 'door-1', 'quantity': 1, 'unit_price': 15000, 'width': 0.9},
+               {'height': 2, 'id': 'door-2', 'quantity': 1, 'unit_price': 15000, 'width': 0.9},
+               {'height': 2, 'id': 'door-3', 'quantity': 1, 'unit_price': 15000, 'width': 0.9}], 'material': '7',
+     'region': 'south', 'wall_thickness': '1',
+     'windows': [{'height': 1.4, 'id': 'window-1', 'quantity': 1, 'unit_price': 10000, 'width': 1.2},
+                 {'height': 1.4, 'id': 'window-2', 'quantity': 1, 'unit_price': 10000, 'width': 1.2}]}

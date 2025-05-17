@@ -30,5 +30,16 @@ class Material(db.Model):
     moisture_resistance = db.Column(db.String(20), nullable=True)
     notes = db.Column(db.Text, nullable=True)
 
+    def get_suitable_regions(self):
+        """Возвращает список подходящих регионов на русском языке"""
+        region_map = {
+            "Север": self.suitable_north,
+            "Юг": self.suitable_south,
+            "Восток": self.suitable_east,
+            "Запад": self.suitable_west,
+            "Центр": self.suitable_center
+        }
+        return [region for region, is_suitable in region_map.items() if is_suitable]
+
     def __repr__(self):
         return f"<Material {self.name}>"

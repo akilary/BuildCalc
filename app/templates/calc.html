@@ -41,16 +41,17 @@
                     {% include "steps/" ~ step %}
                 {% endfor %}
 
-                <div class="calc__submit calc__submit--hidden" aria-hidden="true">
-                    {{ form.submit }}
-                </div>
-
                 <div class="calc__navigation">
                     <button type="button" id="prev-step" class="calc__button calc__button--prev">
+                        <span class="material-icons calc__button-icon">arrow_back</span>
                         Назад
                     </button>
+                    <div class="calc__submit calc__submit--hidden" aria-hidden="true">
+                        {{ form.submit }}
+                    </div>
                     <button type="button" id="next-step" class="calc__button calc__button--next">
                         Далее
+                        <span class="material-icons calc__button-icon">arrow_forward</span>
                     </button>
                 </div>
             </form>

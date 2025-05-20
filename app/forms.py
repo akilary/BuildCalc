@@ -163,7 +163,7 @@ class CalcForm(FlaskForm):
     submit = SubmitField(
         "Рассчитать",
         render_kw={
-            "class": "calc__submit",
+            "class": "calc__button calc__button--submit calc__button--submit-hidden",
             "id": "calc-submit",
         }
     )

@@ -1,0 +1,129 @@
+<div class="modal modal--custom-material" id="custom-material-modal" aria-hidden="true" tabindex="-1">
+    <div class="modal__overlay">
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="custom-material-modal-title">
+            <header class="modal__header">
+                <h2 class="modal__title" id="custom-material-modal-title">Добавление своего материала</h2>
+                <button type="button" class="modal__close-button" aria-label="Закрыть">
+                    <span class="material-icons" aria-hidden="true">close</span>
+                </button>
+            </header>
+
+            <div class="modal__content">
+                <form class="material-form" id="custom-material-form">
+                    <div class="material-form__field">
+                        <label class="material-form__label" for="material-name">Название материала</label>
+                        <input type="text" class="material-form__input" id="material-name" name="name" required>
+                    </div>
+
+                    <div class="material-form__dimensions">
+                        <h3 class="material-form__subtitle">Размеры материала (мм)</h3>
+                        <div class="material-form__dimensions-group">
+                            <div class="material-form__field material-form__field--dimension">
+                                <label class="material-form__label" for="material-length">Длина</label>
+                                <div class="material-form__input-wrapper">
+                                    <input type="number" class="material-form__input" id="material-length" name="length" min="1" required>
+                                    <span class="material-form__unit">мм</span>
+                                </div>
+                            </div>
+
+                            <div class="material-form__field material-form__field--dimension">
+                                <label class="material-form__label" for="material-width">Ширина</label>
+                                <div class="material-form__input-wrapper">
+                                    <input type="number" class="material-form__input" id="material-width" name="width" min="1" required>
+                                    <span class="material-form__unit">мм</span>
+                                </div>
+                            </div>
+
+                            <div class="material-form__field material-form__field--dimension">
+                                <label class="material-form__label" for="material-height">Высота</label>
+                                <div class="material-form__input-wrapper">
+                                    <input type="number" class="material-form__input" id="material-height" name="height" min="1" required>
+                                    <span class="material-form__unit">мм</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="material-form__properties">
+                        <h3 class="material-form__subtitle">Характеристики материала</h3>
+
+                        <div class="material-form__field">
+                            <label class="material-form__label" for="material-weight">Вес одного блока</label>
+                            <div class="material-form__input-wrapper">
+                                <input type="number" class="material-form__input" id="material-weight" name="weight" min="0.1" step="0.1" required>
+                                <span class="material-form__unit">кг</span>
+                            </div>
+                        </div>
+
+                        <div class="material-form__field">
+                            <label class="material-form__label" for="material-price">Цена одного блока</label>
+                            <div class="material-form__input-wrapper">
+                                <input type="number" class="material-form__input" id="material-price" name="price" min="1" required>
+                                <span class="material-form__unit">₸</span>
+                            </div>
+                        </div>
+
+                        <div class="material-form__field">
+                            <label class="material-form__label">Подходит для регионов</label>
+                            <div class="material-form__radio-group">
+                                <label class="material-form__radio-label">
+                                    <input type="radio" class="material-form__radio" name="regions" value="all" checked>
+                                    <span class="material-form__radio-text">Все регионы</span>
+                                </label>
+                                <label class="material-form__radio-label">
+                                    <input type="radio" class="material-form__radio" name="regions" value="north">
+                                    <span class="material-form__radio-text">Север</span>
+                                </label>
+                                <label class="material-form__radio-label">
+                                    <input type="radio" class="material-form__radio" name="regions" value="south">
+                                    <span class="material-form__radio-text">Юг</span>
+                                </label>
+                                <label class="material-form__radio-label">
+                                    <input type="radio" class="material-form__radio" name="regions" value="east">
+                                    <span class="material-form__radio-text">Восток</span>
+                                </label>
+                                <label class="material-form__radio-label">
+                                    <input type="radio" class="material-form__radio" name="regions" value="west">
+                                    <span class="material-form__radio-text">Запад</span>
+                                </label>
+                                <label class="material-form__radio-label">
+                                    <input type="radio" class="material-form__radio" name="regions" value="center">
+                                    <span class="material-form__radio-text">Центр</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="material-form__field">
+                            <label class="material-form__label" for="material-insulation">Уровень теплоизоляции</label>
+                            <select class="material-form__select" id="material-insulation" name="insulation" required>
+                                <option value="low">Низкий</option>
+                                <option value="medium" selected>Средний</option>
+                                <option value="high">Высокий</option>
+                            </select>
+                        </div>
+
+                        <div class="material-form__field">
+                            <label class="material-form__label" for="material-moisture">Влагостойкость</label>
+                            <select class="material-form__select" id="material-moisture" name="moisture" required>
+                                <option value="low">Низкая</option>
+                                <option value="medium" selected>Средняя</option>
+                                <option value="high">Высокая</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <footer class="modal__footer">
+                <div class="modal__actions">
+                    <button type="button" class="modal__button modal__button--secondary" data-action="cancel">
+                        Отмена
+                    </button>
+                    <button type="button" class="modal__button modal__button--primary" data-action="save">
+                        Сохранить материал
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>

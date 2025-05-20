@@ -29,17 +29,12 @@
                     <span class="site-header__nav-item-text">Калькулятор</span>
                 </a>
 
-                <a href="#" class="site-header__nav-item">
-                    <span class="material-icons site-header__nav-item-icon" aria-hidden="true">engineering</span>
-                    <span class="site-header__nav-item-text">Мои проекты</span>
-                </a>
-
                 {% if False %}
                     <a href="#" class="site-header__nav-item">
                         <span class="material-icons site-header__nav-item-icon" aria-hidden="true">person</span>
                         <span class="site-header__nav-item-text">Личный кабинет</span>
                     </a>
-                    {% else %}
+                {% else %}
                     <a href="{{ url_for("auth.login") }}" class="site-header__nav-item">
                         <span class="material-icons site-header__nav-item-icon" aria-hidden="true">login</span>
                         <span class="site-header__nav-item-text">Войти</span>

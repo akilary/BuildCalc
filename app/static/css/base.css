@@ -105,12 +105,6 @@ body {
     transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
-.site-header__logo-link:hover::before,
-.site-header__logo-link:focus::before {
-    transform: scale(1);
-    opacity: 1;
-}
-
 .site-header__logo-text {
     color: var(--color-light-accent);
     font-size: var(--font-size-xl);
@@ -118,6 +112,12 @@ body {
     transition: color var(--transition-fast), transform var(--transition-fast);
     position: relative;
     z-index: 1;
+}
+
+.site-header__logo-link:hover::before,
+.site-header__logo-link:focus::before {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .site-header__logo-link:hover .site-header__logo-text,
@@ -161,33 +161,16 @@ body {
     transform: translateY(-2px);
 }
 
-.site-header__nav-item:hover::before {
-    transform: translateY(0);
-}
+.site-header__nav-item:hover::before { transform: translateY(0); }
 
-.site-header__nav-item-icon {
-    font-size: var(--font-size-lg);
-}
+.site-header__nav-item-icon { font-size: var(--font-size-lg); }
 
-.site-header__nav-item-text {
-    font-size: var(--font-size-sm);
-}
+.site-header__nav-item-text { font-size: var(--font-size-sm); }
 
 .site-main {
     flex: 1;
     padding: var(--spacing-xl) 0;
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .main__container {
@@ -214,13 +197,9 @@ body {
     color: var(--color-light-accent);
 }
 
-.site-footer__section-list {
-    list-style: none;
-}
+.site-footer__section-list { list-style: none; }
 
-.site-footer__section-list-item {
-    margin-bottom: var(--spacing-sm);
-}
+.site-footer__section-list-item { margin-bottom: var(--spacing-sm); }
 
 .site-footer__link {
     color: var(--color-light-bg);
@@ -248,13 +227,9 @@ body {
 }
 
 .site-footer__link:hover::before,
-.site-footer__link:focus::before {
-    width: 100%;
-}
+.site-footer__link:focus::before { width: 100%; }
 
-.site-footer__link--social::before {
-    height: 2px;
-}
+.site-footer__link--social::before { height: 2px; }
 
 .site-footer__bottom {
     display: flex;
@@ -267,7 +242,21 @@ body {
 }
 
 .site-footer__copyright,
-.site-footer__legal {
-    font-size: var(--font-size-xs);
+.site-footer__legal { font-size: var(--font-size-xs); }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+@keyframes glassShimmer {
+    0% { background-position: 0 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}

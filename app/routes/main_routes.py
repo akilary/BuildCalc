@@ -49,11 +49,3 @@ def results():
 
     return render_template("results.html", form_data=form_data, res=calculate_results(form_data))
 
-
-f_data = {'block_price': 500.0, 'block_weight': 15.0, 'building_height': 3, 'building_length': 10, 'building_width': 8,
-     'doors': [{'height': 2, 'id': 'door-1', 'quantity': 1, 'unit_price': 15000, 'width': 0.9},
-               {'height': 2, 'id': 'door-2', 'quantity': 1, 'unit_price': 15000, 'width': 0.9},
-               {'height': 2, 'id': 'door-3', 'quantity': 1, 'unit_price': 15000, 'width': 0.9}], 'material': '7',
-     'region': 'south', 'wall_thickness': '1',
-     'windows': [{'height': 1.4, 'id': 'window-1', 'quantity': 1, 'unit_price': 10000, 'width': 1.2},
-                 {'height': 1.4, 'id': 'window-2', 'quantity': 1, 'unit_price': 10000, 'width': 1.2}]}

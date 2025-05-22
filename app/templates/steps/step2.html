@@ -27,14 +27,14 @@
                     </div>
 
                     <div class="calc__building-dimensions" aria-live="polite">
-                        <div class="calc__building-dimension calc__building-dimension--height">
-                            <span class="calc__building-dimension-value" id="calc-wall-height"></span>м.
-                        </div>
                         <div class="calc__building-dimension calc__building-dimension--length">
                             <span class="calc__building-dimension-value" id="calc-wall-length"></span>м.
                         </div>
                         <div class="calc__building-dimension calc__building-dimension--width">
                             <span class="calc__building-dimension-value" id="calc-wall-width"></span>м.
+                        </div>
+                        <div class="calc__building-dimension calc__building-dimension--height">
+                            <span class="calc__building-dimension-value" id="calc-wall-height"></span>м.
                         </div>
                     </div>
                 </figcaption>
@@ -43,28 +43,7 @@
             <div class="calc__building-selection">
                 <div class="calc__building-cards">
                     <div class="calc__building-card">
-                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">height</span>
-                        <label for="calc-building-height" class="calc__building-selection-label">Высота стен</label>
-                        <div class="calc__building-slider-container">
-                            <input type="range" class="calc__building-slider" id="calc-building-height-slider"
-                                   min="1" max="20" value="3" aria-label="Ползунок для высоты стен">
-                        </div>
-                        <div class="calc__controls calc__controls--building">
-                            {{ form.building_height(id="calc-building-height", min="1", max="20", value="3",
-                                                  **{"aria-label": "Высота стен в метрах"}) }}
-                            <span class="calc__unit">м.</span>
-                        </div>
-                        {% if form.building_height.errors %}
-                            <div class="calc__error-message">
-                                {% for error in form.building_height.errors %}
-                                    <p>{{ error }}</p>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <div class="calc__building-card">
-                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">swap_horiz</span>
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">straighten</span>
                         <label for="calc-building-length" class="calc__building-selection-label">Длина здания</label>
                         <div class="calc__building-slider-container">
                             <input type="range" class="calc__building-slider" id="calc-building-length-slider"
@@ -85,7 +64,7 @@
                     </div>
 
                     <div class="calc__building-card">
-                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">swap_vert</span>
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">width_full</span>
                         <label for="calc-building-width" class="calc__building-selection-label">Ширина здания</label>
                         <div class="calc__building-slider-container">
                             <input type="range" class="calc__building-slider" id="calc-building-width-slider"
@@ -99,6 +78,26 @@
                         {% if form.building_width.errors %}
                             <div class="calc__error-message">
                                 {% for error in form.building_width.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="calc__building-card">
+                        <span class="material-icons calc__building-selection-icon" aria-hidden="true">height</span>
+                        <label for="calc-building-height" class="calc__building-selection-label">Высота стен</label>
+                        <div class="calc__building-slider-container">
+                            <input type="range" class="calc__building-slider" id="calc-building-height-slider"
+                                   min="1" max="20" value="3" aria-label="Ползунок для высоты стен">
+                        </div>
+                        <div class="calc__controls calc__controls--building">
+                            {{ form.building_height(id="calc-building-height", min="1", max="20", value="3",
+                                                  **{"aria-label": "Высота стен в метрах"}) }}
+                            <span class="calc__unit">м.</span>
+                        </div>
+                        {% if form.building_height.errors %}
+                            <div class="calc__error-message">
+                                {% for error in form.building_height.errors %}
                                     <p>{{ error }}</p>
                                 {% endfor %}
                             </div>

@@ -6,17 +6,17 @@ export function initBuildingView() {
     const canvas = document.getElementById("calc-building-canvas");
     const ctx = canvas.getContext("2d");
 
-    const heightInput = document.getElementById("calc-building-height");
     const lengthInput = document.getElementById("calc-building-length");
     const widthInput = document.getElementById("calc-building-width");
+    const heightInput = document.getElementById("calc-building-height");
 
-    const heightSlider = document.getElementById("calc-building-height-slider");
     const lengthSlider = document.getElementById("calc-building-length-slider");
     const widthSlider = document.getElementById("calc-building-width-slider");
+    const heightSlider = document.getElementById("calc-building-height-slider");
 
-    const heightDisplay = document.getElementById("calc-wall-height");
     const lengthDisplay = document.getElementById("calc-wall-length");
     const widthDisplay = document.getElementById("calc-wall-width");
+    const heightDisplay = document.getElementById("calc-wall-height");
 
     const metricsValues = document.querySelectorAll(".calc__building-metrics-value");
 
@@ -27,15 +27,15 @@ export function initBuildingView() {
     };
 
     let buildingDimensions = {
-        height: parseInt(heightInput.value || "0", 10),
-        length: parseInt(lengthInput.value || "0", 10),
-        width: parseInt(widthInput.value || "0", 10)
+        length: parseFloat(lengthInput.value || "0"),
+        width: parseFloat(widthInput.value || "0"),
+        height: parseFloat(heightInput.value || "0")
     };
 
     [
-        {input: heightInput, slider: heightSlider, key: "height"},
         {input: lengthInput, slider: lengthSlider, key: "length"},
-        {input: widthInput, slider: widthSlider, key: "width"}
+        {input: widthInput, slider: widthSlider, key: "width"},
+        {input: heightInput, slider: heightSlider, key: "height"}
     ].forEach(({input, slider, key}) => {
         input.addEventListener("input", () => {
             _syncSliderWithInput(slider, input, key, buildingDimensions, () => {
@@ -90,7 +90,7 @@ function _updateMetrics(metricsValues, heightDisplay, lengthDisplay, widthDispla
 
 /** Считает метрики на основе текущих размеров здания */
 function _calculateMetrics(buildingDimensions) {
-    const {height, length, width} = buildingDimensions;
+    const {length, width, height} = buildingDimensions;
     const frontWallArea = length * height;
     const sideWallArea = width * height;
     const totalWallArea = 2 * (frontWallArea + sideWallArea);

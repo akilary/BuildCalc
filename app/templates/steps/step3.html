@@ -27,16 +27,16 @@
                     </div>
 
                     <div class="calc__material-dimensions" aria-live="polite">
-                        <div class="calc__material-dimension calc__material-dimension--height">
-                            <span class="calc__material-dimension-value" id="calc-material-height"></span>
-                            мм.
-                        </div>
                         <div class="calc__material-dimension calc__material-dimension--length">
                             <span class="calc__material-dimension-value" id="calc-material-length"></span>
                             мм.
                         </div>
                         <div class="calc__material-dimension calc__material-dimension--width">
                             <span class="calc__material-dimension-value" id="calc-material-width"></span>
+                            мм.
+                        </div>
+                        <div class="calc__material-dimension calc__material-dimension--height">
+                            <span class="calc__material-dimension-value" id="calc-material-height"></span>
                             мм.
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                                 {{ m.name }}
                             </option>
                         {% endfor %}
-                        <option value="custom" {% if form.material.data == "custom" %}selected{% endif %}>
+                        <option value="custom-material" {% if form.material.data == "custom" %}selected{% endif %}>
                             Свой материал
                         </option>
                     </select>
@@ -70,7 +70,7 @@
                         <button type="button" id="calc-add-custom-material" class="calc__button calc__button--add"
                                 aria-label="Добавить свой материал">
                             <span class="material-icons calc__button-icon" aria-hidden="true">add</span>
-                            Свой материал
+                            Кастомный
                         </button>
                     </div>
                 </div>
@@ -127,6 +127,8 @@
                         {% endfor %}
                     </div>
 
+                    {{ form.custom_material }}
+
                     {% if form.wall_thickness.errors %}
                         <div class="calc__error-message">
                             {% for error in form.wall_thickness.errors %}
@@ -138,6 +140,6 @@
             </div>
         </div>
     </fieldset>
-    
+
     {% include "modals/custom-material-modal.html" %}
 </section>

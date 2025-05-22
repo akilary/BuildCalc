@@ -133,19 +133,23 @@ function _initCalcPageSwitcher() {
 function _initFormSubmission() {
     const form = document.querySelector(".calc__form");
 
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (e) => {
+        const customMaterial = _collectCustomMaterialData();
         const doors = _collectOpeningsData("doors-list", "door");
-
         const windows = _collectOpeningsData("windows-list", "window");
 
+        const customMaterialField = document.getElementById("custom-material");
         const doorsDataField = document.getElementById("doors-data");
         const windowsDataField = document.getElementById("windows-data");
 
-        if (doorsDataField && windowsDataField) {
+        if (customMaterialField && doorsDataField && windowsDataField) {
+            customMaterialField.value = JSON.stringify(customMaterial);
             doorsDataField.value = JSON.stringify(doors);
             windowsDataField.value = JSON.stringify(windows);
         } else {
-            console.error("Скрытые поля для дверей и окон не найдены!");
+            e.preventDefault()
+            console.error("Скрытые поля не найдены!");
+            return;
         }
 
         const formData = new FormData(form);
@@ -156,6 +160,34 @@ function _initFormSubmission() {
         }
     });
 }
+
+/** Получение данных выбранного пользовательского материала */
+function _collectCustomMaterialData() {
+    const materialSelect = document.getElementById("material-select");
+    const selectedOption = materialSelect.selectedOptions[0];
+
+    if (selectedOption && selectedOption.value.startsWith("custom_")) {
+        const name = selectedOption.textContent.replace(" (польз.)", "");
+        let dimensions = {length: 0, width: 0, height: 0};
+
+        if (selectedOption.dataset.size) {
+            const sizeParts = selectedOption.dataset.size.split("×");
+            if (sizeParts.length === 3) {
+                dimensions = {
+                    length: parseFloat(sizeParts[0]) || 0,
+                    width: parseFloat(sizeParts[1]) || 0,
+                    height: parseFloat(sizeParts[2]) || 0
+                };
+            }
+        }
+        return {
+            name,
+            size: `${dimensions.length}×${dimensions.width}×${dimensions.height}`
+        };
+    }
+    return null;
+}
+
 
 /** Вспомогательная функция для сбора данных о проемах (дверях/окнах) */
 function _collectOpeningsData(containerId, type) {

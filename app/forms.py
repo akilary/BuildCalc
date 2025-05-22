@@ -73,6 +73,16 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Войти", render_kw={"class": "auth__submit"})
 
 
+class CustomSelectField(SelectField):
+    """SelectField с возможностью выбора 'custom'"""
+
+    def pre_validate(self, form):
+        if self.data and self.data.startswith("custom_"):
+            return True
+
+        super().pre_validate(form)
+
+
 class CalcForm(FlaskForm):
     # Шаг 1: Выбор региона
     region = RadioField(
@@ -85,15 +95,7 @@ class CalcForm(FlaskForm):
             "required": True
         },
     )
-
     # Шаг 2: Размеры здания
-    building_height = IntegerField(
-        "Building height",
-        validators=[DataRequired(message="Укажите высоту")],
-        default=3,
-        render_kw={"class": "calc__building-selection-input",
-                   "min": 0}
-    )
     building_length = IntegerField(
         "Building length",
         validators=[DataRequired(message="Укажите длину")],
@@ -110,9 +112,15 @@ class CalcForm(FlaskForm):
             "min": 0
         }
     )
-
+    building_height = IntegerField(
+        "Building height",
+        validators=[DataRequired(message="Укажите высоту")],
+        default=3,
+        render_kw={"class": "calc__building-selection-input",
+                   "min": 0}
+    )
     # Шаг 3: Материал стен
-    material = SelectField(
+    material = CustomSelectField(
         "Material",
         validators=[DataRequired(message="Выберите материал")],
         choices=[]
@@ -146,14 +154,17 @@ class CalcForm(FlaskForm):
             "type": "radio"
         }
     )
-
+    custom_material = HiddenField(
+        "Custom material",
+        validators=[DataRequired(message="Добавьте информацию о материале")],
+        render_kw={"id": "custom-material"}
+    )
     # Шаг 4: Окна и двери
     doors_data = HiddenField(
         "Doors data",
         validators=[DataRequired(message="Добавьте информацию о дверях")],
         render_kw={"id": "doors-data"}
     )
-
     windows_data = HiddenField(
         "Windows data",
         validators=[DataRequired(message="Добавьте информацию об окнах")],

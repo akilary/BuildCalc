@@ -119,7 +119,7 @@ function _parseDimensions(sizeString) {
     if (!sizeString) return {length: 0, width: 0, height: 0};
 
     const dimensions = sizeString.split("×").map(function (dim) {
-        return parseInt(dim || "0", 10);
+        return parseFloat(dim || "0");
     });
 
     return {
@@ -197,7 +197,7 @@ function _handleMaterialSelect(
 ) {
     const selectedOption = materialSelect.options[materialSelect.selectedIndex];
 
-    if (selectedOption.value === "custom") {
+    if (selectedOption.value === "custom-material") {
         customMaterialControls.setAttribute("aria-hidden", "false");
         customMaterialControls.tabIndex = 0;
         return;
@@ -221,7 +221,7 @@ function _handleMaterialSelect(
 /** Обработчик для переключения видимости пользовательских материалов */
 function _toggleCustomMaterialControls(materialSelect, customMaterialControls) {
     if (customMaterialControls) {
-        if (materialSelect.value === "custom") {
+        if (materialSelect.value === "custom-material") {
             customMaterialControls.classList.add("calc__custom-material--active");
             customMaterialControls.setAttribute("aria-hidden", "false");
         } else {
@@ -271,6 +271,7 @@ function _saveCustomMaterial() {
 
     materialSelect.insertBefore(option, materialSelect.options[materialSelect.options.length - 1]);
     materialSelect.value = option.value;
+    materialSelect.dispatchEvent(new Event("change"));
 
     _closeCustomMaterialModal();
 }

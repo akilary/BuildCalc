@@ -27,7 +27,7 @@ export function initMaterialVisualization() {
     };
 
     /** Обновление визуализации и атрибутов */
-    const _updateVisualization = ()=> {
+    const _updateVisualization = () => {
         _updateAttributes(attributeValues, materialLengthDisplay, materialWidthDisplay, materialHeightDisplay,
             materialProperties, materialDimensions);
         _drawMaterial(ctx, canvas, materialDimensions);
@@ -85,10 +85,9 @@ export function initMaterialSelector() {
 /** Инициализация модального окна для добавления своего материала */
 export function initCustomMaterialModal() {
     const modal = document.getElementById("custom-material-modal");
-    const closeButton = modal.querySelector(".modal__close-button");
-    const cancelButton = modal.querySelector("[data-action='cancel']");
-    const saveButton = modal.querySelector("[data-action='save']");
-    const form = document.getElementById("custom-material-form");
+    const closeButton = document.getElementById("close-modal")
+    const cancelButton = document.getElementById("cancel-modal");
+    const saveButton = document.getElementById("save-custom-material");
 
     closeButton.addEventListener("click", () => {
         _closeCustomMaterialModal();
@@ -99,17 +98,13 @@ export function initCustomMaterialModal() {
     });
 
     modal.addEventListener("click", (event) => {
-        if (event.target === modal.querySelector(".modal__overlay")) {
+        if (event.target === modal.querySelector(".calc__modal-overlay")) {
             _closeCustomMaterialModal();
         }
     });
 
     saveButton.addEventListener("click", () => {
-        if (form.checkValidity()) {
-            console.log(1)
-        } else {
-            form.reportValidity();
-        }
+        _saveCustomMaterial();
     });
 
     document.addEventListener("keydown", (event) => {
@@ -197,8 +192,8 @@ function _drawMaterial(ctx, canvas, materialDimensions) {
 }
 
 /** Обработка выбора материала */
-function _handleMaterialSelect(materialSelect, customMaterialControls, materialDimensions, materialProperties,
-                               updateCallback
+function _handleMaterialSelect(
+    materialSelect, customMaterialControls, materialDimensions, materialProperties, updateCallback
 ) {
     const selectedOption = materialSelect.options[materialSelect.selectedIndex];
 
@@ -252,18 +247,40 @@ function _openCustomMaterialModal() {
     document.body.style.overflow = "hidden";
 }
 
+/** Сохранение пользовательского материала в списке */
+function _saveCustomMaterial() {
+    const name = document.getElementById("custom-material-name").value.trim();
+    const length = document.getElementById("custom-material-length").value.trim();
+    const width = document.getElementById("custom-material-width").value.trim();
+    const height = document.getElementById("custom-material-height").value.trim();
+    if(!name || !length || !width || !height) {
+        alert("Проверьте правильность заполнения полей");
+        return;
+    }
+
+    const materialSelect = document.getElementById("material-select");
+    const size = `${length}×${width}×${height}`;
+    const option = document.createElement('option');
+
+    option.value = `custom_${Date.now()}`;
+    option.textContent = `${name.charAt(0).toUpperCase() + name.slice(1)} (польз.)`;
+    option.dataset.size = size;
+    option.dataset.suitableRegions = "";
+    option.dataset.insulation = "";
+    option.dataset.moisture = "";
+
+    materialSelect.insertBefore(option, materialSelect.options[materialSelect.options.length - 1]);
+    materialSelect.value = option.value;
+
+    _closeCustomMaterialModal();
+}
+
 /** Закрытие модального окна для добавления своего материала */
 function _closeCustomMaterialModal() {
     const modal = document.getElementById("custom-material-modal");
+
+    document.activeElement.blur();
     modal.setAttribute("aria-hidden", "true");
     modal.tabIndex = -1
-
     document.body.style.overflow = "";
-
-    const form = document.getElementById("custom-material-form");
-    if (form) {
-        form.reset();
-    } else {
-        console.error("Form element 'custom-material-form' not found");
-    }
 }

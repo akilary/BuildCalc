@@ -1,28 +1,27 @@
-import { initRegionMap } from "./steps/step1.js";
-import { initBuildingView } from "./steps/step2.js";
-import { initMaterialSelector, initMaterialVisualization, initCustomMaterialModal } from "./steps/step3.js";
-import { initOpeningsManager } from "./steps/step4.js";
+import {initRegionMap} from "./steps/step1.js";
+import {initBuildingView} from "./steps/step2.js";
+import {initMaterialSelector, initMaterialVisualization, initCustomMaterialModal} from "./steps/step3.js";
+import {initOpeningsManager} from "./steps/step4.js";
 
 /** Инициализация калькулятора */
 document.addEventListener("DOMContentLoaded", () => {
-    initCalcPageSwitcher();
+    _initCalcPageSwitcher();
     initRegionMap();
     initBuildingView();
     initMaterialSelector();
     initMaterialVisualization();
     initCustomMaterialModal();
     initOpeningsManager();
-    initFormSubmission();
+    _initFormSubmission();
 });
 
 /** Инициализация переключателя страниц калькулятора */
-function initCalcPageSwitcher() {
+function _initCalcPageSwitcher() {
     const form = document.getElementById("calc-form");
     const progressItems = document.querySelectorAll(".calc__progress-item");
     const steps = document.querySelectorAll(".calc__step");
     const prevButton = document.getElementById("prev-step");
     const nextButton = document.getElementById("next-step");
-    const submitButton = document.getElementById("calc-submit");
     const submitContainer = document.querySelector(".calc__submit");
 
     let currentStep = 0;
@@ -60,7 +59,7 @@ function initCalcPageSwitcher() {
         const isLastStep = currentStep === totalSteps - 1;
         nextButton.disabled = isLastStep;
         nextButton.classList.toggle("calc__button--next-disabled", isLastStep);
-        
+
         submitContainer.classList.toggle("calc__submit--hidden", !isLastStep);
         submitContainer.setAttribute("aria-hidden", isLastStep ? "false" : "true");
     };
@@ -87,13 +86,13 @@ function initCalcPageSwitcher() {
         form.scrollIntoView({behavior: "smooth", block: "start"});
     };
 
-    const _goToNextStep = () => {
+    const goToNextStep = () => {
         if (currentStep < totalSteps - 1) {
             _goToStep(currentStep + 1);
         }
     };
 
-    const _goToPrevStep = () => {
+    const goToPrevStep = () => {
         if (currentStep > 0) {
             _goToStep(currentStep - 1);
         }
@@ -116,8 +115,8 @@ function initCalcPageSwitcher() {
         _updateButtons();
     };
 
-    prevButton.addEventListener("click", _goToPrevStep);
-    nextButton.addEventListener("click", _goToNextStep);
+    prevButton.addEventListener("click", goToPrevStep);
+    nextButton.addEventListener("click", goToNextStep);
 
     progressItems.forEach((item, index) => {
         item.addEventListener("click", () => {
@@ -131,25 +130,22 @@ function initCalcPageSwitcher() {
 }
 
 /** Инициализация обработки отправки формы */
-function initFormSubmission() {
+function _initFormSubmission() {
     const form = document.querySelector(".calc__form");
 
     form.addEventListener("submit", () => {
-        const doors = _collectOpeningsData('doors-list', 'door');
+        const doors = _collectOpeningsData("doors-list", "door");
 
-        const windows = _collectOpeningsData('windows-list', 'window');
+        const windows = _collectOpeningsData("windows-list", "window");
 
-        const doorsDataField = document.getElementById('doors-data');
-        const windowsDataField = document.getElementById('windows-data');
+        const doorsDataField = document.getElementById("doors-data");
+        const windowsDataField = document.getElementById("windows-data");
 
         if (doorsDataField && windowsDataField) {
             doorsDataField.value = JSON.stringify(doors);
             windowsDataField.value = JSON.stringify(windows);
-
-            console.log('Данные о дверях:', doors);
-            console.log('Данные об окнах:', windows);
         } else {
-            console.error('Скрытые поля для дверей и окон не найдены!');
+            console.error("Скрытые поля для дверей и окон не найдены!");
         }
 
         const formData = new FormData(form);
@@ -173,12 +169,12 @@ function _collectOpeningsData(containerId, type) {
 
         items.push({
             id: itemId,
-            quantity: parseInt(quantity) || (type === 'door' ? 0 : 1),
+            quantity: parseInt(quantity) || (type === "door" ? 0 : 1),
             width: parseFloat(width) || 0,
             height: parseFloat(height) || 0,
             unit_price: parseFloat(unit_price) || 0
         });
     });
-    
+
     return items;
 }

@@ -1,0 +1,190 @@
+.auth__container,
+.auth__form,
+.auth__form-group,
+.auth__password-wrapper,
+.auth__form-options { display: flex; }
+
+.auth__title,
+.auth__label,
+.auth__password-toggle,
+.auth__password-toggle-icon,
+.auth__link,
+.auth__switch,
+.auth__input,
+.auth__submit,
+.auth__form-options { transition: all var(--transition-base); }
+
+.auth__container,
+.auth__form,
+.auth__form-group,
+.auth__password-wrapper,
+.auth__input,
+.auth__submit,
+.auth__password-toggle { border-radius: var(--border-radius-sm); }
+
+.auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    padding: var(--spacing-xl) 0;
+}
+
+.auth__container {
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    padding: var(--spacing-xl);
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.auth__title {
+    font-size: var(--font-size-xl);
+    color: var(--color-dark-primary);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    position: relative;
+    padding-bottom: var(--spacing-md);
+}
+
+.auth__title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-accent-soft);
+    border-radius: 3px;
+}
+
+.auth__form {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.auth__form-group {
+    flex-direction: column;
+    width: 100%;
+}
+
+.auth__label {
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-md);
+    color: var(--color-dark-primary);
+    font-weight: 500;
+}
+
+.auth__input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-md);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-dark-primary);
+    outline: none;
+}
+
+.auth__input:focus {
+    border-color: var(--color-accent-soft);
+    box-shadow: 0 0 0 2px rgba(239, 129, 107, 0.2);
+}
+
+.auth__input::placeholder {
+    color: var(--color-grey-neutral);
+    opacity: 0.7;
+}
+
+.auth__password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.auth__password-toggle {
+    position: absolute;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-dark-secondary);
+    padding: var(--spacing-xs);
+}
+
+.auth__password-toggle:hover { color: var(--color-accent-soft); }
+
+.auth__password-toggle-icon { font-size: 1.2rem; }
+
+.auth__error-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-sm);
+}
+
+.auth__error {
+    color: var(--color-accent-main);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.auth__form-options {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: var(--spacing-md);
+}
+
+.auth__submit {
+    background-color: var(--color-accent-soft);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(239, 129, 107, 0.3);
+}
+
+.auth__submit:hover {
+    background-color: var(--color-accent-main);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(241, 81, 82, 0.4);
+}
+
+.auth__link {
+    color: var(--color-accent-soft);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+}
+
+.auth__link::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent-soft);
+    transition: width var(--transition-base);
+}
+
+.auth__link:hover::before { width: 100%; }
+
+.auth__link:hover { color: var(--color-accent-main); }
+
+.auth__switch {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+    color: var(--color-dark-primary);
+}

@@ -1,27 +1,7 @@
 import json
 import math
-import os
 
-from .models import Material
-
-
-def fetch_all_materials() -> list[Material]:
-    """Получает все материалы из базы данных"""
-    return Material.query.all()
-
-
-def load_regions_data() -> list[dict[str, str]]:
-    """Загружает информацию о регионах из JSON-файла"""
-    with open("data/regions_info.json", "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def get_calc_steps() -> list[str]:
-    """Возвращает список шагов калькулятора на основе имеющихся шаблонов"""
-    return [
-        f for f in os.listdir("app/templates/steps")
-        if not (f.startswith("~") or f.endswith("~") or f.startswith("."))
-    ]
+from ..models import Material
 
 
 def parse_form_data(form: any) -> dict[str, any]:
@@ -123,7 +103,6 @@ def calculate_results(form_data: dict[str, any]) -> dict[str, any]:
             if blocks_per_pallet and blocks_count > 0
             else "Не определено"
         )
-
 
         cost_materials = blocks_count * block_price
         cost_per_square_meter = round(cost_materials / net_wall_area, 2) if net_wall_area > 0 else 0

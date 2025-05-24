@@ -1,88 +1,74 @@
-<section class="calc__modal calc__modal--custom-material" id="custom-material-modal" aria-hidden="true" tabindex="-1">
-    <div class="calc__modal-overlay">
-        <div class="calc__modal-container" role="dialog" aria-modal="true" aria-labelledby="custom-material-modal-title">
-            <div class="calc__modal-header">
-                <h2 class="calc__modal-title" id="custom-material-modal-title">Добавление своего материала</h2>
-                <button type="button" class="calc__button calc__button--close-modal" id="close-modal" aria-label="Закрыть">
-                    <span class="material-icons calc__button-icon" aria-hidden="true">close</span>
-                </button>
+<section id="custom-material-modal" class="modal__container">
+    <div class="modal__content">
+        <h3 class="modal__title">Добавление своего материала</h3>
+        <div class="modal__form" id="custom-material-form">
+            <div class="modal__form-field">
+                <label class="modal__form-label" for="custom-material-name">
+                    <span class="modal__input-text">
+                        <span class="material-icons modal__form-icon">title</span>
+                        Название материала
+                    </span>
+                </label>
+                <input type="text" class="modal__form-input" id="custom-material-name" name="name" required>
             </div>
 
-            <div class="calc__modal-content">
-                <div class="calc__custom-material-form" id="custom-material-form">
-                    <div class="calc__form-field">
-                        <label class="calc__form-label" for="custom-material-name">
-                            <span class="calc__input-text">
-                                <span class="material-icons calc__form-icon" aria-hidden="true">title</span>
-                                Название материала
+            <div class="modal__form-dimensions">
+                <h3 class="modal__form-subtitle">Размеры материала (мм)</h3>
+                <div class="modal__form-dimensions-group">
+                    <div class="modal__form-field modal__form-field--dimension">
+                        <label class="modal__form-label" for="custom-material-length">
+                            <span class="modal__input-text">
+                                <span class="material-icons modal__form-icon">straighten</span>
+                                Длина
                             </span>
                         </label>
-                        <input type="text" class="calc__form-input" id="custom-material-name" name="name" required>
+                        <div class="modal__controls modal__controls--dimension">
+                            <input type="number" class="modal__form-input" id="custom-material-length"
+                                   name="length" min="1" required>
+                            <span class="modal__unit">мм</span>
+                        </div>
                     </div>
 
-                    <div class="calc__form-dimensions">
-                        <h3 class="calc__form-subtitle">Размеры материала (мм)</h3>
-                        <div class="calc__form-dimensions-group">
-                            <div class="calc__form-field calc__form-field--dimension">
-                                <label class="calc__form-label" for="custom-material-length">
-                                    <span class="calc__input-text">
-                                        <span class="material-icons calc__form-icon" aria-hidden="true">straighten</span>
-                                        Длина
-                                    </span>
-                                </label>
-                                <div class="calc__controls calc__controls--dimension">
-                                    <input type="number" class="calc__form-input" id="custom-material-length"
-                                           name="length" min="1" required>
-                                    <span class="calc__unit">мм</span>
-                                </div>
-                            </div>
+                    <div class="modal__form-field modal__form-field--dimension">
+                        <label class="modal__form-label" for="custom-material-width">
+                            <span class="modal__input-text">
+                                <span class="material-icons modal__form-icon">width_full</span>
+                                Ширина
+                            </span>
+                        </label>
+                        <div class="modal__controls modal__controls--dimension">
+                            <input type="number" class="modal__form-input" id="custom-material-width"
+                                   name="width" min="1" required>
+                            <span class="modal__unit">мм</span>
+                        </div>
+                    </div>
 
-                            <div class="calc__form-field calc__form-field--dimension">
-                                <label class="calc__form-label" for="custom-material-width">
-                                    <span class="calc__input-text">
-                                        <span class="material-icons calc__form-icon" aria-hidden="true">width_full</span>
-                                        Ширина
-                                    </span>
-                                </label>
-                                <div class="calc__controls calc__controls--dimension">
-                                    <input type="number" class="calc__form-input" id="custom-material-width"
-                                           name="width" min="1" required>
-                                    <span class="calc__unit">мм</span>
-                                </div>
-                            </div>
-
-                            <div class="calc__form-field calc__form-field--dimension">
-                                <label class="calc__form-label" for="custom-material-height">
-                                    <span class="calc__input-text">
-                                        <span class="material-icons calc__form-icon" aria-hidden="true">height</span>
-                                        Высота
-                                    </span>
-                                </label>
-                                <div class="calc__controls calc__controls--dimension">
-                                    <input type="number" class="calc__form-input" id="custom-material-height"
-                                           name="height" min="1" required>
-                                    <span class="calc__unit">мм</span>
-                                </div>
-                            </div>
+                    <div class="modal__form-field modal__form-field--dimension">
+                        <label class="modal__form-label" for="custom-material-height">
+                            <span class="modal__input-text">
+                                <span class="material-icons modal__form-icon">height</span>
+                                Высота
+                            </span>
+                        </label>
+                        <div class="modal__controls modal__controls--dimension">
+                            <input type="number" class="modal__form-input" id="custom-material-height"
+                                   name="height" min="1" required>
+                            <span class="modal__unit">мм</span>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="calc__modal-footer">
-                <div class="calc__modal-actions">
-                    <button type="button" class="calc__button calc__button--cancel" id="cancel-modal"
-                            aria-label="Отменить добавление материала">
-                        <span class="material-icons calc__button-icon" aria-hidden="true">cancel</span>
-                        Отмена
-                    </button>
-                    <button type="button" class="calc__button calc__button--save" id="save-custom-material"
-                            aria-label="Сохранить новый материал">
-                        <span class="material-icons calc__button-icon" aria-hidden="true">save</span>
-                        Сохранить материал
-                    </button>
-                </div>
-            </div>
+        </div>
+        
+        <div class="modal__actions">
+            <button type="button" class="modal__button modal__button--cancel" id="cancel-modal">
+                <span class="material-icons modal__button-icon">cancel</span>
+                Отмена
+            </button>
+            <button type="button" class="modal__button modal__button--confirm" id="save-custom-material">
+                <span class="material-icons modal__button-icon">save</span>
+                Сохранить материал
+            </button>
         </div>
     </div>
 </section>

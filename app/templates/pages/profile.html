@@ -1,0 +1,58 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Профиль - BuildCalc{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/pages/profile.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/components/modals.css") }}">
+{% endblock %}
+
+{% block content %}
+    <section class="profile">
+        <div class="profile__container">
+            <h2 class="profile__title">Личный кабинет</h2>
+
+            <div class="profile__content">
+                <div class="profile__card">
+                    <div class="profile__header">
+                        <div class="profile__avatar">
+                            <span class="material-icons profile__avatar-icon" aria-hidden="true">person</span>
+                        </div>
+                        <div class="profile__user-info">
+                            <p class="profile__greeting">Добро пожаловать,</p>
+                            <h3 class="profile__username">{{ current_user.username }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="profile__welcome-message">
+                        <p>
+                            Спасибо, что используете BuildCalc для ваших строительных расчётов! Здесь вы можете
+                            управлять своим аккаунтом и просматривать историю расчётов.
+                        </p>
+                        <p>
+                            Наш калькулятор поможет вам выбрать оптимальные материалы для строительства с учётом
+                            климатических условий вашего региона.
+                        </p>
+                    </div>
+
+                    <div class="profile__actions">
+                        <a href="{{ url_for('auth.logout') }}" class="profile__button profile__button--logout">
+                            <span class="material-icons profile__button-icon" aria-hidden="true">logout</span>
+                            Выйти
+                        </a>
+                        <button type="button" id="delete-account-btn" class="profile__button profile__button--delete">
+                            <span class="material-icons profile__button-icon" aria-hidden="true">delete</span>
+                            Удалить аккаунт
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include "modals/delete-account-modal.html" %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for("static", filename="js/pages/profile.js") }}"></script>
+{% endblock %}

@@ -1,5 +1,3 @@
-.results { animation: fadeIn 0.5s ease-out; }
-
 .results__container {
     width: 100%;
     max-width: var(--container-max-width);

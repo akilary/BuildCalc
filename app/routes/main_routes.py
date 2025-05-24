@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session
+from flask_login import login_required
 
-from ..utils import fetch_all_materials, load_regions_data, get_calc_steps, parse_form_data, calculate_results
 from ..forms import CalcForm
+from ..utils import fetch_all_materials, load_regions_data, get_calc_steps, parse_form_data, calculate_results
 
 main_bp = Blueprint("main", __name__, url_prefix="/")
 
@@ -9,10 +10,11 @@ main_bp = Blueprint("main", __name__, url_prefix="/")
 @main_bp.route("/")
 @main_bp.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("pages/home.html")
 
 
 @main_bp.route("/calc", methods=["POST", "GET"])
+@login_required
 def calc():
     regions = load_regions_data()
     materials = fetch_all_materials()
@@ -31,7 +33,7 @@ def calc():
             flash(str(e), "danger")
 
     return render_template(
-        "calc.html",
+        "calculator/calc.html",
         form=form,
         steps=get_calc_steps(),
         region_map={r["id"]: r for r in regions},
@@ -40,12 +42,11 @@ def calc():
 
 
 @main_bp.route("/results", methods=["GET"])
+@login_required
 def results():
     form_data = session.get('form_data', {})
-    print(form_data)
 
     if not form_data:
         return redirect(url_for('main.calc'))
 
-    return render_template("results.html", form_data=form_data, res=calculate_results(form_data))
-
+    return render_template("pages/results.html", form_data=form_data, res=calculate_results(form_data))

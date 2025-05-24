@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "layout/base.html" %}
 
 {% block title %}Результаты расчета - BuildCalc{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for("static", filename="css/results.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/pages/results.css") }}">
 {% endblock %}
 
 {% block content %}
@@ -360,5 +360,5 @@
 
 {% block scripts %}
     <script id="results-data" type="application/json">{{ res|tojson }}</script>
-    <script src="{{ url_for("static", filename="js/results.js") }}"></script>
+    <script src="{{ url_for("static", filename="js/pages/results.js") }}"></script>
 {% endblock %}

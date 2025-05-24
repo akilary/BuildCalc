@@ -50,7 +50,7 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = RadioField(
+    username = StringField(
         "Username",
         validators=[DataRequired()],
         render_kw={

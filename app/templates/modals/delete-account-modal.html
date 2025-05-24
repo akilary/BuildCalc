@@ -1,0 +1,16 @@
+<section id="delete-account-modal" class="modal__container">
+    <div class="modal__content">
+        <h3 class="modal__title">Подтверждение удаления</h3>
+        <p class="modal__text">
+            Вы уверены, что хотите удалить свой аккаунт? Это действие невозможно отменить.
+        </p>
+        <div class="modal__actions">
+            <button type="button" id="cancel-delete" class="modal__button modal__button--cancel">
+                Отмена
+            </button>
+            <form action="{{ url_for("profile.delete_profile") }}" method="post">
+                <button type="submit" class="modal__button modal__button--confirm">Удалить</button>
+            </form>
+        </div>
+    </div>
+</section>

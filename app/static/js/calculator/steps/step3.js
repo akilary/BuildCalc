@@ -1,4 +1,4 @@
-import {calculateIsometricPoints, drawDimensionLines, drawIsometricObject, resizeCanvas} from "../utils/canvasUtils.js";
+import {calculateIsometricPoints, drawDimensionLines, drawIsometricObject, resizeCanvas} from "../../utils/canvasUtils.js";
 
 
 /** Инициализирует визуализацию материала */
@@ -85,13 +85,8 @@ export function initMaterialSelector() {
 /** Инициализация модального окна для добавления своего материала */
 export function initCustomMaterialModal() {
     const modal = document.getElementById("custom-material-modal");
-    const closeButton = document.getElementById("close-modal")
     const cancelButton = document.getElementById("cancel-modal");
     const saveButton = document.getElementById("save-custom-material");
-
-    closeButton.addEventListener("click", () => {
-        _closeCustomMaterialModal();
-    });
 
     cancelButton.addEventListener("click", () => {
         _closeCustomMaterialModal();
@@ -222,10 +217,10 @@ function _handleMaterialSelect(
 function _toggleCustomMaterialControls(materialSelect, customMaterialControls) {
     if (customMaterialControls) {
         if (materialSelect.value === "custom-material") {
-            customMaterialControls.classList.add("calc__custom-material--active");
+            customMaterialControls.classList.add("modal__container--active");
             customMaterialControls.setAttribute("aria-hidden", "false");
         } else {
-            customMaterialControls.classList.remove("calc__custom-material--active");
+            customMaterialControls.classList.remove("modal__container--active");
             customMaterialControls.setAttribute("aria-hidden", "true");
         }
     }
@@ -234,6 +229,7 @@ function _toggleCustomMaterialControls(materialSelect, customMaterialControls) {
 /** Открытие модального окна для добавления своего материала */
 function _openCustomMaterialModal() {
     const modal = document.getElementById("custom-material-modal");
+    modal.classList.add("modal__container--active");
     modal.setAttribute("aria-hidden", "false");
     modal.tabIndex = 0
 
@@ -243,8 +239,6 @@ function _openCustomMaterialModal() {
             firstInput.focus();
         }
     }, 100);
-
-    document.body.style.overflow = "hidden";
 }
 
 /** Сохранение пользовательского материала в списке */
@@ -281,6 +275,7 @@ function _closeCustomMaterialModal() {
     const modal = document.getElementById("custom-material-modal");
 
     document.activeElement.blur();
+    modal.classList.remove("modal__container--active");
     modal.setAttribute("aria-hidden", "true");
     modal.tabIndex = -1
     document.body.style.overflow = "";

@@ -1,15 +1,15 @@
-{% extends "base.html" %}
+{% extends "layout/base.html" %}
 
-{% block title %}Регистрация - InnoMart{% endblock %}
+{% block title %}Регистрация - BildCalc{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for("static", filename="css/auth.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/pages/auth.css") }}">
 {% endblock %}
 
 {% block content %}
     <section class="auth">
-        <div class="main__container auth__container">
-            <h2 class="auth__title">Создание аккаунта</h2>
+        <div class="auth__container">
+            <h1 class="auth__title">Создание аккаунта</h1>
             <form action="{{ url_for("auth.register") }}" method="post" class="auth__form">
                 {{ form.hidden_tag() }}
 
@@ -83,5 +83,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script type="module" src="{{ url_for("static", filename="js/auth.js") }}"></script>
+    <script type="module" src="{{ url_for("static", filename="js/pages/auth.js") }}"></script>
 {% endblock %}

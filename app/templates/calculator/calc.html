@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "layout/base.html" %}
 
 {% block title %}Калькулятор - BuildCalc{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for("static", filename="css/calc.css") }}">
-    <link rel="stylesheet" href="{{ url_for("static", filename="css/steps.css") }}">
-    <link rel="stylesheet" href="{{ url_for("static", filename="css/modals/custom-material-modal.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/components/calc.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/components/steps.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/components/modals.css") }}">
 {% endblock %}
 
 {% block content %}
@@ -35,7 +35,7 @@
                 </div>
 
                 {% for step in steps %}
-                    {% include "steps/" ~ step %}
+                    {% include "calculator/steps/" ~ step %}
                 {% endfor %}
 
                 <div class="calc__navigation">
@@ -57,5 +57,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script type="module" src="{{ url_for("static", filename="js/calc.js") }}"></script>
+    <script type="module" src="{{ url_for("static", filename="js/calculator/calc.js") }}"></script>
 {% endblock %}

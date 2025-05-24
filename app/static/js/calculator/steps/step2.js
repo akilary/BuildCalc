@@ -1,4 +1,4 @@
-import {calculateIsometricPoints, drawDimensionLines, drawIsometricObject, resizeCanvas} from "../utils/canvasUtils.js";
+import {calculateIsometricPoints, drawDimensionLines, drawIsometricObject, resizeCanvas} from "../../utils/canvasUtils.js";
 
 
 /** Инициализация визуализации здания */

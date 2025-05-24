@@ -21,7 +21,7 @@
                     <p class="results__summary-cost">
                         <span class="material-icons">payments</span>
                         Общая стоимость материалов и изделий:
-                        <strong>{{ res.cost.materials }} ₸</strong>
+                        <strong>{{ res.cost.total_cost }} ₸</strong>
                     </p>
                 </div>
 
@@ -211,7 +211,10 @@
                                             </div>
                                             <div class="results__opening-detail">
                                                 <span class="results__opening-detail-label">Площадь одной:</span>
-                                                <span class="results__opening-detail-value">{{ d.width * d.height }} м²</span>
+                                                <span class="results__opening-detail-value">
+                                                    {% set area = d.width * d.height %}
+                                                    {{ area | round(0, "common") if area == area|int else area|round(2) }} м²
+                                                </span>
                                             </div>
                                             <div class="results__opening-detail">
                                                 <span class="results__opening-detail-label">Цена за шт:</span>
@@ -261,7 +264,10 @@
                                             </div>
                                             <div class="results__opening-detail">
                                                 <span class="results__opening-detail-label">Площадь одного:</span>
-                                                <span class="results__opening-detail-value">{{ w.width * w.height }} м²</span>
+                                                <span class="results__opening-detail-value">
+                                                    {% set area = w.width * w.height %}
+                                                    {{ area | round(0, "common") if area == area|int else area|round(2) }} м²
+                                                </span>
                                             </div>
                                             <div class="results__opening-detail">
                                                 <span class="results__opening-detail-label">Цена за шт:</span>
@@ -342,7 +348,7 @@
                     <span class="material-icons results__error-icon">error</span>
                     <h3>Данные для расчета не найдены</h3>
                     <p>Для получения результатов необходимо заполнить форму расчета.</p>
-                    <a href="{{ url_for('main.calc') }}" class="results__button results__button--back">
+                    <a href="{{ url_for("main.calc") }}" class="results__button results__button--back">
                         <span class="material-icons results__button-icon">calculate</span>
                         Перейти к калькулятору
                     </a>
@@ -354,7 +360,5 @@
 
 {% block scripts %}
     <script id="results-data" type="application/json">{{ res|tojson }}</script>
-    <script src="{{ url_for('static', filename='js/chart.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/chartjs-plugin-datalabels.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/results.js') }}"></script>
+    <script src="{{ url_for("static", filename="js/results.js") }}"></script>
 {% endblock %}

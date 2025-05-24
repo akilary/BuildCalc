@@ -125,8 +125,8 @@ def calculate_results(form_data: dict[str, any]) -> dict[str, any]:
         )
 
 
-        total_cost = blocks_count * block_price
-        cost_per_square_meter = round(total_cost / net_wall_area, 2) if net_wall_area > 0 else 0
+        cost_materials = blocks_count * block_price
+        cost_per_square_meter = round(cost_materials / net_wall_area, 2) if net_wall_area > 0 else 0
 
         door_cost = sum(
             float(d.get("quantity", 0)) * float(d.get("unit_price", 0))
@@ -136,6 +136,8 @@ def calculate_results(form_data: dict[str, any]) -> dict[str, any]:
             float(w.get("quantity", 0)) * float(w.get("unit_price", 0))
             for w in windows_data
         )
+
+        total_cost = sum([cost_materials, door_cost, window_cost])
 
         region_compatibility = "Не определено"
         region_name = form_data.get("region", "").lower()
@@ -178,8 +180,9 @@ def calculate_results(form_data: dict[str, any]) -> dict[str, any]:
                 "size": " × ".join([str(_smart_number(i)) for i in [block_length, block_width, block_height]])
             },
             "cost": {
-                "materials": _smart_number(total_cost),
-                "per_square_meter": _smart_number(cost_per_square_meter)
+                "materials": _smart_number(cost_materials),
+                "per_square_meter": _smart_number(cost_per_square_meter),
+                "total_cost": _smart_number(total_cost)
             },
             "material_info": material_info,
             "openings_cost": {

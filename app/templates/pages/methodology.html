@@ -1,0 +1,371 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Методология расчетов - BuildCalc{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/pages/methodology.css") }}">
+{% endblock %}
+
+{% block content %}
+    <section class="methodology">
+        <div class="methodology__container">
+            <div class="methodology__header">
+                <h1 class="methodology__title">Методология расчетов BuildCalc</h1>
+                <div class="methodology__intro">
+                    <p>
+                        На этой странице подробно описаны все формулы и методы расчета, используемые в нашем калькуляторе
+                        строительных материалов.
+                    </p>
+                </div>
+            </div>
+
+            <div class="methodology__progress">
+                <ul class="methodology__progress-list">
+                    <li class="methodology__progress-item">
+                        <span class="methodology__progress-number">01</span>
+                        <span class="methodology__progress-text">Выбор региона</span>
+                    </li>
+                    <li class="methodology__progress-item">
+                        <span class="methodology__progress-number">02</span>
+                        <span class="methodology__progress-text">Размеры здания</span>
+                    </li>
+                    <li class="methodology__progress-item">
+                        <span class="methodology__progress-number">03</span>
+                        <span class="methodology__progress-text">Выбор материала</span>
+                    </li>
+                    <li class="methodology__progress-item">
+                        <span class="methodology__progress-number">04</span>
+                        <span class="methodology__progress-text">Двери и окна</span>
+                    </li>
+                    <li class="methodology__progress-item">
+                        <span class="methodology__progress-number">05</span>
+                        <span class="methodology__progress-text">Итоговые расчеты</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="methodology__section">
+                <div class="methodology__section-header">
+                    <span class="methodology__section-icon material-icons">location_on</span>
+                    <h2 class="methodology__section-title">Шаг 1: Выбор региона</h2>
+                </div>
+                <div class="methodology__section-content">
+                    <p>
+                        Выбор региона влияет на рекомендации по материалам. Система учитывает климатические особенности
+                        разных регионов Казахстана:
+                    </p>
+                    <ul class="methodology__list">
+                        <li class="methodology__list-item">
+                            <span class="methodology__list-icon material-icons">north</span>
+                            <div class="methodology__list-content">
+                                <strong>Северный регион:</strong> характеризуется холодными зимами, требует материалов с высокой теплоизоляцией
+                            </div>
+                        </li>
+                        <li class="methodology__list-item">
+                            <span class="methodology__list-icon material-icons">south</span>
+                            <div class="methodology__list-content">
+                                <strong>Южный регион:</strong> жаркий климат, важны материалы с хорошей теплоустойчивостью
+                            </div>
+                        </li>
+                        <li class="methodology__list-item">
+                            <span class="methodology__list-icon material-icons">east</span>
+                            <div class="methodology__list-content">
+                                <strong>Восточный регион:</strong> континентальный климат с большими перепадами температур
+                            </div>
+                        </li>
+                        <li class="methodology__list-item">
+                            <span class="methodology__list-icon material-icons">west</span>
+                            <div class="methodology__list-content">
+                                <strong>Западный регион:</strong> ветреный климат, требуются ветроустойчивые материалы
+                            </div>
+                        </li>
+                        <li class="methodology__list-item">
+                            <span class="methodology__list-icon material-icons">adjust</span>
+                            <div class="methodology__list-content">
+                                <strong>Центральный регион:</strong> сухой климат с жарким летом и холодной зимой
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="methodology__formula">
+                        <div class="methodology__formula-title">Совместимость материала с регионом определяется по формуле:</div>
+                        <pre class="methodology__code">
+Совместимость региона = "Подходит", если материал подходит для выбранного региона
+Совместимость региона = "Не рекомендуется", если материал не рекомендуется для региона</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="methodology__section">
+                <div class="methodology__section-header">
+                    <span class="methodology__section-icon material-icons">straighten</span>
+                    <h2 class="methodology__section-title">Шаг 2: Размеры здания</h2>
+                </div>
+                <div class="methodology__section-content">
+                    <p>На этом этапе вводятся основные размеры здания, которые используются для расчета:</p>
+
+                    <div class="methodology__subsection">
+                        <h3 class="methodology__subsection-title">Основные формулы:</h3>
+                        <ol class="methodology__ordered-list">
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">square_foot</span>
+                                        <h4 class="methodology__formula-name">Площадь здания (м²):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Площадь здания = Длина здания × Ширина здания</pre>
+                                </div>
+                            </li>
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">polyline</span>
+                                        <h4 class="methodology__formula-name">Периметр здания (м):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Периметр здания = 2 × (Длина здания + Ширина здания)</pre>
+                                </div>
+                            </li>
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">view_in_ar</span>
+                                        <h4 class="methodology__formula-name">Общая площадь стен (м²):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Общая площадь стен = Периметр здания × Высота здания</pre>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="methodology__section">
+                <div class="methodology__section-header">
+                    <span class="methodology__section-icon material-icons">layers</span>
+                    <h2 class="methodology__section-title">Шаг 3: Выбор материала</h2>
+                </div>
+                <div class="methodology__section-content">
+                    <p>Выбор строительного материала определяет характеристики блоков для расчета:</p>
+
+                    <div class="methodology__subsection">
+                        <h3 class="methodology__subsection-title">Параметры материала:</h3>
+                        <div class="methodology__parameters-grid">
+                            <div class="methodology__parameter">
+                                <span class="methodology__parameter-icon material-icons">straighten</span>
+                                <div class="methodology__parameter-text">Размеры блока (мм): Д × Ш × В</div>
+                            </div>
+                            <div class="methodology__parameter">
+                                <span class="methodology__parameter-icon material-icons">monitor_weight</span>
+                                <div class="methodology__parameter-text">Вес блока (кг)</div>
+                            </div>
+                            <div class="methodology__parameter">
+                                <span class="methodology__parameter-icon material-icons">payments</span>
+                                <div class="methodology__parameter-text">Цена за блок (₸)</div>
+                            </div>
+                            <div class="methodology__parameter">
+                                <span class="methodology__parameter-icon material-icons">inventory_2</span>
+                                <div class="methodology__parameter-text">Количество блоков на поддоне</div>
+                            </div>
+                            <div class="methodology__parameter">
+                                <span class="methodology__parameter-icon material-icons">ac_unit</span>
+                                <div class="methodology__parameter-text">Теплоизоляционные свойства</div>
+                            </div>
+                            <div class="methodology__parameter">
+                                <span class="methodology__parameter-icon material-icons">water_drop</span>
+                                <div class="methodology__parameter-text">Влагостойкость</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="methodology__formula">
+                        <div class="methodology__formula-title">Объем одного блока рассчитывается по формуле:</div>
+                        <pre class="methodology__code">Объем блока (м³) = (Длина блока / 1000) × (Высота блока / 1000) × (Ширина блока / 1000)</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="methodology__section">
+                <div class="methodology__section-header">
+                    <span class="methodology__section-icon material-icons">window</span>
+                    <h2 class="methodology__section-title">Шаг 4: Двери и окна</h2>
+                </div>
+                <div class="methodology__section-content">
+                    <p>На этом этапе добавляются проемы (двери и окна), которые вычитаются из общей площади стен:</p>
+
+                    <div class="methodology__subsection">
+                        <h3 class="methodology__subsection-title">Расчет площади проемов:</h3>
+                        <ol class="methodology__ordered-list">
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">door_front</span>
+                                        <h4 class="methodology__formula-name">Площадь дверей (м²):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Площадь дверей = Σ(Количество дверей × Ширина двери × Высота двери)</pre>
+                                </div>
+                            </li>
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">window</span>
+                                        <h4 class="methodology__formula-name">Площадь окон (м²):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Площадь окон = Σ(Количество окон × Ширина окна × Высота окна)</pre>
+                                </div>
+                            </li>
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">calculate</span>
+                                        <h4 class="methodology__formula-name">Общая площадь проемов (м²):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Общая площадь проемов = Площадь дверей + Площадь окон</pre>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="methodology__subsection">
+                        <h3 class="methodology__subsection-title">Стоимость дверей и окон:</h3>
+                        <div class="methodology__formula-grid">
+                            <div class="methodology__formula-card">
+                                <div class="methodology__formula-header">
+                                    <span class="methodology__formula-icon material-icons">door_front</span>
+                                    <h4 class="methodology__formula-name">Стоимость дверей (₸):</h4>
+                                </div>
+                                <pre class="methodology__code">Стоимость дверей = Σ(Количество дверей × Цена за дверь)</pre>
+                            </div>
+                            <div class="methodology__formula-card">
+                                <div class="methodology__formula-header">
+                                    <span class="methodology__formula-icon material-icons">window</span>
+                                    <h4 class="methodology__formula-name">Стоимость окон (₸):</h4>
+                                </div>
+                                <pre class="methodology__code">Стоимость окон = Σ(Количество окон × Цена за окно)</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="methodology__section">
+                <div class="methodology__section-header">
+                    <span class="methodology__section-icon material-icons">summarize</span>
+                    <h2 class="methodology__section-title">Итоговые расчеты</h2>
+                </div>
+                <div class="methodology__section-content">
+                    <div class="methodology__formula-grid">
+                        <div class="methodology__formula-card">
+                            <div class="methodology__formula-header">
+                                <span class="methodology__formula-icon material-icons">wall</span>
+                                <h4 class="methodology__formula-name">Расчет чистой площади стен:</h4>
+                            </div>
+                            <pre class="methodology__code">Чистая площадь стен = Общая площадь стен - Общая площадь проемов</pre>
+                        </div>
+
+                        <div class="methodology__formula-card">
+                            <div class="methodology__formula-header">
+                                <span class="methodology__formula-icon material-icons">view_in_ar</span>
+                                <h4 class="methodology__formula-name">Расчет объема стен:</h4>
+                            </div>
+                            <pre class="methodology__code">Фактическая толщина стены = Толщина стены × (Ширина блока / 1000)
+Объем стен = Чистая площадь стен × Фактическая толщина стены</pre>
+                        </div>
+                    </div>
+
+                    <div class="methodology__subsection">
+                        <h3 class="methodology__subsection-title">Расчет количества блоков:</h3>
+                        <div class="methodology__formula">
+                            <p>
+                                При расчете количества блоков учитывается коэффициент запаса (коэффициент отходов) равный 1.05
+                                (5% запаса на отходы):
+                            </p>
+                            <pre class="methodology__code">Количество блоков = округление_вверх(Объем стен / Объем блока × Коэффициент отходов)</pre>
+                        </div>
+                    </div>
+
+                    <div class="methodology__formula-grid">
+                        <div class="methodology__formula-card">
+                            <div class="methodology__formula-header">
+                                <span class="methodology__formula-icon material-icons">inventory_2</span>
+                                <h4 class="methodology__formula-name">Расчет количества поддонов:</h4>
+                            </div>
+                            <pre class="methodology__code">Количество поддонов = округление_вверх(Количество блоков / Количество блоков на поддоне)</pre>
+                        </div>
+
+                        <div class="methodology__formula-card">
+                            <div class="methodology__formula-header">
+                                <span class="methodology__formula-icon material-icons">monitor_weight</span>
+                                <h4 class="methodology__formula-name">Расчет веса материалов:</h4>
+                            </div>
+                            <pre class="methodology__code">Общий вес (тонн) = (Количество блоков × Вес одного блока) / 1000</pre>
+                        </div>
+                    </div>
+
+                    <div class="methodology__subsection">
+                        <h3 class="methodology__subsection-title">Расчет стоимости:</h3>
+                        <ol class="methodology__ordered-list">
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">payments</span>
+                                        <h4 class="methodology__formula-name">Стоимость материалов (₸):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Стоимость материалов = Количество блоков × Цена за блок</pre>
+                                </div>
+                            </li>
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">square_foot</span>
+                                        <h4 class="methodology__formula-name">Стоимость на квадратный метр (₸/м²):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Стоимость на м² = Стоимость материалов / Чистая площадь стен</pre>
+                                </div>
+                            </li>
+                            <li class="methodology__ordered-item">
+                                <div class="methodology__formula-card">
+                                    <div class="methodology__formula-header">
+                                        <span class="methodology__formula-icon material-icons">price_check</span>
+                                        <h4 class="methodology__formula-name">Общая стоимость (₸):</h4>
+                                    </div>
+                                    <pre class="methodology__code">Общая стоимость = Стоимость материалов + Стоимость дверей + Стоимость окон</pre>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="methodology__section">
+                <div class="methodology__section-header">
+                    <span class="methodology__section-icon material-icons">data_object</span>
+                    <h2 class="methodology__section-title">Обработка данных</h2>
+                </div>
+                <div class="methodology__section-content">
+                    <p>Все числовые результаты обрабатываются функцией округления, которая:</p>
+                    <ul class="methodology__list">
+                        <li class="methodology__list-item">
+                            <span class="methodology__list-icon material-icons">looks_one</span>
+                            <div class="methodology__list-content">
+                                Возвращает целое число, если результат является целым
+                            </div>
+                        </li>
+                        <li class="methodology__list-item">
+                            <span class="methodology__list-icon material-icons">looks_two</span>
+                            <div class="methodology__list-content">
+                                Округляет до двух знаков после запятой, если результат является дробным
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="methodology__cta">
+                <a href="{{ url_for('main.calc') }}" class="methodology__cta-button">
+                    <span class="material-icons">calculate</span>
+                    Перейти к калькулятору
+                </a>
+                <p class="methodology__cta-text">Попробуйте наш калькулятор прямо сейчас и получите точный расчет материалов для вашего проекта</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
 
     <link rel="stylesheet" href="{{ url_for("static", filename="css/components/base.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/base/responsive.css") }}">
     {% block styles %}{% endblock %}
 </head>
 <body>
@@ -61,7 +62,7 @@
                         <a href="#" class="site-footer__link">О компании</a>
                     </li>
                     <li class="site-footer__section-list-item">
-                        <a href="#" class="site-footer__link">Как выполняются расчёты</a>
+                        <a href="{{ url_for("main.methodology") }}" class="site-footer__link">Как выполняются расчёты</a>
                     </li>
                 </ul>
             </section>

@@ -11,9 +11,6 @@
     --color-accent-soft: #EF816B;
     --color-accent-main: #F15152;
 
-    --container-max-width: min(92vw, 90rem);
-    --container-padding: max(1rem, 2vw);
-
     --header-height: 5rem;
     --footer-height: 25rem;
 

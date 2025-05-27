@@ -13,6 +13,11 @@ def home():
     return render_template("pages/home.html")
 
 
+@main_bp.route("/methodology")
+def methodology():
+    return render_template("pages/methodology.html")
+
+
 @main_bp.route("/calc", methods=["POST", "GET"])
 @login_required
 def calc():
